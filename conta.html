@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#80619f">
 
-  <title>Minha conta | LIA</title>
-  <meta name="description" content="Seu espaço pessoal na plataforma LIA.">
+  <title>Criar minha conta | LIA</title>
+  <meta name="description" content="Crie seu espaço pessoal na plataforma LIA.">
 
   <link rel="stylesheet" href="lia.css">
 
@@ -20,7 +20,6 @@
       --account-text: #44394b;
       --account-muted: #817589;
       --account-border: #e9dfee;
-      --account-white: #fff;
       --account-shadow: 0 12px 35px rgba(83, 54, 104, .08);
     }
 
@@ -51,67 +50,9 @@
       font: inherit;
     }
 
-    .account-page a {
-      color: inherit;
-    }
-
-    /* CABEÇALHO */
-
-    .account-header {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
-      padding: 16px max(5%, calc((100% - 1180px) / 2));
-      background: rgba(255, 255, 255, .94);
-      border-bottom: 1px solid var(--account-border);
-      box-shadow: 0 4px 18px rgba(83, 54, 104, .04);
-    }
-
-    .account-logo {
-      font-family: Georgia, serif;
-      font-size: 35px;
-      font-weight: bold;
-      letter-spacing: 4px;
-      text-decoration: none;
-      color: var(--account-dark) !important;
-    }
-
-    .account-nav {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .account-nav a {
-      padding: 9px 14px;
-      border-radius: 30px;
-      text-decoration: none;
-      font-size: 13px;
-      font-weight: 700;
-      color: var(--account-dark) !important;
-      transition: .2s ease;
-    }
-
-    .account-nav a:hover {
-      background: #f5eff9;
-      transform: translateY(-1px);
-    }
-
-    .account-nav .account-nav-active {
-      background: var(--account-lilac);
-      color: var(--account-dark) !important;
-    }
-
-    /* CONTEÚDO */
-
     .account-main {
       width: min(1000px, 92%);
-      margin: 38px auto 70px;
+      margin: 45px auto 70px;
     }
 
     .account-hero {
@@ -176,8 +117,6 @@
       font-style: italic;
     }
 
-    /* CARTÕES */
-
     .account-card {
       margin: 24px 0;
       padding: 30px;
@@ -223,8 +162,6 @@
       color: var(--account-muted);
       font-size: 13px;
     }
-
-    /* PERFIL */
 
     .account-profile {
       display: flex;
@@ -294,13 +231,10 @@
       box-shadow: 0 5px 13px rgba(83, 54, 104, .10);
     }
 
-    .account-photo-label:focus-within,
-    .account-photo-label:focus-visible {
+    .account-photo-label:focus-within {
       outline: 3px solid #c7addc;
       outline-offset: 3px;
     }
-
-    /* ESCONDE O CAMPO PADRÃO EM INGLÊS */
 
     .account-photo-input {
       position: absolute;
@@ -320,8 +254,6 @@
       color: var(--account-muted);
       font-size: 12px;
     }
-
-    /* CAMPOS */
 
     .account-grid {
       display: grid;
@@ -379,8 +311,6 @@
       resize: vertical;
     }
 
-    /* PRIVACIDADE */
-
     .account-notice {
       padding: 19px;
       border: 1px solid #e9dcef;
@@ -415,8 +345,6 @@
       accent-color: var(--account-purple);
       cursor: pointer;
     }
-
-    /* BOTÕES */
 
     .account-actions {
       display: flex;
@@ -485,8 +413,6 @@
       background: #f8e4eb;
     }
 
-    /* MENSAGENS */
-
     .account-message {
       display: none;
       margin-top: 20px;
@@ -505,43 +431,7 @@
       color: #8b2635;
     }
 
-    /* RODAPÉ */
-
-    .account-footer {
-      padding: 32px 18px;
-      border-top: 1px solid var(--account-border);
-      background: linear-gradient(135deg, #f0e7f6, #fbedf1);
-      color: #6b5b75;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    .account-footer p {
-      margin: 6px 0;
-    }
-
-    .account-footer strong {
-      color: var(--account-dark);
-    }
-
-    /* RESPONSIVIDADE */
-
     @media (max-width: 650px) {
-      .account-header {
-        justify-content: center;
-        padding: 14px 5%;
-      }
-
-      .account-nav {
-        justify-content: center;
-        gap: 5px;
-      }
-
-      .account-nav a {
-        padding: 8px 10px;
-        font-size: 12px;
-      }
-
       .account-main {
         width: 92%;
         margin-top: 23px;
@@ -620,38 +510,24 @@
 
 <body class="account-page">
 
-  <header class="account-header">
-    <a href="index.html" class="account-logo" aria-label="LIA - início">
-      LIA
-    </a>
-
-    <nav class="account-nav" aria-label="Navegação principal">
-      <a href="index.html">Início</a>
-      <a href="projeto.html">O projeto</a>
-      <a href="apoio.html">Preciso de apoio</a>
-      <a href="conta.html" class="account-nav-active" aria-current="page">
-        Minha conta
-      </a>
-    </nav>
-  </header>
-
   <main class="account-main">
 
     <section class="account-hero">
       <div class="account-butterfly" aria-hidden="true">🦋</div>
-      <h1>Seu espaço pessoal</h1>
+
+      <h1>Crie seu espaço pessoal</h1>
+
       <p>
         Um cantinho seu para organizar suas informações com tranquilidade.
         Você merece acolhimento, respeito e segurança.
       </p>
+
       <div class="account-quote" id="accountQuote">
         “Você também merece cuidar de si.”
       </div>
     </section>
 
     <form id="accountForm">
-
-      <!-- FOTO E PERFIL -->
 
       <section class="account-card">
         <div class="account-profile">
@@ -666,7 +542,7 @@
           </div>
 
           <div class="account-profile-info">
-            <h2 id="profileName">Sua área pessoal</h2>
+            <h2 id="profileName">Seu espaço na LIA</h2>
 
             <p id="profileEmail">
               Personalize sua conta com suas informações.
@@ -694,11 +570,10 @@
         </div>
       </section>
 
-      <!-- DADOS PESSOAIS -->
-
       <section class="account-card">
         <div class="account-card-heading">
           <div class="account-heading-icon" aria-hidden="true">♡</div>
+
           <div>
             <h2>Dados pessoais</h2>
             <p>Informações básicas para personalizar sua área.</p>
@@ -754,11 +629,10 @@
         </div>
       </section>
 
-      <!-- ENDEREÇO -->
-
       <section class="account-card">
         <div class="account-card-heading">
           <div class="account-heading-icon" aria-hidden="true">⌂</div>
+
           <div>
             <h2>Seu endereço</h2>
             <p>Preencha somente as informações que desejar.</p>
@@ -800,11 +674,10 @@
         </div>
       </section>
 
-      <!-- ROTINA -->
-
       <section class="account-card">
         <div class="account-card-heading">
           <div class="account-heading-icon" aria-hidden="true">✿</div>
+
           <div>
             <h2>Sobre sua rotina</h2>
             <p>Esses campos são opcionais. Responda apenas se quiser.</p>
@@ -815,6 +688,7 @@
 
           <div class="account-field">
             <label for="livingWith">Com quem você mora?</label>
+
             <select id="livingWith" name="livingWith">
               <option value="">Prefiro não informar</option>
               <option value="Sozinha">Sozinha</option>
@@ -829,6 +703,7 @@
             <label for="contactPreference">
               Forma de contato preferida
             </label>
+
             <select id="contactPreference" name="contactPreference">
               <option value="">Não informar</option>
               <option value="E-mail">E-mail</option>
@@ -857,11 +732,10 @@
         </div>
       </section>
 
-      <!-- PRIVACIDADE E AÇÕES -->
-
       <section class="account-card">
         <div class="account-card-heading">
           <div class="account-heading-icon" aria-hidden="true">♡</div>
+
           <div>
             <h2>Sua privacidade importa</h2>
             <p>Leia como esta versão funciona antes de salvar.</p>
@@ -870,6 +744,7 @@
 
         <div class="account-notice">
           <strong>Como seus dados são guardados?</strong>
+
           Esta versão de demonstração salva as informações no armazenamento
           local do navegador. Ela não possui login com senha, não sincroniza
           dados entre dispositivos e não oferece proteção adequada para
@@ -879,6 +754,7 @@
 
         <label class="account-consent" for="privacyConsent">
           <input type="checkbox" id="privacyConsent" required>
+
           <span>
             Li e entendi como os dados são armazenados e desejo salvá-los
             neste navegador.
@@ -889,7 +765,7 @@
 
           <button class="account-btn account-btn-primary" type="submit">
             <span aria-hidden="true">♡</span>
-            Salvar minha conta
+            Criar minha conta
           </button>
 
           <button
@@ -922,12 +798,6 @@
 
     </form>
   </main>
-
-  <footer class="account-footer">
-    <p><strong>LIA — Informação, acolhimento e apoio.</strong></p>
-    <p>Marcely Castro Rodrigues · Mikaela Cardoso Bonfim</p>
-    <p>Cuide da sua privacidade ao utilizar dispositivos compartilhados.</p>
-  </footer>
 
   <script>
     "use strict";
@@ -969,7 +839,7 @@
       const email = document.getElementById("email").value.trim();
 
       document.getElementById("profileName").textContent =
-        name || "Sua área pessoal";
+        name || "Seu espaço na LIA";
 
       document.getElementById("profileEmail").textContent =
         email || "Personalize sua conta com suas informações.";
@@ -990,8 +860,6 @@
         avatarPreview.appendChild(placeholder);
       }
     }
-
-    // Seleção e pré-visualização da foto.
 
     photoInput.addEventListener("change", () => {
       const file = photoInput.files && photoInput.files[0];
@@ -1037,8 +905,6 @@
 
       reader.readAsDataURL(file);
     });
-
-    // Atualiza o nome e o e-mail na área do perfil.
 
     document.getElementById("name").addEventListener(
       "input",
@@ -1091,8 +957,7 @@
       updateProfilePreview();
     }
 
-    // Salvar conta.
-
+    // Criar conta e entrar na página inicial.
     form.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -1109,14 +974,15 @@
       try {
         const data = getFormData();
 
+        // Primeiro salva as informações.
         localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+
+        // Depois registra que a conta foi criada.
         localStorage.setItem(ACCOUNT_CREATED_KEY, "true");
 
-        updateProfilePreview();
+        // Só então direciona para o site principal.
+        window.location.replace("index.html");
 
-        showMessage(
-          "Sua conta foi configurada e as informações foram salvas neste navegador."
-        );
       } catch (error) {
         showMessage(
           "Não foi possível salvar. Tente remover a foto ou liberar espaço no navegador.",
@@ -1126,7 +992,6 @@
     });
 
     // Carregar dados salvos.
-
     document.getElementById("loadButton").addEventListener("click", () => {
       try {
         const savedData = localStorage.getItem(STORAGE_KEY);
@@ -1145,13 +1010,13 @@
 
         fillForm(data);
         showMessage("Seus dados foram carregados.");
+
       } catch (error) {
         showMessage("Não foi possível carregar os dados salvos.", true);
       }
     });
 
     // Apagar dados.
-
     document.getElementById("deleteButton").addEventListener("click", () => {
       const confirmed = window.confirm(
         "Deseja apagar as informações da conta salvas neste navegador? Esta ação não pode ser desfeita."
@@ -1165,19 +1030,20 @@
 
         form.reset();
         photoData = "";
+        photoInput.value = "";
         displayPhoto("");
         updateProfilePreview();
 
         showMessage(
-          "Os dados foram apagados. A tela de boas-vindas poderá aparecer novamente."
+          "Os dados foram apagados. Você poderá criar sua conta novamente."
         );
+
       } catch (error) {
         showMessage("Não foi possível apagar os dados.", true);
       }
     });
 
-    // Recupera dados existentes ao abrir a página.
-
+    // Recuperar dados existentes ao abrir a página.
     try {
       const savedData = localStorage.getItem(STORAGE_KEY);
 

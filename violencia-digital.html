@@ -4,42 +4,567 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Violência digital | LIA</title>
+  <meta name="theme-color" content="#f7edf8">
+  <meta name="description" content="Entenda a violência digital, reconheça seus sinais e conheça caminhos para buscar proteção e apoio.">
+  <title>Violência Digital | LIA</title>
+
   <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --lia-purple: #78518b;
+      --lia-dark: #392c40;
+      --lia-pink: #f4e5f0;
+      --lia-bg: #fffafd;
+      --lia-card: #ffffff;
+      --lia-muted: #716875;
+      --lia-border: #eadce9;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--lia-dark);
+      background: var(--lia-bg);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--lia-purple);
+    }
+
+    .lia-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 18px 7%;
+      background: rgba(255, 250, 253, 0.97);
+      border-bottom: 1px solid var(--lia-border);
+    }
+
+    .lia-logo {
+      color: var(--lia-purple);
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 2px;
+    }
+
+    .lia-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .lia-nav a {
+      color: var(--lia-dark);
+      text-decoration: none;
+      font-size: 0.94rem;
+    }
+
+    .lia-nav a:hover,
+    .lia-nav a:focus {
+      color: var(--lia-purple);
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: 76px 7% 68px;
+      background: linear-gradient(135deg, #f8edf7, #eee4f5);
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--lia-purple);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.25;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 12px 0 20px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      font-weight: normal;
+    }
+
+    .hero p {
+      max-width: 760px;
+      font-size: 1.1rem;
+    }
+
+    .hero-note {
+      margin-top: 25px;
+      padding-left: 16px;
+      border-left: 3px solid var(--lia-purple);
+      max-width: 750px;
+    }
+
+    main {
+      width: min(1100px, 86%);
+      margin: 50px auto 70px;
+    }
+
+    section {
+      margin-bottom: 52px;
+      scroll-margin-top: 24px;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .section-intro {
+      max-width: 850px;
+      color: var(--lia-muted);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 25px;
+    }
+
+    .card {
+      padding: 25px;
+      background: var(--lia-card);
+      border: 1px solid var(--lia-border);
+      border-radius: 18px;
+      box-shadow: 0 7px 22px rgba(77, 48, 82, 0.05);
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .soft-box {
+      padding: 25px;
+      background: var(--lia-pink);
+      border-radius: 18px;
+      margin-top: 22px;
+    }
+
+    .warning-box {
+      padding: 25px;
+      border: 1px solid #dfbfd8;
+      border-left: 5px solid var(--lia-purple);
+      border-radius: 12px;
+      background: #fff;
+      margin-top: 22px;
+    }
+
+    .resource-list {
+      padding-left: 22px;
+    }
+
+    .resource-list li {
+      margin-bottom: 12px;
+    }
+
+    .source-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .cta {
+      padding: 35px;
+      border-radius: 22px;
+      color: white;
+      background: #654574;
+    }
+
+    .cta h2 {
+      margin-top: 0;
+    }
+
+    .cta a {
+      color: white;
+    }
+
+    .cta p:last-child {
+      margin-bottom: 0;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 25px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    footer {
+      padding: 30px 7%;
+      background: #f2e7f1;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 700px) {
+      .lia-header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .lia-nav {
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 48px 7%;
+      }
+
+      main {
+        width: 88%;
+        margin-top: 35px;
+      }
+
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .soft-box,
+      .warning-box,
+      .cta {
+        padding: 21px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topic-header">
-  <a class="topic-logo" href="index.html">LIA</a>
-  <nav><a href="index.html">Início</a><a href="projeto.html">Projeto</a><a href="violencias.html">Tipos de violência</a><a href="apoio.html">Preciso de apoio</a><a href="conta.html">Conta</a></nav>
-</header>
-<main>
-  <section class="topic-hero"><p>SEGURANÇA NO AMBIENTE DIGITAL</p><h1>Violência digital</h1><p>A internet não deve ser usada como ferramenta de perseguição, ameaça, controle ou exposição íntima.</p></section>
-  <section class="topic-section"><h2>O que é?</h2><p>É o uso de celulares, redes sociais, aplicativos, contas ou outros recursos digitais para ameaçar, perseguir, controlar, humilhar ou expor alguém. Algumas condutas também podem configurar crimes previstos na legislação brasileira.</p></section>
-  <section class="topic-section">
-    <h2>Exemplos de violência digital</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Perseguição on-line</h3><p>Mensagens insistentes, ameaças ou criação de contas para continuar o assédio.</p></article>
-      <article class="topic-card"><h3>Exposição íntima</h3><p>Divulgar imagens ou vídeos íntimos sem consentimento.</p></article>
-      <article class="topic-card"><h3>Invasão de contas</h3><p>Acessar e-mail, redes sociais ou mensagens sem autorização.</p></article>
-      <article class="topic-card"><h3>Controle tecnológico</h3><p>Exigir senhas, monitorar atividades ou usar aplicativos para rastrear alguém sem consentimento.</p></article>
+  <header class="lia-header">
+    <a class="lia-logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+    <nav class="lia-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="historia.html">História da LIA</a>
+      <a href="violencia-fisica.html">Violência física</a>
+      <a href="violencia-psicologica.html">Psicológica</a>
+      <a href="violencia-sexual.html">Sexual</a>
+      <a href="violencia-patrimonial.html">Patrimonial</a>
+      <a href="violencia-moral.html">Moral</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Informação • Segurança • Direitos</span>
+      <h1>Violência digital: o controle não deve acompanhar você pela tela.</h1>
+
+      <p>
+        A internet deve ser um espaço de expressão, conexão e liberdade.
+        Quando alguém utiliza a tecnologia para ameaçar, vigiar, perseguir,
+        humilhar ou controlar uma mulher, essa ferramenta pode se transformar
+        em mais um meio de violência.
+      </p>
+
+      <div class="hero-note">
+        <strong>Você não precisa enfrentar isso sozinha.</strong>
+        A violência praticada por meios digitais pode ser séria mesmo quando
+        não existe contato físico.
+      </div>
     </div>
-  </section>
-  <section class="topic-section">
-    <h2>Cuidados digitais</h2>
-    <ul><li>Use senhas fortes e diferentes para suas contas, quando for seguro fazê-lo.</li><li>Ative a autenticação em duas etapas em dispositivos seguros.</li><li>Revise sessões conectadas, compartilhamento de localização e permissões de aplicativos.</li><li>Guarde capturas de tela, links, datas e mensagens relevantes se isso não aumentar o risco.</li><li>Peça ajuda usando um dispositivo seguro se suspeitar que seu celular está sendo monitorado.</li></ul>
-    <div class="topic-alert"><strong>Atenção:</strong> mudar senhas ou desligar o compartilhamento pode alertar quem monitora você. Avalie sua segurança antes de alterar configurações.</div>
-  </section>
-  <section class="topic-section">
-    <h2>Se suas imagens íntimas foram divulgadas</h2>
-    <p>Você não é culpada pela divulgação não autorizada. Preserve registros, denuncie o conteúdo à plataforma e busque orientação para solicitar sua remoção. Se houver ameaça ou perigo imediato, procure ajuda emergencial.</p>
-  </section>
-  <section class="topic-section">
-    <h2>Onde buscar ajuda?</h2>
-    <div class="topic-grid"><article class="topic-card"><h3>Central 180</h3><p>Orientação sobre violência contra mulheres.</p></article><article class="topic-card"><h3>190</h3><p>Polícia em situação de perigo imediato.</p></article><article class="topic-card"><h3>Apoio jurídico</h3><p>Orientação sobre registros, denúncias e direitos.</p><a href="advogados.html">Conhecer opções</a></article></div>
-    <a class="topic-button" href="apoio.html">Encontrar apoio</a>
-  </section>
-  <section class="topic-section"><h2>Continue aprendendo</h2><div class="topic-nav"><a href="violencia-moral.html">← Violência moral</a><a href="violencia-vicaria.html">Próxima: violência vicária →</a><a href="violencias.html">Todos os tipos</a></div></section>
-</main>
-<footer class="topic-footer"><p>LIA — informação, acolhimento e proteção.</p><a href="index.html">Voltar ao início</a></footer>
+  </div>
+
+  <main>
+    <a class="back-link" href="index.html">← Voltar à página inicial</a>
+
+    <section id="entenda">
+      <span class="eyebrow">01 • Compreender</span>
+      <h2>O que é violência digital?</h2>
+
+      <p class="section-intro">
+        É o uso de celulares, redes sociais, aplicativos, plataformas digitais
+        ou outros recursos tecnológicos para intimidar, perseguir, expor,
+        ameaçar ou controlar alguém. Ela pode acontecer durante um relacionamento
+        ou continuar depois do término.
+      </p>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>Vigilância e controle</h3>
+          <p>
+            Exigir senhas, conferir conversas sem autorização, monitorar
+            a localização ou obrigar a pessoa a manter a câmera ligada
+            para provar onde está.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Perseguição virtual</h3>
+          <p>
+            Criar perfis para acompanhar a vítima, enviar mensagens
+            insistentes, contatar amigos para obter informações ou ameaçar
+            repetidamente pelas redes.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Exposição e humilhação</h3>
+          <p>
+            Publicar dados pessoais, divulgar conversas privadas ou espalhar
+            conteúdos com a intenção de constranger, ameaçar ou prejudicar.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Imagens íntimas sem consentimento</h3>
+          <p>
+            Compartilhar ou divulgar imagens, vídeos ou registros íntimos
+            sem autorização é uma violação grave e pode configurar crime,
+            conforme as circunstâncias e a legislação aplicável.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Ameaças e chantagem</h3>
+          <p>
+            Ameaçar publicar fotos, revelar informações pessoais ou prejudicar
+            a reputação da mulher para conseguir dinheiro, obediência,
+            contato ou qualquer outra vantagem.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Invasão de contas e dispositivos</h3>
+          <p>
+            Acessar contas sem autorização, alterar senhas, instalar programas
+            de monitoramento ou usar recursos tecnológicos para acompanhar
+            atividades privadas.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="sinais">
+      <span class="eyebrow">02 • Reconhecer</span>
+      <h2>Sinais de alerta</h2>
+
+      <p>
+        Nem todo conflito online é violência. Porém, quando existem intimidação,
+        coerção, perseguição ou tentativas de controlar a liberdade de alguém,
+        é importante levar a situação a sério.
+      </p>
+
+      <ul class="resource-list">
+        <li>A pessoa exige acesso às suas contas ou senhas como prova de amor.</li>
+        <li>Você recebe ameaças por mensagens, chamadas ou perfis diferentes.</li>
+        <li>Alguém monitora sua localização ou sabe informações que você não compartilhou.</li>
+        <li>Suas fotos, conversas ou dados são divulgados sem sua autorização.</li>
+        <li>Você sente medo de publicar, conversar ou usar o celular por causa da reação de alguém.</li>
+        <li>A pessoa cria novas contas para continuar o contato após você demonstrar que não deseja isso.</li>
+      </ul>
+
+      <div class="soft-box">
+        <strong>Importante:</strong>
+        você não é culpada pela decisão de outra pessoa de ameaçar, perseguir
+        ou divulgar conteúdo privado. Ter compartilhado uma imagem com alguém
+        não significa autorizar sua divulgação para terceiros.
+      </div>
+    </section>
+
+    <section id="protecao">
+      <span class="eyebrow">03 • Proteção digital</span>
+      <h2>O que você pode fazer?</h2>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>1. Priorize sua segurança</h3>
+          <p>
+            Se acredita que alguém monitora seu aparelho, use, se for seguro,
+            um dispositivo confiável para buscar ajuda. Mudanças repentinas
+            nas configurações podem alertar a pessoa que monitora você.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>2. Guarde possíveis provas</h3>
+          <p>
+            Quando for seguro, registre capturas de tela, links, nomes de
+            usuário, datas e mensagens. Preserve os arquivos originais
+            e evite editar os registros. Não se coloque em risco para
+            conseguir evidências.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>3. Revise a segurança das contas</h3>
+          <p>
+            Se isso não aumentar o risco, altere senhas usando um dispositivo
+            seguro, ative a autenticação em duas etapas e confira sessões
+            abertas, compartilhamento de localização e permissões de aplicativos.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>4. Peça ajuda</h3>
+          <p>
+            Converse com alguém de confiança e procure serviços especializados
+            ou autoridades. Você não precisa resolver tudo de uma vez
+            nem confrontar a pessoa que está ameaçando você.
+          </p>
+        </article>
+      </div>
+
+      <div class="warning-box">
+        <strong>Atenção à sua segurança:</strong>
+        bloquear um perfil, apagar mensagens ou desinstalar um aplicativo
+        pode ser útil em algumas situações, mas também pode aumentar o risco
+        ou eliminar registros importantes. Avalie o que é mais seguro para
+        você e procure apoio especializado quando possível.
+      </div>
+    </section>
+
+    <section id="direitos">
+      <span class="eyebrow">04 • Direitos e denúncia</span>
+      <h2>Onde buscar orientação?</h2>
+
+      <p>
+        A legislação brasileira prevê proteção contra diferentes formas de
+        violência e responsabilização por determinadas condutas praticadas
+        por meios digitais. O enquadramento depende do que aconteceu e das
+        circunstâncias de cada caso.
+      </p>
+
+      <ul class="resource-list">
+        <li>
+          <strong>Central de Atendimento à Mulher — 180:</strong>
+          orientação e encaminhamento para serviços de atendimento a mulheres.
+          Em emergência imediata, ligue 190.
+        </li>
+        <li>
+          <strong>Polícia Civil:</strong>
+          pode orientar sobre registro de ocorrência e investigação.
+          Verifique os canais oficiais do seu estado.
+        </li>
+        <li>
+          <strong>Defensoria Pública:</strong>
+          pode oferecer orientação jurídica gratuita conforme os critérios
+          de atendimento do serviço.
+        </li>
+        <li>
+          <strong>Plataforma onde ocorreu a violência:</strong>
+          use os canais oficiais para denunciar conteúdo, perfis ou ameaças.
+          Guarde registros importantes antes de solicitar a remoção, se for seguro.
+        </li>
+      </ul>
+
+      <div class="card-grid">
+        <article class="card">
+          <h3>Central 180</h3>
+          <p>Atendimento e orientação sobre violência contra a mulher.</p>
+          <a class="source-link" href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+            Acessar informações oficiais
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>SaferNet Brasil</h3>
+          <p>
+            Informações e recursos sobre segurança na internet e violações
+            de direitos no ambiente digital.
+          </p>
+          <a class="source-link" href="https://new.safernet.org.br/" target="_blank" rel="noopener noreferrer">
+            Acessar o site oficial
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Lei Maria da Penha</h3>
+          <p>
+            Consulte o texto legal e conheça as medidas de proteção previstas
+            na legislação brasileira.
+          </p>
+          <a class="source-link" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">
+            Ler a lei no Planalto
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Polícia Federal</h3>
+          <p>
+            Consulte os canais institucionais para encontrar orientações
+            e informações sobre competências e denúncias.
+          </p>
+          <a class="source-link" href="https://www.gov.br/pf/pt-br" target="_blank" rel="noopener noreferrer">
+            Acessar o site oficial
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="apoio">
+      <div class="cta">
+        <span class="eyebrow">LIA • Acolhimento e informação</span>
+        <h2>Você merece estar segura, também no mundo digital.</h2>
+
+        <p>
+          Se estiver passando por isso, procure apoio de uma pessoa confiável
+          ou de um serviço especializado. Não é necessário esperar que a
+          situação piore para pedir orientação.
+        </p>
+
+        <p>
+          Em caso de perigo imediato, procure um local seguro e ligue para
+          <strong>190</strong>. Para orientação sobre violência contra a mulher,
+          ligue <strong>180</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section id="fontes">
+      <h2>Fontes para consulta</h2>
+      <p>
+        As informações desta página são educativas e não substituem orientação
+        jurídica individualizada. Para decisões sobre denúncia, provas e proteção,
+        consulte os serviços oficiais e profissionais qualificados.
+      </p>
+      <ul class="resource-list">
+        <li><a href="https://www.gov.br/mulheres/pt-br" target="_blank" rel="noopener noreferrer">Ministério das Mulheres</a></li>
+        <li><a href="https://www.planalto.gov.br/" target="_blank" rel="noopener noreferrer">Presidência da República — legislação federal</a></li>
+        <li><a href="https://new.safernet.org.br/" target="_blank" rel="noopener noreferrer">SaferNet Brasil</a></li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>LIA — Informação, proteção e acolhimento.</strong></p>
+    <p>Projeto desenvolvido por Marcely Castro Rodrigues e Mikaela Cardoso Bonfim.</p>
+    <p>Reconhecimento e agradecimento a Hellen Goulart Orlandi, assistente social.</p>
+    <p>Conteúdo educativo. Em emergência, ligue 190.</p>
+  </footer>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
 </body>
 </html>
+

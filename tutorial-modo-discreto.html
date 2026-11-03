@@ -1,0 +1,449 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#a98bc4">
+  <meta name="description" content="Tutorial de utilização do modo discreto da LIA.">
+
+  <title>Como usar o modo discreto | LIA</title>
+  <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --purple: #80619f;
+      --purple-dark: #60457c;
+      --lilac: #eee6f5;
+      --pink: #f8e9ef;
+      --text: #44394b;
+      --muted: #746a7b;
+      --border: #e7ddec;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #fcf9fd;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--purple-dark);
+    }
+
+    .header {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      padding: 15px 6%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      color: var(--purple-dark);
+      text-decoration: none;
+      font-family: Georgia, serif;
+      font-size: 32px;
+      font-weight: bold;
+      letter-spacing: 3px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .nav a {
+      color: var(--purple-dark);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .container {
+      width: min(950px, 92%);
+      margin: 35px auto 60px;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, var(--lilac), var(--pink));
+      padding: 50px 7%;
+      border-radius: 26px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .butterfly {
+      font-size: 37px;
+    }
+
+    .hero h1 {
+      color: var(--purple-dark);
+      font-family: Georgia, serif;
+      font-size: clamp(30px, 5vw, 44px);
+      line-height: 1.2;
+      margin: 12px 0;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: #65566d;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 21px;
+      padding: 26px;
+      margin: 22px 0;
+      box-shadow: 0 7px 25px rgba(87, 57, 104, .045);
+    }
+
+    h2, h3 {
+      color: var(--purple-dark);
+      font-family: Georgia, serif;
+      line-height: 1.3;
+    }
+
+    h2 {
+      font-size: 27px;
+      margin-top: 0;
+    }
+
+    h3 {
+      font-size: 21px;
+      margin-bottom: 8px;
+    }
+
+    .step {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 19px 0;
+      border-bottom: 1px solid #f0e8f3;
+    }
+
+    .step:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .number {
+      width: 39px;
+      height: 39px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--lilac);
+      color: var(--purple-dark);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .step p {
+      margin: 5px 0 0;
+      color: var(--muted);
+    }
+
+    .device-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 17px;
+      margin-top: 20px;
+    }
+
+    .device {
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      padding: 20px;
+      background: #fff;
+    }
+
+    .device-icon {
+      font-size: 30px;
+    }
+
+    .device h3 {
+      margin-top: 8px;
+    }
+
+    .device p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .highlight {
+      background: #f3edf8;
+      border-left: 5px solid var(--purple);
+      border-radius: 13px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .highlight h3 {
+      margin-top: 0;
+    }
+
+    .warning {
+      background: #fff3f4;
+      border-left: 5px solid #b66b84;
+      border-radius: 13px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+
+    .warning h3 {
+      color: #874e63;
+      margin-top: 0;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--purple-dark);
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 30px;
+      padding: 12px 22px;
+      margin-top: 10px;
+    }
+
+    .button:hover {
+      background: #4f3768;
+    }
+
+    .footer {
+      background: var(--lilac);
+      color: #65566f;
+      padding: 25px;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      .device-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .header {
+        justify-content: center;
+      }
+
+      .nav {
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .hero {
+        padding: 38px 6%;
+      }
+
+      .card {
+        padding: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a href="index.html" class="logo" aria-label="LIA - início">LIA</a>
+
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="projeto.html">O projeto</a>
+      <a href="apoio.html">Preciso de apoio</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="butterfly" aria-hidden="true">🦋</div>
+      <h1>Como utilizar o modo discreto</h1>
+      <p>
+        Entenda como acessar a interface em formato de agenda e como
+        retornar à plataforma, considerando o dispositivo utilizado.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>O que é o modo discreto?</h2>
+      <p>
+        O modo discreto foi planejado para apresentar uma interface
+        visualmente diferente da página principal da LIA, com aparência
+        de agenda e organização de lembretes.
+      </p>
+      <p>
+        A proposta é oferecer uma alternativa visual mais reservada.
+        Entretanto, mudar a aparência de uma página não garante que
+        o uso do site passe despercebido: histórico, abas abertas,
+        notificações e registros do navegador ainda podem revelar
+        a navegação.
+      </p>
+    </section>
+
+    <section class="card">
+      <h2>Como acessar</h2>
+
+      <div class="step">
+        <div class="number">1</div>
+        <div>
+          <h3>Abra a plataforma LIA</h3>
+          <p>
+            Entre no site e localize a opção de modo discreto, quando
+            essa funcionalidade estiver disponível na versão instalada.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="number">2</div>
+        <div>
+          <h3>Selecione o modo discreto</h3>
+          <p>
+            Utilize a opção de acesso destinada a abrir a interface
+            alternativa, semelhante a uma agenda.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="number">3</div>
+        <div>
+          <h3>Utilize a interface com atenção</h3>
+          <p>
+            Evite registrar informações que possam colocar você em
+            risco caso outra pessoa tenha acesso ao aparelho.
+          </p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="number">4</div>
+        <div>
+          <h3>Saiba como retornar antes de precisar</h3>
+          <p>
+            Familiarize-se previamente com a navegação do dispositivo
+            e com as opções que estiverem realmente disponíveis.
+            Não dependa de um botão que ainda não tenha sido implementado.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Orientações por dispositivo</h2>
+
+      <div class="device-grid">
+        <article class="device">
+          <div class="device-icon" aria-hidden="true">📱</div>
+          <h3>Celular</h3>
+          <p>
+            Utilize os controles de navegação do aparelho e verifique
+            como alternar entre páginas e aplicativos. Em celulares,
+            o gesto de voltar pode variar conforme o sistema.
+          </p>
+        </article>
+
+        <article class="device">
+          <div class="device-icon" aria-hidden="true">📲</div>
+          <h3>Tablet</h3>
+          <p>
+            A navegação pode ocorrer por gestos ou botões virtuais.
+            Teste os controles com antecedência e confira se a interface
+            se adapta corretamente ao tamanho da tela.
+          </p>
+        </article>
+
+        <article class="device">
+          <div class="device-icon" aria-hidden="true">💻</div>
+          <h3>Computador ou notebook</h3>
+          <p>
+            Utilize os controles normais do navegador e conheça as
+            opções de navegação entre páginas. Fechar uma aba não
+            apaga necessariamente o histórico de navegação.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Antes de utilizar</h2>
+
+      <div class="highlight">
+        <h3>Planeje sua segurança</h3>
+        <p>
+          Se você acredita que alguém monitora seu dispositivo, avalie
+          se é seguro acessar a plataforma. Quando possível, procure
+          ajuda usando um dispositivo confiável e que não seja monitorado.
+        </p>
+      </div>
+
+      <ul>
+        <li>Evite salvar senhas em aparelhos compartilhados.</li>
+        <li>Considere que notificações podem aparecer na tela bloqueada.</li>
+        <li>Não armazene fotos, áudios, vídeos ou relatos sensíveis em uma versão ainda não protegida.</li>
+        <li>Saiba que apagar o histórico pode não remover todos os registros do dispositivo ou da rede.</li>
+        <li>Se apagar registros puder levantar suspeitas, considere os riscos antes de fazer isso.</li>
+      </ul>
+
+      <div class="warning">
+        <h3>O modo discreto não é um sistema de emergência</h3>
+        <p>
+          Ele não garante anonimato, não impede monitoramento e não
+          aciona socorro automaticamente. Recursos de emergência,
+          localização e atalhos de segurança precisam ser implementados
+          e testados separadamente.
+        </p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Precisa de orientação ou ajuda?</h2>
+      <p>
+        Se você estiver no Brasil e precisar de orientação sobre
+        violência contra a mulher, o Ligue 180 oferece atendimento
+        e informações. Em uma emergência com perigo imediato, ligue 190.
+      </p>
+      <p>
+        Se não for seguro fazer uma ligação, considere buscar apoio
+        de uma pessoa confiável ou de um serviço presencial, quando
+        isso puder ser feito com segurança.
+      </p>
+
+      <a
+        class="button"
+        href="https://www.gov.br/mulheres/pt-br/ligue180"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Informações oficiais do Ligue 180
+      </a>
+
+      <br>
+
+      <a class="button" href="index.html">Voltar à página inicial</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>LIA — Informação, acolhimento e apoio.</strong></p>
+    <p>Marcely Castro Rodrigues · Mikaela Cardoso Bonfim</p>
+    <p>Este tutorial explica a proposta do recurso; a disponibilidade depende da implementação no site.</p>
+  </footer>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,782 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#79618f">
+  <meta name="description" content="Consulte leis, direitos e fontes oficiais de informação sobre violência contra a mulher.">
+
+  <title>Fontes e Direitos | LIA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --roxo: #806493;
+      --roxo-escuro: #604b70;
+      --lilas: #f0e9f5;
+      --rosa: #f9edf2;
+      --creme: #fffafd;
+      --fundo: #fcf9fc;
+      --texto: #514956;
+      --suave: #817787;
+      --borda: #eee4ef;
+      --sombra: 0 12px 35px rgba(93, 67, 105, .07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: "DM Sans", sans-serif;
+      font-weight: 400;
+      line-height: 1.8;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .conteudo {
+      width: min(1120px, 91%);
+      margin: 42px auto 80px;
+    }
+
+    /* ABERTURA */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(35px, 6vw, 68px);
+      margin-bottom: 65px;
+      border: 1px solid #eee1ef;
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 90% 15%, rgba(255,255,255,.85), transparent 27%),
+        linear-gradient(120deg, #eee5f4, #faedf2 65%, #fff8f8);
+    }
+
+    .hero::after {
+      content: "✿";
+      position: absolute;
+      right: 7%;
+      bottom: -58px;
+      color: rgba(128, 100, 147, .12);
+      font-size: clamp(150px, 23vw, 260px);
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .hero-conteudo {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+    }
+
+    .etiqueta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 15px;
+      border: 1px solid rgba(128, 100, 147, .18);
+      border-radius: 30px;
+      background: rgba(255,255,255,.55);
+      color: var(--roxo-escuro);
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 22px 0 15px;
+      color: var(--roxo-escuro);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.3rem, 5.5vw, 3.8rem);
+      font-weight: 400;
+      line-height: 1.18;
+    }
+
+    .hero h1 span {
+      color: #a77d9e;
+      font-style: italic;
+    }
+
+    .hero p {
+      max-width: 630px;
+      margin: 0;
+      color: #6f6474;
+      font-size: 1rem;
+      line-height: 1.9;
+    }
+
+    .hero-assinatura {
+      margin-top: 25px;
+      color: var(--roxo);
+      font-size: .86rem;
+      letter-spacing: .4px;
+    }
+
+    /* SEÇÕES */
+
+    .secao {
+      margin-bottom: 65px;
+    }
+
+    .cabecalho-secao {
+      margin-bottom: 25px;
+    }
+
+    .subtitulo {
+      display: block;
+      margin-bottom: 7px;
+      color: #a27fae;
+      font-size: .76rem;
+      font-weight: 500;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .cabecalho-secao h2 {
+      margin: 0;
+      color: var(--roxo-escuro);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.8rem, 4vw, 2.35rem);
+      font-weight: 400;
+      line-height: 1.3;
+    }
+
+    .cabecalho-secao p {
+      max-width: 650px;
+      margin: 10px 0 0;
+      color: var(--suave);
+      font-size: .95rem;
+    }
+
+    /* CARDS */
+
+    .grade {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .cartao {
+      position: relative;
+      overflow: hidden;
+      padding: 27px;
+      border: 1px solid var(--borda);
+      border-radius: 21px;
+      background: #fff;
+      box-shadow: var(--sombra);
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+
+    .cartao:hover {
+      transform: translateY(-4px);
+      border-color: #dac9e2;
+      box-shadow: 0 17px 38px rgba(93, 67, 105, .11);
+    }
+
+    .icone-cartao {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 18px;
+      border-radius: 15px;
+      background: var(--lilas);
+      color: var(--roxo);
+      font-size: 1.35rem;
+    }
+
+    .cartao:nth-child(even) .icone-cartao {
+      background: var(--rosa);
+      color: #a47791;
+    }
+
+    .cartao h3 {
+      margin: 0 0 10px;
+      color: var(--roxo-escuro);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.38rem;
+      font-weight: 400;
+      line-height: 1.4;
+    }
+
+    .cartao p {
+      margin: 0 0 19px;
+      color: #716777;
+      font-size: .93rem;
+      line-height: 1.85;
+    }
+
+    .botao {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 42px;
+      padding: 10px 17px;
+      border: 1px solid var(--roxo);
+      border-radius: 30px;
+      background: var(--roxo);
+      color: white;
+      font-size: .85rem;
+      font-weight: 500;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+
+    .botao:hover {
+      background: var(--roxo-escuro);
+      border-color: var(--roxo-escuro);
+      transform: translateY(-1px);
+    }
+
+    .botao-claro {
+      background: #f7f1f8;
+      color: var(--roxo-escuro);
+      border-color: #e9ddec;
+    }
+
+    .botao-claro:hover {
+      background: #eee4f2;
+      color: var(--roxo-escuro);
+      border-color: #d9c8e1;
+    }
+
+    /* FONTES EXTERNAS */
+
+    .fonte-card {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .fonte-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid var(--borda);
+      color: var(--roxo);
+      font-size: .88rem;
+      font-weight: 500;
+      text-decoration: none;
+    }
+
+    .fonte-link:hover {
+      color: #a47791;
+    }
+
+    .fonte-link span:last-child {
+      font-size: 1.1rem;
+    }
+
+    /* DESTAQUE LIGUE 180 */
+
+    .destaque-180 {
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      align-items: center;
+      gap: 24px;
+      padding: 30px;
+      margin: 35px 0 65px;
+      border: 1px solid #eadbe9;
+      border-radius: 24px;
+      background: linear-gradient(110deg, #f3eaf7, #fff0f3);
+    }
+
+    .icone-180 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 65px;
+      height: 65px;
+      border-radius: 21px;
+      background: rgba(255,255,255,.8);
+      color: var(--roxo);
+      font-size: 1.8rem;
+    }
+
+    .destaque-180 h2 {
+      margin: 0 0 5px;
+      color: var(--roxo-escuro);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.55rem;
+      font-weight: 400;
+    }
+
+    .destaque-180 p {
+      margin: 0;
+      color: #716777;
+      font-size: .9rem;
+    }
+
+    .numero-180 {
+      display: block;
+      color: var(--roxo-escuro);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2.1rem;
+      font-weight: 500;
+      line-height: 1.2;
+    }
+
+    /* AVISO */
+
+    .aviso {
+      display: flex;
+      align-items: flex-start;
+      gap: 17px;
+      padding: 23px 25px;
+      margin: 35px 0;
+      border: 1px solid #f0dce4;
+      border-radius: 18px;
+      background: #fff4f6;
+    }
+
+    .aviso-icone {
+      flex-shrink: 0;
+      color: #a56d86;
+      font-size: 1.5rem;
+    }
+
+    .aviso strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #80566c;
+      font-weight: 600;
+    }
+
+    .aviso p {
+      margin: 0;
+      color: #796775;
+      font-size: .92rem;
+    }
+
+    /* ORIENTAÇÕES */
+
+    .orientacoes {
+      padding: clamp(24px, 4vw, 35px);
+      border: 1px solid var(--borda);
+      border-radius: 23px;
+      background: white;
+      box-shadow: var(--sombra);
+    }
+
+    .lista {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px 25px;
+      padding: 0;
+      margin: 23px 0;
+      list-style: none;
+    }
+
+    .lista li {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      color: #716777;
+      font-size: .91rem;
+    }
+
+    .lista li::before {
+      content: "✓";
+      display: flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: #f0e9f5;
+      color: var(--roxo);
+      font-size: .75rem;
+      font-weight: 600;
+    }
+
+    .atualizacao {
+      padding-top: 17px;
+      margin: 0;
+      border-top: 1px solid var(--borda);
+      color: #938899;
+      font-size: .83rem;
+    }
+
+    /* FINAL */
+
+    .final {
+      padding: clamp(28px, 5vw, 45px);
+      margin-top: 60px;
+      border: 1px solid #eadfec;
+      border-radius: 25px;
+      background: linear-gradient(125deg, #f2eaf6, #fff2f5);
+      text-align: center;
+    }
+
+    .final .flor {
+      display: block;
+      margin-bottom: 10px;
+      color: #a47fae;
+      font-size: 1.8rem;
+    }
+
+    .final h2 {
+      margin: 0 0 10px;
+      color: var(--roxo-escuro);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      font-weight: 400;
+    }
+
+    .final p {
+      max-width: 590px;
+      margin: 0 auto 22px;
+      color: #756a7b;
+      font-size: .93rem;
+    }
+
+    .final-botoes {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    footer {
+      padding: 30px 16px;
+      border-top: 1px solid var(--borda);
+      background: #fffafd;
+      color: #827789;
+      text-align: center;
+      font-size: .85rem;
+    }
+
+    footer strong {
+      color: var(--roxo);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    @media (max-width: 760px) {
+      .grade {
+        grid-template-columns: 1fr;
+      }
+
+      .lista {
+        grid-template-columns: 1fr;
+      }
+
+      .destaque-180 {
+        grid-template-columns: auto 1fr;
+        gap: 15px;
+      }
+
+      .destaque-180 .botao {
+        grid-column: 1 / -1;
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .conteudo {
+        width: 92%;
+        margin-top: 25px;
+      }
+
+      .hero {
+        margin-bottom: 45px;
+        border-radius: 22px;
+      }
+
+      .cartao {
+        padding: 22px;
+      }
+
+      .destaque-180 {
+        padding: 22px;
+      }
+
+      .numero-180 {
+        font-size: 1.8rem;
+      }
+
+      .aviso {
+        padding: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="conteudo">
+
+    <!-- ABERTURA -->
+    <section class="hero">
+      <div class="hero-conteudo">
+        <span class="etiqueta">✦ Conhecimento e cidadania</span>
+
+        <h1>
+          Conhecer seus direitos é uma forma de
+          <span>fortalecer sua voz.</span>
+        </h1>
+
+        <p>
+          A informação pode ajudar mulheres a reconhecer situações de violência,
+          conhecer seus direitos e identificar onde buscar orientação.
+          Aqui, a LIA reúne leis, materiais e fontes oficiais para consulta.
+        </p>
+
+        <div class="hero-assinatura">
+          LIA · Informação, acolhimento e proteção.
+        </div>
+      </div>
+    </section>
+
+    <!-- LEIS -->
+    <section class="secao">
+      <div class="cabecalho-secao">
+        <span class="subtitulo">Informação que protege</span>
+        <h2>Leis e direitos</h2>
+        <p>
+          Conheça algumas das principais referências legais relacionadas
+          à proteção, à igualdade e aos direitos das mulheres.
+        </p>
+      </div>
+
+      <div class="grade">
+
+        <article class="cartao">
+          <div class="icone-cartao">⚖</div>
+          <h3>Lei Maria da Penha</h3>
+          <p>
+            A Lei nº 11.340/2006 estabelece mecanismos de prevenção e
+            enfrentamento à violência doméstica e familiar contra a mulher,
+            incluindo medidas de assistência e proteção.
+          </p>
+          <a class="botao" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">
+            Consultar a lei oficial ↗
+          </a>
+        </article>
+
+        <article class="cartao">
+          <div class="icone-cartao">🛡</div>
+          <h3>Medidas protetivas</h3>
+          <p>
+            A legislação prevê medidas que podem ser determinadas pela
+            autoridade judicial para proteger a mulher em situação de
+            violência doméstica e familiar. A medida adequada depende
+            das circunstâncias e da avaliação legal do caso.
+          </p>
+          <a class="botao botao-claro" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">
+            Ler a legislação ↗
+          </a>
+        </article>
+
+        <article class="cartao">
+          <div class="icone-cartao">✧</div>
+          <h3>Direitos fundamentais</h3>
+          <p>
+            A Constituição Federal reúne direitos fundamentais, incluindo
+            igualdade perante a lei, dignidade humana e proteção dos
+            direitos individuais.
+          </p>
+          <a class="botao botao-claro" href="https://www.planalto.gov.br/ccivil_03/constituicao/constituicao.htm" target="_blank" rel="noopener noreferrer">
+            Consultar a Constituição ↗
+          </a>
+        </article>
+
+        <article class="cartao">
+          <div class="icone-cartao">♡</div>
+          <h3>Assistência e proteção</h3>
+          <p>
+            A rede pública pode incluir serviços de saúde, assistência
+            social, segurança pública, orientação jurídica e acolhimento.
+            A disponibilidade varia conforme o município.
+          </p>
+          <a class="botao botao-claro" href="https://www.gov.br/mulheres/pt-br/acesso-a-informacao/acoes-e-programas/programa-mulher-viver-sem-violencia" target="_blank" rel="noopener noreferrer">
+            Conhecer a rede ↗
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- DESTAQUE 180 -->
+    <section class="destaque-180">
+      <div class="icone-180">☎</div>
+
+      <div>
+        <h2>Você não precisa enfrentar isso sozinha.</h2>
+        <p>
+          A Central de Atendimento à Mulher oferece orientação sobre direitos,
+          informações sobre a rede de atendimento e recebe denúncias.
+        </p>
+        <span class="numero-180">Ligue 180</span>
+      </div>
+
+      <a class="botao" href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+        Conhecer o serviço ↗
+      </a>
+    </section>
+
+    <!-- FONTES -->
+    <section class="secao">
+      <div class="cabecalho-secao">
+        <span class="subtitulo">Canais de confiança</span>
+        <h2>Onde buscar informação e orientação</h2>
+        <p>
+          Consulte instituições públicas e órgãos oficiais para encontrar
+          informações, serviços e orientações.
+        </p>
+      </div>
+
+      <div class="grade">
+
+        <article class="cartao fonte-card">
+          <div class="icone-cartao">☎</div>
+          <h3>Ligue 180</h3>
+          <p>
+            Central de Atendimento à Mulher. Oferece orientação sobre direitos,
+            informações sobre a rede de atendimento e recebe denúncias
+            de violência contra a mulher.
+          </p>
+          <a class="fonte-link" href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+            <span>Portal oficial do Ligue 180</span>
+            <span>↗</span>
+          </a>
+        </article>
+
+        <article class="cartao fonte-card">
+          <div class="icone-cartao">🏛</div>
+          <h3>Ministério das Mulheres</h3>
+          <p>
+            Consulte programas, políticas públicas, campanhas e informações
+            oficiais sobre prevenção e enfrentamento da violência.
+          </p>
+          <a class="fonte-link" href="https://www.gov.br/mulheres/pt-br" target="_blank" rel="noopener noreferrer">
+            <span>Acessar o portal oficial</span>
+            <span>↗</span>
+          </a>
+        </article>
+
+        <article class="cartao fonte-card">
+          <div class="icone-cartao">⚖</div>
+          <h3>Conselho Nacional de Justiça</h3>
+          <p>
+            O CNJ disponibiliza informações sobre o sistema de Justiça,
+            ações institucionais e iniciativas relacionadas ao enfrentamento
+            da violência contra a mulher.
+          </p>
+          <a class="fonte-link" href="https://www.cnj.jus.br/" target="_blank" rel="noopener noreferrer">
+            <span>Acessar o CNJ</span>
+            <span>↗</span>
+          </a>
+        </article>
+
+        <article class="cartao fonte-card">
+          <div class="icone-cartao">⌖</div>
+          <h3>Serviços próximos</h3>
+          <p>
+            Pesquise unidades de atendimento, assistência social e outros
+            serviços que possam oferecer orientação e acolhimento.
+          </p>
+          <a class="fonte-link" href="localizacao.html">
+            <span>Ir para a localização na LIA</span>
+            <span>→</span>
+          </a>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- EMERGÊNCIA -->
+    <aside class="aviso">
+      <div class="aviso-icone">♡</div>
+      <div>
+        <strong>Em caso de perigo imediato</strong>
+        <p>
+          No Brasil, ligue para 190 para acionar a Polícia Militar.
+          Para orientação sobre violência contra a mulher, procure o Ligue 180.
+          Não espere para consultar esta página se precisar de ajuda urgente.
+        </p>
+      </div>
+    </aside>
+
+    <!-- COMO USAR -->
+    <section class="secao orientacoes">
+      <div class="cabecalho-secao">
+        <span class="subtitulo">Informação responsável</span>
+        <h2>Como utilizar as fontes da LIA</h2>
+        <p>
+          Algumas atitudes ajudam a encontrar informações confiáveis
+          e compreender melhor os materiais disponíveis.
+        </p>
+      </div>
+
+      <ul class="lista">
+        <li>Prefira consultar o texto oficial das leis e suas alterações.</li>
+        <li>Verifique a data de publicação ou atualização de cada material.</li>
+        <li>Separe informações legais de opiniões, relatos e conteúdos educativos.</li>
+        <li>Não interprete esta página como aconselhamento jurídico individual.</li>
+        <li>Se tiver dúvidas sobre seu caso, procure orientação profissional ou jurídica.</li>
+      </ul>
+
+      <p class="atualizacao">
+        As páginas externas são mantidas por suas respectivas instituições.
+        A LIA não controla a disponibilidade nem todas as atualizações desses sites.
+      </p>
+    </section>
+
+    <!-- CONTINUAÇÃO -->
+    <section class="final">
+      <span class="flor">✿</span>
+      <h2>Continue conhecendo seus direitos.</h2>
+      <p>
+        A informação é um passo importante para reconhecer a violência,
+        encontrar apoio e conhecer os caminhos disponíveis para proteção.
+        A LIA está aqui para ajudar você nessa jornada.
+      </p>
+
+      <div class="final-botoes">
+        <a class="botao" href="violencias.html">Tipos de violência</a>
+        <a class="botao botao-claro" href="apoio.html">Preciso de apoio</a>
+        <a class="botao botao-claro" href="emergencia.html">Emergência</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <strong>LIA</strong>
+    <p>Local de Informação e Apoio · Informação, acolhimento e proteção.</p>
+  </footer>
+
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+
+</body>
+</html>

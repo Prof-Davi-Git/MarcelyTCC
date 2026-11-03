@@ -1,0 +1,823 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Serviços Sociais | LIA</title>
+  <meta name="description" content="Conheça os serviços sociais e encontre apoio, orientação e proteção.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --roxo: #7046a5;
+      --roxo-escuro: #43245f;
+      --lilas: #eee5f8;
+      --lilas-claro: #f8f3fc;
+      --rosa: #f3dce9;
+      --rosa-forte: #c66b9b;
+      --texto: #45384f;
+      --branco: #ffffff;
+      --sombra: 0 12px 35px rgba(83, 48, 112, .10);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: #fcf9fd;
+      color: var(--texto);
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .social-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 85px 7% 90px;
+      background: linear-gradient(120deg, #eee2f8 0%, #f8e8f0 55%, #e8def7 100%);
+    }
+
+    .social-hero::before,
+    .social-hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .social-hero::before {
+      width: 330px;
+      height: 330px;
+      background: rgba(255,255,255,.30);
+      top: -150px;
+      right: 5%;
+    }
+
+    .social-hero::after {
+      width: 220px;
+      height: 220px;
+      background: rgba(198,107,155,.10);
+      bottom: -120px;
+      left: 3%;
+    }
+
+    .social-hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .social-eyebrow {
+      display: inline-block;
+      padding: 8px 17px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.75);
+      color: var(--roxo);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .social-hero h1 {
+      max-width: 750px;
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.12;
+      margin-bottom: 22px;
+    }
+
+    .social-hero h1 span {
+      color: var(--rosa-forte);
+    }
+
+    .social-hero p {
+      max-width: 680px;
+      font-size: 16px;
+      color: #62536c;
+      line-height: 1.9;
+    }
+
+    .hero-decoration {
+      position: absolute;
+      right: 9%;
+      bottom: 30px;
+      font-size: 90px;
+      opacity: .16;
+      transform: rotate(-12deg);
+    }
+
+    .social-section {
+      padding: 85px 7%;
+    }
+
+    .social-container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-label {
+      color: var(--rosa-forte);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 39px);
+      color: var(--roxo-escuro);
+      margin: 10px 0 13px;
+    }
+
+    .section-heading p {
+      max-width: 650px;
+      margin: auto;
+      color: #776c7e;
+      font-size: 15px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .service-card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px 27px;
+      min-height: 280px;
+      border-radius: 22px;
+      background: white;
+      border: 1px solid #eee5f5;
+      box-shadow: var(--sombra);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 18px 40px rgba(83,48,112,.15);
+    }
+
+    .service-card::after {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      right: -50px;
+      bottom: -55px;
+      background: rgba(255,255,255,.38);
+    }
+
+    .service-card.lilac {
+      background: linear-gradient(145deg, #f4edfb, #fff);
+    }
+
+    .service-card.pink {
+      background: linear-gradient(145deg, #fbeaf2, #fff);
+    }
+
+    .service-card.purple {
+      background: linear-gradient(145deg, #eee7f8, #fff);
+    }
+
+    .service-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #e8dcf5;
+      color: var(--roxo);
+      font-size: 27px;
+      margin-bottom: 22px;
+    }
+
+    .pink .service-icon {
+      background: #f7dce9;
+      color: #b95889;
+    }
+
+    .purple .service-icon {
+      background: #ded0ef;
+      color: #69429a;
+    }
+
+    .service-card h3 {
+      color: var(--roxo-escuro);
+      font-size: 19px;
+      margin-bottom: 11px;
+    }
+
+    .service-card p {
+      color: #716678;
+      font-size: 14px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      color: var(--roxo);
+      font-weight: 800;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .text-link:hover {
+      color: var(--rosa-forte);
+      text-decoration: underline;
+    }
+
+    .social-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-top: 42px;
+      padding: 25px 28px;
+      border-radius: 20px;
+      background: linear-gradient(110deg, #f4eaf9, #fbeaf2);
+      border: 1px solid #eadcf2;
+    }
+
+    .notice-icon {
+      font-size: 30px;
+      flex-shrink: 0;
+    }
+
+    .social-notice h3 {
+      color: var(--roxo-escuro);
+      font-size: 17px;
+      margin-bottom: 5px;
+    }
+
+    .social-notice p {
+      color: #6f6277;
+      font-size: 14px;
+    }
+
+    .local-help {
+      padding: 75px 7%;
+      background: #f1e9f8;
+    }
+
+    .local-help-box {
+      max-width: 1050px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+      padding: 45px;
+      border-radius: 28px;
+      background: linear-gradient(130deg, #67418f, #8c5da9);
+      box-shadow: 0 18px 45px rgba(76,43,105,.18);
+    }
+
+    .local-help-content .section-label {
+      color: #f6d9e9;
+    }
+
+    .local-help-content h2 {
+      color: white;
+      font-family: 'Playfair Display', serif;
+      font-size: 34px;
+      line-height: 1.2;
+      margin: 13px 0;
+    }
+
+    .local-help-content p {
+      color: #f0e7f5;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .local-form {
+      padding: 27px;
+      border-radius: 20px;
+      background: rgba(255,255,255,.97);
+    }
+
+    .form-field {
+      margin-bottom: 17px;
+    }
+
+    .form-field label {
+      display: block;
+      color: var(--roxo-escuro);
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 7px;
+    }
+
+    .form-field input {
+      width: 100%;
+      padding: 13px 15px;
+      border: 1px solid #e4d8ed;
+      border-radius: 11px;
+      outline: none;
+      background: #fcfaff;
+      color: var(--texto);
+      font-family: inherit;
+      font-size: 14px;
+    }
+
+    .form-field input:focus {
+      border-color: var(--rosa-forte);
+      box-shadow: 0 0 0 3px rgba(198,107,155,.12);
+    }
+
+    .social-button {
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 20px;
+      background: linear-gradient(100deg, #bd6695, #8a58a9);
+      color: white;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .social-button:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+    }
+
+    .search-disclaimer {
+      display: block;
+      margin-top: 12px;
+      color: #8a7d91;
+      font-size: 11px;
+      text-align: center;
+    }
+
+    .emergency-section {
+      padding: 80px 7%;
+      background: #fcf9fd;
+    }
+
+    .emergency {
+      max-width: 1050px;
+      margin: auto;
+      padding: 42px;
+      border-radius: 27px;
+      background: linear-gradient(120deg, #f9e8ef, #f2e8f9);
+      border: 1px solid #f0dce9;
+    }
+
+    .emergency-heading {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      margin-bottom: 25px;
+    }
+
+    .emergency-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: #fff;
+      font-size: 28px;
+    }
+
+    .emergency-heading h2 {
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+    }
+
+    .emergency-heading p {
+      color: #77677e;
+      font-size: 13px;
+    }
+
+    .phone-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .phone-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      padding: 20px;
+      border-radius: 16px;
+      background: white;
+      text-decoration: none;
+      box-shadow: 0 5px 18px rgba(83,48,112,.06);
+      transition: .2s;
+    }
+
+    .phone-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .phone-item strong {
+      display: block;
+      color: var(--roxo-escuro);
+      font-size: 15px;
+    }
+
+    .phone-item span {
+      color: #83758a;
+      font-size: 12px;
+    }
+
+    .phone-number {
+      color: var(--rosa-forte);
+      font-size: 25px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .emergency-footnote {
+      margin-top: 20px;
+      color: #76697e;
+      font-size: 12px;
+    }
+
+    .social-footer {
+      padding: 35px 7%;
+      background: linear-gradient(110deg, #43245f, #68428b);
+      color: #f7effb;
+      text-align: center;
+    }
+
+    .social-footer .footer-brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 29px;
+      font-weight: 700;
+      margin-bottom: 5px;
+    }
+
+    .social-footer p {
+      color: #e6d9ee;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer-credits {
+      margin-top: 18px;
+      padding-top: 17px;
+      border-top: 1px solid rgba(255,255,255,.17);
+    }
+
+    @media (max-width: 900px) {
+      .service-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .local-help-box {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .social-hero {
+        padding: 65px 6%;
+      }
+
+      .hero-decoration {
+        right: 4%;
+        font-size: 55px;
+      }
+
+      .social-section,
+      .emergency-section {
+        padding: 60px 6%;
+      }
+
+      .service-grid,
+      .phone-list {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        min-height: auto;
+      }
+
+      .social-notice {
+        padding: 20px;
+      }
+
+      .local-help {
+        padding: 55px 6%;
+      }
+
+      .local-help-box {
+        padding: 27px 20px;
+      }
+
+      .local-help-content h2 {
+        font-size: 29px;
+      }
+
+      .emergency {
+        padding: 27px 20px;
+      }
+
+      .emergency-heading h2 {
+        font-size: 25px;
+      }
+
+      .phone-item {
+        padding: 17px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="social-hero">
+      <div class="social-hero-content">
+        <span class="social-eyebrow">LIA • Informação e acolhimento</span>
+
+        <h1>Você não precisa enfrentar tudo <span>sozinha.</span></h1>
+
+        <p>
+          Existem serviços públicos preparados para acolher, orientar e ajudar
+          mulheres em situação de vulnerabilidade ou violência. Conheça seus
+          direitos e descubra onde encontrar apoio social.
+        </p>
+      </div>
+
+      <div class="hero-decoration" aria-hidden="true">♡</div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <section class="social-section">
+      <div class="social-container">
+
+        <div class="section-heading">
+          <span class="section-label">Rede de apoio</span>
+          <h2>Conheça os serviços sociais</h2>
+          <p>
+            Cada serviço possui uma função importante na proteção e no
+            acompanhamento de pessoas e famílias. Veja onde buscar ajuda.
+          </p>
+        </div>
+
+        <div class="service-grid">
+
+          <article class="service-card lilac">
+            <div class="service-icon" aria-hidden="true">🏡</div>
+            <h3>CRAS</h3>
+            <p>
+              O Centro de Referência de Assistência Social oferece atendimento
+              às famílias, orientação, acompanhamento e acesso a programas
+              sociais.
+            </p>
+            <a class="text-link" href="https://www.gov.br/mds/pt-br/acoes-e-programas/suas" target="_blank" rel="noopener noreferrer">
+              Conhecer o SUAS ↗
+            </a>
+          </article>
+
+          <article class="service-card pink">
+            <div class="service-icon" aria-hidden="true">🛡️</div>
+            <h3>CREAS</h3>
+            <p>
+              O Centro de Referência Especializado de Assistência Social
+              atende pessoas que vivenciam situações de violência,
+              violação de direitos ou outras situações de risco.
+            </p>
+            <a class="text-link" href="https://www.gov.br/mds/pt-br/acoes-e-programas/suas" target="_blank" rel="noopener noreferrer">
+              Conhecer o SUAS ↗
+            </a>
+          </article>
+
+          <article class="service-card purple">
+            <div class="service-icon" aria-hidden="true">🤝</div>
+            <h3>Assistência Social</h3>
+            <p>
+              A assistência social oferece orientação, acolhimento e
+              encaminhamento para serviços e benefícios que ajudam a
+              garantir condições dignas de vida.
+            </p>
+            <a class="text-link" href="https://www.gov.br/mds/pt-br" target="_blank" rel="noopener noreferrer">
+              Acessar o Ministério ↗
+            </a>
+          </article>
+
+          <article class="service-card pink">
+            <div class="service-icon" aria-hidden="true">⚖️</div>
+            <h3>Defensoria Pública</h3>
+            <p>
+              Oferece orientação e assistência jurídica gratuita a pessoas
+              que não possuem condições financeiras de contratar um advogado.
+            </p>
+            <a class="text-link" href="https://www.cnj.jus.br/" target="_blank" rel="noopener noreferrer">
+              Acessar o CNJ ↗
+            </a>
+          </article>
+
+          <article class="service-card lilac">
+            <div class="service-icon" aria-hidden="true">🌷</div>
+            <h3>Centros de Atendimento à Mulher</h3>
+            <p>
+              São espaços especializados que oferecem acolhimento e
+              orientação, além de encaminhamentos para serviços psicológicos,
+              sociais e jurídicos.
+            </p>
+            <a class="text-link" href="https://www.gov.br/mulheres/pt-br" target="_blank" rel="noopener noreferrer">
+              Portal das Mulheres ↗
+            </a>
+          </article>
+
+          <article class="service-card purple">
+            <div class="service-icon" aria-hidden="true">📄</div>
+            <h3>Documentação e benefícios</h3>
+            <p>
+              Os serviços sociais também podem orientar sobre documentos,
+              Cadastro Único e acesso a programas e benefícios sociais.
+            </p>
+            <a class="text-link" href="https://www.gov.br/mds/pt-br/acoes-e-programas/cadastro-unico" target="_blank" rel="noopener noreferrer">
+              Cadastro Único ↗
+            </a>
+          </article>
+
+        </div>
+
+        <div class="social-notice">
+          <div class="notice-icon" aria-hidden="true">💜</div>
+          <div>
+            <h3>Você tem direito ao acolhimento e à proteção</h3>
+            <p>
+              Procurar ajuda é um direito. Os serviços sociais podem orientar
+              você sobre os caminhos disponíveis na sua cidade e realizar
+              encaminhamentos de acordo com sua necessidade.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- BUSCA POR SERVIÇOS LOCAIS -->
+    <section class="local-help">
+      <div class="local-help-box">
+
+        <div class="local-help-content">
+          <span class="section-label">Encontre apoio perto de você</span>
+          <h2>Onde buscar atendimento na sua cidade?</h2>
+          <p>
+            Informe sua cidade e seu estado para encontrar informações sobre
+            CRAS, CREAS e outros serviços de assistência social próximos.
+          </p>
+        </div>
+
+        <form class="local-form" id="localServiceForm">
+
+          <div class="form-field">
+            <label for="cidade">Sua cidade</label>
+            <input
+              type="text"
+              id="cidade"
+              name="cidade"
+              placeholder="Ex.: São Paulo"
+              required
+            >
+          </div>
+
+          <div class="form-field">
+            <label for="estado">Estado (UF)</label>
+            <input
+              type="text"
+              id="estado"
+              name="estado"
+              placeholder="Ex.: SP"
+              maxlength="2"
+              required
+            >
+          </div>
+
+          <button class="social-button" type="submit">
+            Encontrar serviços sociais →
+          </button>
+
+          <small class="search-disclaimer">
+            A pesquisa será aberta em uma nova página do Google.
+            Confira as informações diretamente com o serviço encontrado.
+          </small>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- EMERGÊNCIA -->
+    <section class="emergency-section">
+      <div class="emergency">
+
+        <div class="emergency-heading">
+          <div class="emergency-icon" aria-hidden="true">☎️</div>
+          <div>
+            <h2>Precisa de ajuda agora?</h2>
+            <p>Em situações de violência ou emergência, procure ajuda.</p>
+          </div>
+        </div>
+
+        <div class="phone-list">
+
+          <a class="phone-item" href="tel:190">
+            <div>
+              <strong>Polícia Militar</strong>
+              <span>Para situações de emergência</span>
+            </div>
+            <div class="phone-number">190</div>
+          </a>
+
+          <a class="phone-item" href="tel:180">
+            <div>
+              <strong>Central de Atendimento à Mulher</strong>
+              <span>Orientação e denúncias de violência</span>
+            </div>
+            <div class="phone-number">180</div>
+          </a>
+
+        </div>
+
+        <p class="emergency-footnote">
+          O 190 atende emergências policiais. O 180 oferece atendimento
+          gratuito e orientação sobre violência contra a mulher.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="social-footer">
+    <div class="footer-brand">LIA ♡</div>
+    <p>Local de Informação e Apoio</p>
+    <p>Informação, acolhimento e proteção para mulheres.</p>
+
+    <div class="footer-credits">
+      <p>Desenvolvimento: Marcely Castro Rodrigues e Mikaela Cardoso Bonfim</p>
+      <p>Colaboração: Hellen Goulart Orlandi</p>
+      <p>© 2026 LIA — Projeto de apoio e proteção às mulheres.</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("localServiceForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const cidade = document.getElementById("cidade").value.trim();
+      const estado = document.getElementById("estado").value.trim().toUpperCase();
+
+      if (!cidade || !estado) {
+        alert("Preencha sua cidade e seu estado.");
+        return;
+      }
+
+      const pesquisa = `CRAS CREAS serviços de assistência social ${cidade} ${estado}`;
+      const url = "https://www.google.com/search?q=" + encodeURIComponent(pesquisa);
+
+      window.open(url, "_blank", "noopener,noreferrer");
+    });
+  </script>
+
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+
+</body>
+</html>

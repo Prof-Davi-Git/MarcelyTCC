@@ -4,36 +4,844 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Preciso de apoio | LIA</title>
+  <meta name="theme-color" content="#f7edf8">
+  <meta name="description" content="Conheça opções de apoio psicológico, jurídico, social e de pessoas de confiança na LIA.">
+  <title>Preciso de Apoio | LIA</title>
+
   <link rel="stylesheet" href="lia.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #89658f;
+      --purple-dark: #654b6b;
+      --pink: #f5eaf4;
+      --background: #fffafd;
+      --border: #eddfed;
+      --text: #625767;
+      --muted: #8b808e;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--background);
+      font-family: "DM Sans", Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    a {
+      color: var(--purple);
+      transition: .25s ease;
+    }
+
+    button,
+    a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* MENU */
+
+    .header {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 13px 6%;
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      color: var(--purple);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2.15rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 9px 13px;
+      border-radius: 30px;
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--purple-dark);
+      background: var(--pink);
+      text-decoration: none;
+    }
+
+    /* APRESENTAÇÃO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 85px 7% 90px;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(255,255,255,.9), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(236,211,235,.55), transparent 35%),
+        linear-gradient(125deg, #f5edf7, #fff2f8, #f2e5f3);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(137, 101, 143, .12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      top: -105px;
+      right: 9%;
+    }
+
+    .hero::after {
+      bottom: -125px;
+      left: 7%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--purple);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #514057;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin: 18px 0;
+      font-size: clamp(2.3rem, 4.5vw, 3.5rem);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 12px 0;
+      color: #756879;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    /* CONTEÚDO */
+
+    main {
+      width: min(1120px, 88%);
+      margin: 50px auto 75px;
+    }
+
+    section {
+      margin-bottom: 58px;
+      scroll-margin-top: 25px;
+    }
+
+    h2 {
+      margin: 9px 0 15px;
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-weight: 300;
+    }
+
+    strong {
+      color: #624c68;
+      font-weight: 500;
+    }
+
+    .intro {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 30px;
+      color: var(--purple);
+      font-size: .9rem;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: var(--purple-dark);
+      transform: translateX(-3px);
+    }
+
+    /* CARTÕES */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px;
+      margin-top: 27px;
+    }
+
+    .card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255, 255, 255, .9);
+      box-shadow: 0 7px 25px rgba(83, 54, 88, .045);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(83, 54, 88, .09);
+    }
+
+    .card p {
+      margin: 0;
+      color: #776d7b;
+      font-size: .94rem;
+      line-height: 1.85;
+    }
+
+    .card p + p {
+      margin-top: 12px;
+    }
+
+    .card-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      margin-bottom: 17px;
+      border: 1px solid #eddfed;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #f8edf7, #eee3f3);
+      color: var(--purple);
+      font-size: 1.4rem;
+    }
+
+    /* BOTÕES */
+
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      margin-top: 18px;
+      padding: 9px 17px;
+      border: 1px solid #dfcce2;
+      border-radius: 30px;
+      background: #faf4fa;
+      color: var(--purple-dark);
+      font-size: .87rem;
+      font-weight: 400;
+      text-decoration: none;
+      transition: .25s ease;
+    }
+
+    .link-button:hover,
+    .link-button:focus {
+      border-color: var(--purple);
+      background: var(--purple);
+      color: white;
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    /* CAIXAS SUAVES */
+
+    .soft-box {
+      margin-top: 25px;
+      padding: 23px 25px;
+      border: 1px solid #eadbea;
+      border-radius: 17px;
+      background: linear-gradient(120deg, #f8eef7, #fff7fb);
+      color: #756879;
+      font-size: .94rem;
+      line-height: 1.85;
+    }
+
+    /* EMERGÊNCIA */
+
+    .emergency {
+      position: relative;
+      overflow: hidden;
+      padding: 32px;
+      border: 1px solid #e5d4e8;
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 95% 5%, rgba(255,255,255,.18), transparent 30%),
+        linear-gradient(125deg, #785b81, #8b6b92);
+      color: white;
+      box-shadow: 0 10px 28px rgba(91, 62, 97, .12);
+    }
+
+    .emergency .eyebrow {
+      color: #f7eafa;
+    }
+
+    .emergency h2 {
+      margin-top: 10px;
+      color: white;
+    }
+
+    .emergency p {
+      color: rgba(255, 255, 255, .9);
+      font-size: .94rem;
+    }
+
+    .emergency strong {
+      color: white;
+      font-weight: 500;
+    }
+
+    .emergency a {
+      color: white;
+      font-weight: 400;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+
+    .emergency a:hover {
+      color: #f5e3f7;
+    }
+
+    /* LISTAS */
+
+    .resource-list {
+      padding-left: 21px;
+      color: #756d79;
+      font-size: .94rem;
+    }
+
+    .resource-list li {
+      margin-bottom: 11px;
+      padding-left: 3px;
+    }
+
+    .resource-list li::marker {
+      color: #a27ba8;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+      padding: 34px 7%;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(120deg, #f3e9f3, #f9eff7);
+      color: #786c7d;
+      text-align: center;
+      font-size: .86rem;
+      font-weight: 300;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer strong {
+      color: #654b6b;
+      font-weight: 500;
+    }
+
+    /* ACESSIBILIDADE E FOCO */
+
+    a:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 4px;
+    }
+
+    @media (max-width: 760px) {
+      .header {
+        justify-content: center;
+        padding: 14px 5%;
+      }
+
+      nav {
+        gap: 4px;
+      }
+
+      nav a {
+        padding: 8px 10px;
+        font-size: .82rem;
+      }
+
+      .hero {
+        padding: 58px 7%;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      h1 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      main {
+        width: 90%;
+        margin-top: 35px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .card {
+        padding: 23px;
+      }
+
+      .emergency {
+        padding: 25px;
+      }
+
+      section {
+        margin-bottom: 45px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .logo {
+        font-size: 1.9rem;
+      }
+
+      .hero {
+        padding: 48px 6%;
+      }
+
+      h1 {
+        font-size: 2.15rem;
+      }
+
+      .eyebrow {
+        font-size: .69rem;
+        letter-spacing: 1.5px;
+      }
+
+      .card,
+      .soft-box,
+      .emergency {
+        padding: 20px;
+      }
+
+      .link-button {
+        max-width: 100%;
+        text-align: center;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topic-header">
-  <a class="topic-logo" href="index.html">LIA</a>
-  <nav><a href="index.html">Início</a><a href="projeto.html">Projeto</a><a href="violencias.html">Tipos de violência</a><a href="apoio.html">Preciso de apoio</a><a href="conta.html">Conta</a></nav>
-</header>
-<main>
-  <section class="topic-hero"><p>VOCÊ NÃO ESTÁ SOZINHA</p><h1>Preciso de apoio</h1><p>Você pode buscar ajuda no seu tempo. Escolha a opção que faz sentido para sua situação e priorize sua segurança.</p></section>
-  <section class="topic-section">
-    <h2>Qual tipo de apoio você procura?</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Apoio psicológico</h3><p>Para conversar sobre sentimentos, medo, ansiedade e os impactos emocionais da violência.</p><a href="psicologo.html">Conhecer apoio psicológico</a></article>
-      <article class="topic-card"><h3>Orientação jurídica</h3><p>Para conhecer direitos, medidas de proteção e opções de orientação legal.</p><a href="advogados.html">Conhecer apoio jurídico</a></article>
-      <article class="topic-card"><h3>Serviços sociais</h3><p>Para buscar orientação sobre serviços públicos, assistência social e encaminhamentos.</p><a href="serviços.html">Conhecer serviços sociais</a></article>
-      <article class="topic-card"><h3>Pessoas de confiança</h3><p>Para pensar em quem pode ouvir, acompanhar ou ajudar você com segurança.</p><a href="pessoas-confiaveis.html">Organizar rede de apoio</a></article>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="historia.html">História da LIA</a>
+      <a href="violencia-fisica.html">Violência física</a>
+      <a href="violencia-psicologica.html">Psicológica</a>
+      <a href="violencia-sexual.html">Sexual</a>
+      <a href="violencia-digital.html">Digital</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">LIA • Preciso de apoio</span>
+
+      <h1>Você não precisa enfrentar tudo sozinha.</h1>
+
+      <p>
+        Encontrar ajuda pode parecer difícil, principalmente quando existe
+        medo, insegurança ou falta de informação. Esta página reúne caminhos
+        para buscar acolhimento psicológico, orientação jurídica, assistência
+        social e apoio de pessoas confiáveis.
+      </p>
+
+      <p>
+        Você não precisa contar toda a sua história de uma vez. Pode começar
+        pelo tipo de ajuda que faz mais sentido para você agora.
+      </p>
     </div>
-  </section>
-  <section class="topic-section">
-    <h2>Se você estiver em perigo agora</h2>
-    <div class="topic-alert"><strong>Emergência:</strong> ligue para 190 se houver perigo imediato. Para emergência médica, ligue para 192. Se não for seguro telefonar, tente procurar um local seguro ou uma pessoa de confiança, se puder fazê-lo sem aumentar o risco.</div>
-    <a class="topic-button" href="emergencia.html">Ver orientações de emergência</a>
-  </section>
-  <section class="topic-section">
-    <h2>Antes de pedir ajuda</h2>
-    <ul><li>Você não precisa ter certeza de como chamar o que está acontecendo para pedir ajuda.</li><li>Você não precisa enfrentar essa situação sozinha.</li><li>Se seu celular for monitorado, use um dispositivo seguro quando possível.</li><li>Escolha uma pessoa que respeite suas decisões e não compartilhe informações sem sua autorização.</li></ul>
-  </section>
-  <section class="topic-section"><h2>Outros recursos do LIA</h2><div class="topic-nav"><a href="violencias.html">Entender os tipos de violência</a><a href="discreto.html">Conhecer o modo discreto</a><a href="projeto.html">Sobre o projeto LIA</a></div></section>
-</main>
-<footer class="topic-footer"><p>LIA — informação, acolhimento e proteção.</p><a href="index.html">Voltar ao início</a></footer>
+  </div>
+
+  <main>
+    <a class="back" href="index.html">← Voltar à página inicial</a>
+
+    <section id="emergencia">
+      <div class="emergency">
+        <span class="eyebrow">Ajuda imediata</span>
+        <h2>Você está em perigo neste momento?</h2>
+
+        <p>
+          Se houver perigo imediato, procure um local seguro, se possível,
+          e ligue para a Polícia Militar pelo número <strong>190</strong>.
+          Se não puder falar com segurança, procure uma pessoa confiável
+          ou um serviço local que possa ajudar.
+        </p>
+
+        <p>
+          Para orientação sobre violência contra a mulher, ligue
+          <strong>180</strong>. A Central de Atendimento à Mulher também
+          pode orientar sobre serviços disponíveis.
+        </p>
+
+        <p>
+          <a href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+            Consultar informações oficiais sobre o Ligue 180
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section id="escolher">
+      <span class="eyebrow">01 • Escolha seu caminho</span>
+      <h2>Que tipo de apoio você está procurando?</h2>
+
+      <p class="intro">
+        Cada situação é diferente. Você pode procurar mais de um serviço
+        e mudar de caminho conforme suas necessidades.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">♡</div>
+          <h3>Apoio psicológico</h3>
+          <p>
+            Para conversar sobre medo, ansiedade, culpa, sofrimento emocional
+            ou as consequências de uma relação abusiva com um profissional
+            qualificado.
+          </p>
+          <a class="link-button" href="#psicologico">Conhecer opções</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⚖</div>
+          <h3>Apoio jurídico</h3>
+          <p>
+            Para conhecer seus direitos, receber orientação sobre medidas
+            protetivas e entender os caminhos legais disponíveis.
+          </p>
+          <a class="link-button" href="#juridico">Conhecer opções</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">⌂</div>
+          <h3>Assistência social</h3>
+          <p>
+            Para buscar orientação sobre serviços públicos, benefícios,
+            acolhimento, moradia e outros recursos disponíveis no município.
+          </p>
+          <a class="link-button" href="#social">Conhecer opções</a>
+        </article>
+
+        <article class="card">
+          <div class="card-icon" aria-hidden="true">♡</div>
+          <h3>Pessoas de confiança</h3>
+          <p>
+            Para pensar em quem pode ouvir você sem julgamentos, ajudar
+            em uma emergência ou acompanhar você até um serviço de apoio.
+          </p>
+          <a class="link-button" href="#confianca">Pensar na minha rede</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="psicologico">
+      <span class="eyebrow">02 • Cuidado emocional</span>
+      <h2>Apoio psicológico</h2>
+
+      <p>
+        O acompanhamento psicológico pode ajudar a compreender sentimentos,
+        recuperar a confiança e lidar com as consequências emocionais
+        da violência. Você merece acolhimento sem culpabilização.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Unidade Básica de Saúde (UBS)</h3>
+          <p>
+            A UBS da sua região pode orientar sobre o atendimento de saúde
+            mental disponível e os encaminhamentos necessários.
+          </p>
+          <a class="link-button" href="https://www.gov.br/saude/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar o Ministério da Saúde
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>CAPS</h3>
+          <p>
+            Os Centros de Atenção Psicossocial atendem pessoas com necessidades
+            relacionadas à saúde mental. A modalidade de atendimento e o
+            acesso variam conforme o serviço local.
+          </p>
+          <a class="link-button" href="https://www.gov.br/saude/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar informações oficiais
+          </a>
+        </article>
+      </div>
+
+      <div class="soft-box">
+        Se você estiver passando por sofrimento intenso, procure um serviço
+        de saúde. Em uma emergência médica, acione o SAMU pelo número 192.
+      </div>
+    </section>
+
+    <section id="juridico">
+      <span class="eyebrow">03 • Conheça seus direitos</span>
+      <h2>Apoio jurídico</h2>
+
+      <p>
+        Você pode procurar orientação para compreender seus direitos,
+        registrar uma ocorrência, conhecer medidas protetivas e receber
+        informações sobre questões familiares relacionadas à sua situação.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Defensoria Pública</h3>
+          <p>
+            Pode oferecer orientação jurídica e assistência gratuita
+            a pessoas que atendam aos critérios do serviço.
+          </p>
+          <a class="link-button" href="https://www.cnj.jus.br/" target="_blank" rel="noopener noreferrer">
+            Consultar informações institucionais
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Delegacia da Mulher</h3>
+          <p>
+            As Delegacias Especializadas de Atendimento à Mulher, onde existem,
+            podem receber ocorrências e orientar sobre os procedimentos
+            disponíveis. Delegacias comuns também podem ser procuradas.
+          </p>
+          <a class="link-button" href="https://www.gov.br/mulheres/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar a rede de atendimento
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Lei Maria da Penha</h3>
+          <p>
+            A legislação brasileira prevê mecanismos de prevenção e proteção
+            contra a violência doméstica e familiar contra a mulher.
+          </p>
+          <a class="link-button" href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">
+            Consultar o texto da lei
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Central 180</h3>
+          <p>
+            Oferece informações e orientação sobre os serviços da rede
+            de atendimento à mulher.
+          </p>
+          <a class="link-button" href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+            Acessar o canal oficial
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="social">
+      <span class="eyebrow">04 • Rede de proteção</span>
+      <h2>Assistência social</h2>
+
+      <p>
+        Os serviços de assistência social podem ajudar você a compreender
+        quais recursos existem na sua região e como acessá-los.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>CRAS</h3>
+          <p>
+            O Centro de Referência de Assistência Social oferece serviços
+            de proteção social básica e pode orientar sobre os recursos
+            disponíveis no território.
+          </p>
+          <a class="link-button" href="https://www.gov.br/mds/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar informações oficiais
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>CREAS</h3>
+          <p>
+            O Centro de Referência Especializado de Assistência Social atende
+            situações que envolvem violações de direitos e pode orientar
+            sobre o acompanhamento especializado disponível.
+          </p>
+          <a class="link-button" href="https://www.gov.br/mds/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar informações oficiais
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Casa da Mulher Brasileira</h3>
+          <p>
+            Nas localidades onde existe, reúne serviços especializados para
+            mulheres em situação de violência. A disponibilidade e os serviços
+            oferecidos variam de acordo com a unidade.
+          </p>
+          <a class="link-button" href="https://www.gov.br/mulheres/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar informações oficiais
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Serviços do município</h3>
+          <p>
+            A prefeitura ou a Secretaria Municipal de Assistência Social
+            pode informar sobre centros de atendimento, acolhimento e
+            recursos existentes na sua cidade.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="confianca">
+      <span class="eyebrow">05 • Você não precisa estar sozinha</span>
+      <h2>Identifique pessoas de confiança</h2>
+
+      <p>
+        Uma pessoa de confiança é alguém que respeita suas escolhas,
+        leva seus relatos a sério e não compartilha suas informações
+        sem autorização, salvo situações em que seja necessário buscar
+        proteção diante de um risco grave.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Quem pode ser essa pessoa?</h3>
+          <ul class="resource-list">
+            <li>Uma amiga ou um amigo de confiança.</li>
+            <li>Um familiar que respeite suas decisões.</li>
+            <li>Uma professora, profissional de saúde ou assistente social.</li>
+            <li>Outra pessoa que possa oferecer apoio seguro e discreto.</li>
+          </ul>
+        </article>
+
+        <article class="card">
+          <h3>Como essa pessoa pode ajudar?</h3>
+          <ul class="resource-list">
+            <li>Ouvir você sem julgamentos.</li>
+            <li>Acompanhar você a um serviço de atendimento.</li>
+            <li>Ajudar a pensar em um plano de segurança.</li>
+            <li>Combinar como pedir ajuda em uma emergência.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="soft-box">
+        <strong>Privacidade:</strong>
+        esta página ainda não salva contatos de confiança. Não coloque
+        telefones, endereços ou outras informações pessoais em campos
+        improvisados. O cadastro seguro desses dados deverá ser implementado
+        e testado em uma etapa própria do projeto.
+      </div>
+    </section>
+
+    <section id="seguranca">
+      <span class="eyebrow">06 • Planejamento seguro</span>
+      <h2>Pense na sua segurança</h2>
+
+      <ul class="resource-list">
+        <li>Se alguém monitora seu celular, considere buscar ajuda por um dispositivo seguro.</li>
+        <li>Evite compartilhar planos de segurança com a pessoa que ameaça você.</li>
+        <li>Quando for seguro, mantenha documentos e contatos importantes acessíveis.</li>
+        <li>Procure orientação especializada para avaliar riscos e planejar próximos passos.</li>
+        <li>Se houver perigo imediato, priorize sair da situação de risco e acionar a emergência.</li>
+      </ul>
+
+      <div class="emergency">
+        <h2>Precisa de ajuda agora?</h2>
+        <p><strong>190</strong> — Polícia Militar em caso de perigo imediato.</p>
+        <p><strong>180</strong> — orientação sobre violência contra a mulher.</p>
+        <p><strong>192</strong> — SAMU em emergências médicas.</p>
+        <p>
+          <a href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+            Consulte o canal oficial Ligue 180
+          </a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>LIA — Informação, proteção e acolhimento.</strong></p>
+    <p>Projeto desenvolvido por Marcely Castro Rodrigues e Mikaela Cardoso Bonfim.</p>
+    <p>Reconhecimento a Hellen Goulart Orlandi, assistente social.</p>
+    <p>Conteúdo educativo. Em emergência, ligue 190.</p>
+  </footer>
+
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
 </body>
 </html>

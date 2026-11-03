@@ -1,0 +1,1021 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7046a5">
+  <meta name="description" content="Informações sobre apoio psicológico, acolhimento emocional e caminhos para buscar ajuda.">
+
+  <title>LIA | Apoio Psicológico</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --roxo: #7046a5;
+      --roxo-escuro: #43245f;
+      --lilas: #eee5f8;
+      --lilas-claro: #f8f3fc;
+      --rosa: #f3dce9;
+      --rosa-forte: #c66b9b;
+      --texto: #493e52;
+      --branco: #ffffff;
+      --borda: #eadff1;
+      --sombra: 0 12px 35px rgba(83, 48, 112, .09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #fcf9fd;
+      color: var(--texto);
+      font-family: 'DM Sans', sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--roxo);
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 3px solid var(--rosa-forte);
+      outline-offset: 4px;
+    }
+
+    /* APRESENTAÇÃO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 85px 7%;
+      background: linear-gradient(120deg, #eee2f8 0%, #f8e8f0 55%, #e8def7 100%);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 340px;
+      height: 340px;
+      top: -160px;
+      right: 5%;
+      background: rgba(255,255,255,.35);
+    }
+
+    .hero::after {
+      width: 230px;
+      height: 230px;
+      bottom: -130px;
+      left: 4%;
+      background: rgba(198,107,155,.12);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 17px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.78);
+      color: var(--roxo);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 {
+      max-width: 780px;
+      margin: 0 0 22px;
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(38px, 5vw, 58px);
+      line-height: 1.15;
+    }
+
+    .hero h1 span {
+      color: var(--rosa-forte);
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 0;
+      color: #62536c;
+      font-size: 16px;
+      line-height: 1.9;
+    }
+
+    .hero-decoration {
+      position: absolute;
+      right: 10%;
+      bottom: 25px;
+      color: var(--roxo);
+      font-size: 95px;
+      opacity: .13;
+      transform: rotate(-12deg);
+    }
+
+    /* ESTRUTURA DAS SEÇÕES */
+
+    .section {
+      padding: 80px 7%;
+    }
+
+    .container {
+      width: min(1150px, 100%);
+      margin: auto;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 42px;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--rosa-forte);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2,
+    .section-title {
+      margin: 10px 0 14px;
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 39px);
+      line-height: 1.25;
+    }
+
+    .section-heading p {
+      color: #776c7e;
+      font-size: 15px;
+    }
+
+    .intro {
+      max-width: 850px;
+      margin: 0 auto 30px;
+      color: #716678;
+      text-align: center;
+    }
+
+    /* CARDS */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      margin-top: 35px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 30px;
+      min-height: 245px;
+      border: 1px solid var(--borda);
+      border-radius: 22px;
+      background: white;
+      box-shadow: var(--sombra);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 40px rgba(83,48,112,.14);
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      width: 115px;
+      height: 115px;
+      right: -48px;
+      bottom: -55px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.35);
+    }
+
+    .card.lilac {
+      background: linear-gradient(145deg, #f1e8fa, #fff);
+    }
+
+    .card.pink {
+      background: linear-gradient(145deg, #fbeaf2, #fff);
+    }
+
+    .card.purple {
+      background: linear-gradient(145deg, #e9e0f6, #fff);
+    }
+
+    .icon {
+      display: flex;
+      width: 58px;
+      height: 58px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      border-radius: 18px;
+      background: #e6d9f3;
+      color: var(--roxo);
+      font-size: 27px;
+    }
+
+    .pink .icon {
+      background: #f7dce9;
+    }
+
+    .purple .icon {
+      background: #dcd0ed;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      color: var(--roxo-escuro);
+      font-size: 19px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #716678;
+      font-size: 14px;
+      line-height: 1.85;
+    }
+
+    /* FRASE DE ACOLHIMENTO */
+
+    .quote {
+      position: relative;
+      margin-top: 40px;
+      padding: 30px 35px;
+      border-radius: 20px;
+      background: linear-gradient(110deg, #eee4f8, #f9e8f0);
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 25px);
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    .quote::before {
+      content: "“";
+      display: block;
+      color: var(--rosa-forte);
+      font-size: 48px;
+      line-height: .8;
+    }
+
+    /* ETAPAS */
+
+    .steps-section {
+      background: #f3edf8;
+    }
+
+    .steps {
+      display: grid;
+      gap: 16px;
+      max-width: 900px;
+      margin: 35px auto 0;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      padding: 22px 25px;
+      border: 1px solid #e9dff0;
+      border-radius: 17px;
+      background: white;
+      box-shadow: 0 5px 18px rgba(83,48,112,.05);
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      display: flex;
+      flex-shrink: 0;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      border-radius: 13px;
+      background: linear-gradient(135deg, #e7d9f4, #f6dce9);
+      color: var(--roxo-escuro);
+      font-weight: 800;
+    }
+
+    .steps strong {
+      color: var(--roxo-escuro);
+    }
+
+    .steps p {
+      margin: 4px 0 0;
+      color: #756a7c;
+      font-size: 14px;
+    }
+
+    /* LOCAIS DE ATENDIMENTO */
+
+    .resource-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 35px;
+    }
+
+    .resource {
+      padding: 27px;
+      border: 1px solid var(--borda);
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--sombra);
+    }
+
+    .resource:nth-child(2) {
+      background: linear-gradient(145deg, #f9eaf2, white);
+    }
+
+    .resource:nth-child(3) {
+      background: linear-gradient(145deg, #eee6f8, white);
+    }
+
+    .resource:nth-child(4) {
+      background: linear-gradient(145deg, #f4e9f8, white);
+    }
+
+    .resource h3 {
+      margin: 0 0 10px;
+      color: var(--roxo-escuro);
+      font-size: 19px;
+    }
+
+    .resource p {
+      color: #716678;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .resource-link {
+      display: inline-flex;
+      margin-top: 10px;
+      color: var(--roxo);
+      font-size: 13px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .resource-link:hover {
+      color: var(--rosa-forte);
+      text-decoration: underline;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 12px;
+      padding: 12px 21px;
+      border: none;
+      border-radius: 30px;
+      background: linear-gradient(100deg, #bd6695, #8052a3);
+      color: white;
+      font-size: 14px;
+      font-weight: 800;
+      text-decoration: none;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    .button:hover {
+      filter: brightness(1.08);
+      transform: translateY(-2px);
+    }
+
+    /* AVISO */
+
+    .notice {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-top: 30px;
+      padding: 24px;
+      border: 1px solid #e9dff0;
+      border-radius: 18px;
+      background: linear-gradient(110deg, #f1e8f8, #fbeaf2);
+    }
+
+    .notice-icon {
+      flex-shrink: 0;
+      font-size: 28px;
+    }
+
+    .notice strong {
+      color: var(--roxo-escuro);
+    }
+
+    .notice p {
+      margin: 5px 0 0;
+      color: #716678;
+      font-size: 14px;
+    }
+
+    /* EMERGÊNCIA */
+
+    .emergency-section {
+      background: #fcf7fb;
+    }
+
+    .emergency {
+      max-width: 1000px;
+      margin: auto;
+      padding: 42px;
+      border: 1px solid #efd8e5;
+      border-radius: 25px;
+      background: linear-gradient(120deg, #f9e8ef, #f0e7f8);
+    }
+
+    .emergency-heading {
+      display: flex;
+      align-items: center;
+      gap: 17px;
+      margin-bottom: 20px;
+    }
+
+    .emergency-icon {
+      display: flex;
+      width: 60px;
+      height: 60px;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      border-radius: 18px;
+      background: white;
+      font-size: 28px;
+    }
+
+    .emergency h2 {
+      margin: 0;
+      color: #762d58;
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+    }
+
+    .emergency-intro {
+      color: #766778;
+      font-size: 14px;
+    }
+
+    .emergency-numbers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+      margin-top: 25px;
+    }
+
+    .emergency-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px;
+      border-radius: 17px;
+      background: white;
+      text-decoration: none;
+      box-shadow: 0 5px 18px rgba(83,48,112,.06);
+      transition: .2s;
+    }
+
+    .emergency-item:hover {
+      transform: translateY(-3px);
+    }
+
+    .emergency-item strong {
+      display: block;
+      color: var(--roxo-escuro);
+      font-size: 15px;
+    }
+
+    .emergency-item small {
+      color: #83758a;
+      font-size: 12px;
+    }
+
+    .number {
+      color: var(--rosa-forte);
+      font-size: 26px;
+      font-weight: 800;
+    }
+
+    .emergency-footnote {
+      margin-top: 20px;
+      color: #766778;
+      font-size: 12px;
+    }
+
+    /* ENCERRAMENTO */
+
+    .closing {
+      padding: 75px 7%;
+      background: linear-gradient(120deg, #eee4f8, #f9e9f1);
+      text-align: center;
+    }
+
+    .closing-content {
+      max-width: 750px;
+      margin: auto;
+    }
+
+    .closing h2 {
+      margin: 10px 0 15px;
+      color: var(--roxo-escuro);
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 38px);
+    }
+
+    .closing p {
+      color: #716678;
+      font-size: 15px;
+    }
+
+    .closing-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .closing-actions .button {
+      margin: 0;
+    }
+
+    .button.secondary {
+      background: white;
+      color: var(--roxo);
+      border: 1px solid #dfd0eb;
+    }
+
+    /* RODAPÉ */
+
+    .social-footer {
+      padding: 38px 7%;
+      background: linear-gradient(110deg, #43245f, #68428b);
+      color: #f7effb;
+      text-align: center;
+    }
+
+    .footer-brand {
+      margin-bottom: 5px;
+      font-family: 'Playfair Display', serif;
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .social-footer p {
+      margin: 5px 0;
+      color: #e6d9ee;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .footer-credits {
+      margin-top: 18px;
+      padding-top: 17px;
+      border-top: 1px solid rgba(255,255,255,.17);
+    }
+
+    .social-footer a {
+      color: white;
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 800px) {
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 650px) {
+      .hero {
+        padding: 65px 6%;
+      }
+
+      .hero-decoration {
+        right: 4%;
+        font-size: 60px;
+      }
+
+      .section {
+        padding: 60px 6%;
+      }
+
+      .grid,
+      .emergency-numbers {
+        grid-template-columns: 1fr;
+      }
+
+      .card {
+        min-height: auto;
+      }
+
+      .steps li {
+        padding: 18px;
+      }
+
+      .emergency {
+        padding: 27px 20px;
+      }
+
+      .emergency h2 {
+        font-size: 25px;
+      }
+
+      .closing {
+        padding: 60px 6%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main>
+
+    <!-- APRESENTAÇÃO -->
+    <section class="hero">
+      <div class="hero-content">
+        <span class="eyebrow">LIA • Acolhimento emocional</span>
+
+        <h1>
+          Você merece ser ouvida, respeitada e <span>acolhida.</span>
+        </h1>
+
+        <p>
+          A violência pode afetar a autoestima, a segurança e a saúde emocional.
+          Buscar apoio é uma possibilidade, e você pode respeitar seu próprio tempo.
+        </p>
+      </div>
+
+      <div class="hero-decoration" aria-hidden="true">♡</div>
+    </section>
+
+    <!-- IMPACTOS EMOCIONAIS -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="section-label">Compreensão e acolhimento</span>
+          <h2>Como a violência pode afetar a saúde emocional?</h2>
+          <p>
+            Cada pessoa reage de uma maneira. Algumas mulheres podem sentir medo,
+            culpa, tristeza, confusão, vergonha, dificuldade para dormir ou receio
+            de tomar decisões. Essas reações não significam fraqueza.
+          </p>
+        </div>
+
+        <div class="grid">
+
+          <article class="card pink">
+            <div class="icon" aria-hidden="true">💗</div>
+            <h3>Autoestima abalada</h3>
+            <p>
+              Humilhações, críticas constantes e controle podem fazer uma pessoa
+              duvidar do próprio valor e das próprias capacidades.
+            </p>
+          </article>
+
+          <article class="card lilac">
+            <div class="icon" aria-hidden="true">🌧️</div>
+            <h3>Medo e ansiedade</h3>
+            <p>
+              A sensação de estar sempre em alerta pode dificultar o descanso,
+              a concentração e a realização de atividades cotidianas.
+            </p>
+          </article>
+
+          <article class="card purple">
+            <div class="icon" aria-hidden="true">🫂</div>
+            <h3>Isolamento</h3>
+            <p>
+              Quando alguém limita o contato com amigos ou familiares, pode
+              ficar mais difícil reconhecer que existe uma rede de apoio.
+            </p>
+          </article>
+
+          <article class="card pink">
+            <div class="icon" aria-hidden="true">🌱</div>
+            <h3>Reconstrução e autonomia</h3>
+            <p>
+              Com acolhimento e apoio adequado, é possível trabalhar a confiança,
+              reconhecer limites e construir caminhos de proteção.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="quote">
+          Você não precisa provar que está sofrendo para merecer acolhimento.
+          Sua experiência importa.
+        </div>
+
+      </div>
+    </section>
+
+    <!-- COMO PROCURAR APOIO -->
+    <section class="section steps-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="section-label">Um passo de cada vez</span>
+          <h2>Como procurar apoio psicológico</h2>
+          <p>
+            Você pode começar pelo serviço que pareça mais acessível e seguro
+            para sua realidade. Não é necessário resolver tudo de uma vez.
+          </p>
+        </div>
+
+        <ol class="steps">
+
+          <li>
+            <div>
+              <strong>Identifique o que você precisa.</strong>
+              <p>
+                Pode ser conversar, compreender o que está acontecendo,
+                receber orientação ou encontrar maneiras de se sentir mais segura.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <strong>Procure um serviço de confiança.</strong>
+              <p>
+                Você pode consultar uma Unidade Básica de Saúde (UBS), um CAPS
+                quando apropriado, ou os serviços de assistência social da sua região.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <strong>Respeite seus limites.</strong>
+              <p>
+                Você pode perguntar sobre sigilo, atendimento, horários e opções
+                disponíveis antes de decidir como prosseguir.
+              </p>
+            </div>
+          </li>
+
+          <li>
+            <div>
+              <strong>Considere uma pessoa de confiança.</strong>
+              <p>
+                Se for seguro, peça que alguém confiável acompanhe você ou ajude
+                a procurar informações.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+      </div>
+    </section>
+
+    <!-- ONDE BUSCAR ATENDIMENTO -->
+    <section class="section">
+      <div class="container">
+
+        <div class="section-heading">
+          <span class="section-label">Rede de atendimento</span>
+          <h2>Onde buscar atendimento?</h2>
+          <p>
+            Existem diferentes portas de entrada para receber orientação e
+            cuidado. Conheça algumas possibilidades.
+          </p>
+        </div>
+
+        <div class="resource-grid">
+
+          <article class="resource">
+            <h3>🏥 Unidade Básica de Saúde (UBS)</h3>
+            <p>
+              Pode ser uma porta de entrada para o SUS. A equipe pode avaliar
+              suas necessidades e orientar sobre os atendimentos disponíveis.
+            </p>
+            <a class="resource-link"
+               href="https://www.gov.br/saude/pt-br"
+               target="_blank" rel="noopener noreferrer">
+              Acessar o Ministério da Saúde ↗
+            </a>
+          </article>
+
+          <article class="resource">
+            <h3>🌿 Centro de Atenção Psicossocial (CAPS)</h3>
+            <p>
+              Oferece atendimento em saúde mental conforme o perfil do serviço
+              e as necessidades de cada pessoa. Consulte a rede municipal para
+              saber qual unidade atende sua região.
+            </p>
+            <a class="resource-link"
+               href="https://www.gov.br/saude/pt-br"
+               target="_blank" rel="noopener noreferrer">
+              Consultar informações do SUS ↗
+            </a>
+          </article>
+
+          <article class="resource">
+            <h3>🌷 Rede de proteção às mulheres</h3>
+            <p>
+              Serviços especializados podem orientar sobre acolhimento,
+              direitos e encaminhamentos. A disponibilidade depende da cidade.
+            </p>
+            <a class="resource-link"
+               href="https://www.gov.br/mulheres/pt-br"
+               target="_blank" rel="noopener noreferrer">
+              Acessar o Ministério das Mulheres ↗
+            </a>
+          </article>
+
+          <article class="resource">
+            <h3>💜 CVV — apoio emocional</h3>
+            <p>
+              O CVV oferece apoio emocional gratuito e sigiloso pelo telefone
+              188, 24 horas por dia. Esse serviço não substitui atendimento
+              psicológico ou emergencial.
+            </p>
+            <a class="button"
+               href="tel:188">
+              Ligar para 188
+            </a>
+            <p>
+              Também é possível conhecer os canais de atendimento no
+              <a href="https://www.cvv.org.br/"
+                 target="_blank" rel="noopener noreferrer">
+                site oficial do CVV
+              </a>.
+            </p>
+          </article>
+
+        </div>
+
+        <div class="notice">
+          <div class="notice-icon" aria-hidden="true">🔒</div>
+          <div>
+            <strong>Sobre o sigilo e sua segurança</strong>
+            <p>
+              Antes de compartilhar informações sensíveis, pergunte ao serviço
+              como seus dados serão tratados e quais são os limites legais de
+              confidencialidade. Se seu dispositivo puder ser monitorado por
+              outra pessoa, priorize um canal seguro.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- EMERGÊNCIA -->
+    <section class="section emergency-section">
+      <div class="container">
+
+        <div class="emergency">
+
+          <div class="emergency-heading">
+            <div class="emergency-icon" aria-hidden="true">☎️</div>
+            <div>
+              <h2>Se você estiver em perigo agora</h2>
+              <p class="emergency-intro">
+                Você não precisa enfrentar uma situação de risco sozinha.
+              </p>
+            </div>
+          </div>
+
+          <p class="emergency-intro">
+            Se houver risco imediato, procure um local seguro se puder fazer
+            isso sem aumentar o perigo e ligue para a emergência.
+          </p>
+
+          <div class="emergency-numbers">
+
+            <a class="emergency-item" href="tel:190">
+              <div>
+                <strong>Polícia Militar</strong>
+                <small>Situações de emergência e perigo imediato</small>
+              </div>
+              <span class="number">190</span>
+            </a>
+
+            <a class="emergency-item" href="tel:180">
+              <div>
+                <strong>Central de Atendimento à Mulher</strong>
+                <small>Orientação e denúncias de violência</small>
+              </div>
+              <span class="number">180</span>
+            </a>
+
+          </div>
+
+          <p class="emergency-footnote">
+            Se uma ligação puder colocar você em risco, procure uma forma
+            segura de pedir ajuda a alguém de confiança ou a um serviço de atendimento.
+          </p>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ENCERRAMENTO -->
+    <section class="closing">
+      <div class="closing-content">
+        <span class="section-label">Você importa</span>
+
+        <h2>Você pode continuar no seu ritmo.</h2>
+
+        <p>
+          Não existe uma única maneira de reagir a uma situação de violência.
+          Você merece receber informações claras, respeito e apoio sem ser
+          culpabilizada pelo que aconteceu.
+        </p>
+
+        <div class="closing-actions">
+          <a class="button" href="apoio.html">
+            Conhecer outras formas de apoio
+          </a>
+
+          <a class="button secondary" href="servicos-sociais.html">
+            Ver serviços sociais
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- RODAPÉ -->
+  <footer class="social-footer">
+    <div class="footer-brand">LIA ♡</div>
+    <p>Local de Informação e Apoio</p>
+    <p>Informação, acolhimento e proteção para mulheres.</p>
+
+    <div class="footer-credits">
+      <p>Desenvolvimento: Marcely Castro Rodrigues e Mikaela Cardoso Bonfim.</p>
+      <p>Com contribuição da assistente social Hellen Goulart Orlandi.</p>
+      <p>© 2026 LIA — Projeto de apoio e proteção às mulheres.</p>
+      <p><a href="index.html">Página inicial</a></p>
+    </div>
+  </footer>
+
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+
+</body>
+</html>

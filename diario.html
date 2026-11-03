@@ -4,17 +4,982 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diário pessoal | LIA</title>
+  <meta name="theme-color" content="#8f668f">
+  <meta name="description" content="Diário pessoal da LIA: um espaço para organizar pensamentos e sentimentos.">
+
+  <title>LIA | Diário Pessoal</title>
   <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --purple: #79527e;
+      --purple-dark: #49344f;
+      --purple-light: #eee4f1;
+      --pink: #f8eff7;
+      --background: #fffaff;
+      --text: #514653;
+      --muted: #827387;
+      --border: #eadbea;
+      --danger: #a53646;
+      --white: #ffffff;
+      --shadow: 0 12px 35px rgba(74, 47, 78, .07);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--text);
+      font-family: "DM Sans", Arial, sans-serif;
+      line-height: 1.65;
+    }
+
+    button, input, select, textarea {
+      font: inherit;
+    }
+
+    a {
+      color: var(--purple);
+    }
+
+    .header {
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 14px 7%;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      color: var(--purple);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 3px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    nav a {
+      padding: 9px 14px;
+      border-radius: 30px;
+      color: var(--purple-dark);
+      font-size: .91rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      background: var(--purple-light);
+      color: var(--purple);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 65px 7% 60px;
+      background:
+        radial-gradient(circle at 12% 20%, rgba(255,255,255,.9), transparent 28%),
+        radial-gradient(circle at 88% 80%, rgba(255,255,255,.8), transparent 25%),
+        linear-gradient(125deg, #f0e5f3, #f9edf6 55%, #fff7fb);
+      text-align: center;
+    }
+
+    .hero::before,
+    .hero::after {
+      position: absolute;
+      color: rgba(121,82,126,.13);
+      font-size: 65px;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      content: "✦";
+      top: 20px;
+      left: 9%;
+    }
+
+    .hero::after {
+      content: "✧";
+      right: 10%;
+      bottom: 12px;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      color: var(--purple-dark);
+      line-height: 1.3;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 14px auto;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: clamp(2.2rem, 5vw, 3.4rem);
+    }
+
+    .hero p {
+      max-width: 690px;
+      margin: 12px auto 0;
+      color: #66576b;
+      font-size: 1.04rem;
+    }
+
+    .container {
+      width: min(1120px, 88%);
+      margin: auto;
+    }
+
+    .section {
+      padding: 42px 0;
+    }
+
+    .notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      margin-bottom: 28px;
+      padding: 19px 22px;
+      border: 1px solid #e8d7eb;
+      border-left: 5px solid var(--purple);
+      border-radius: 15px;
+      background: linear-gradient(110deg, #f5eaf5, #fff8fc);
+    }
+
+    .notice-icon {
+      flex: 0 0 38px;
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: white;
+      color: var(--purple);
+      font-size: 1.2rem;
+    }
+
+    .notice p {
+      margin: 3px 0;
+    }
+
+    .journal-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 25px;
+      align-items: start;
+    }
+
+    .panel {
+      min-width: 0;
+      padding: 27px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .panel-heading {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 7px;
+    }
+
+    .panel-icon {
+      width: 43px;
+      height: 43px;
+      flex: 0 0 43px;
+      display: grid;
+      place-items: center;
+      border-radius: 13px;
+      background: var(--pink);
+      color: var(--purple);
+      font-size: 1.25rem;
+    }
+
+    .panel h2 {
+      margin: 0;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.65rem;
+    }
+
+    .panel-description {
+      margin: 8px 0 22px;
+      color: var(--muted);
+      font-size: .94rem;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      margin-bottom: 17px;
+    }
+
+    label {
+      color: var(--purple-dark);
+      font-size: .92rem;
+      font-weight: 700;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      min-width: 0;
+      padding: 12px 14px;
+      border: 1px solid #dfd0e1;
+      border-radius: 11px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: #a77cac;
+      box-shadow: 0 0 0 3px rgba(167,124,172,.15);
+    }
+
+    textarea {
+      min-height: 205px;
+      resize: vertical;
+      line-height: 1.7;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #a293a5;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 17px;
+    }
+
+    .button {
+      min-height: 43px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      padding: 10px 17px;
+      border: 1px solid transparent;
+      border-radius: 30px;
+      background: var(--purple);
+      color: white;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform .2s, background .2s, box-shadow .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: var(--purple-dark);
+      box-shadow: 0 5px 14px rgba(73,52,79,.15);
+    }
+
+    .button.secondary {
+      border-color: #e7d9e9;
+      background: #f3eaf4;
+      color: var(--purple-dark);
+    }
+
+    .button.secondary:hover {
+      background: #e9dced;
+    }
+
+    .button.danger {
+      border-color: #f1d7dc;
+      background: #fff0f2;
+      color: var(--danger);
+    }
+
+    .button.danger:hover {
+      background: #f9dfe4;
+    }
+
+    .button:focus-visible {
+      outline: 3px solid #b995bf;
+      outline-offset: 3px;
+    }
+
+    .filter-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 18px 0;
+    }
+
+    .filter-row .field {
+      margin: 0;
+    }
+
+    .entry-count {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin: 10px 0;
+      padding: 7px 12px;
+      border-radius: 30px;
+      background: var(--pink);
+      color: var(--purple-dark);
+      font-size: .84rem;
+      font-weight: 700;
+    }
+
+    .entry {
+      margin-top: 14px;
+      padding: 19px;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: linear-gradient(145deg, #fff, #fffbff);
+      overflow-wrap: anywhere;
+    }
+
+    .entry h3 {
+      margin: 0 0 6px;
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 1.25rem;
+    }
+
+    .entry-meta {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .entry-content {
+      margin: 0;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .entry .actions {
+      padding-top: 12px;
+      border-top: 1px solid #f0e8f0;
+    }
+
+    .entry .button {
+      min-height: 37px;
+      padding: 8px 13px;
+      font-size: .86rem;
+    }
+
+    .empty {
+      padding: 30px 18px;
+      border: 1px dashed #cbb4d0;
+      border-radius: 15px;
+      background: #fdf9fd;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .empty-icon {
+      display: block;
+      margin-bottom: 8px;
+      color: #a47aaa;
+      font-size: 2rem;
+    }
+
+    .empty p {
+      margin: 5px 0;
+    }
+
+    .reminder-section {
+      margin-top: 38px;
+      padding: 30px;
+      border: 1px solid var(--border);
+      border-radius: 19px;
+      background: linear-gradient(120deg, #f2e8f3, #fff6fb);
+    }
+
+    .reminder-section h2 {
+      margin-top: 0;
+      font-family: "Playfair Display", Georgia, serif;
+    }
+
+    .reminder-section p {
+      max-width: 850px;
+    }
+
+    .small-note {
+      color: var(--muted);
+      font-size: .88rem;
+    }
+
+    footer {
+      margin-top: 35px;
+      padding: 30px 7%;
+      background: var(--purple-dark);
+      color: white;
+      text-align: center;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer a {
+      color: white;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 850px) {
+      .journal-layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .header {
+        justify-content: center;
+        padding: 13px 5%;
+      }
+
+      nav {
+        justify-content: center;
+        gap: 5px;
+      }
+
+      nav a {
+        padding: 8px 10px;
+        font-size: .82rem;
+      }
+
+      .hero {
+        padding: 48px 6%;
+      }
+
+      .container {
+        width: 91%;
+      }
+
+      .panel {
+        padding: 20px;
+      }
+
+      .filter-row {
+        grid-template-columns: 1fr;
+      }
+
+      .notice {
+        padding: 15px;
+      }
+
+      .reminder-section {
+        padding: 22px;
+      }
+
+      .actions .button {
+        flex: 1 1 auto;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topic-header"><a class="topic-logo" href="index.html">LIA</a><nav><a href="index.html">Início</a><a href="conta.html">Conta</a><a href="apoio.html">Preciso de apoio</a></nav></header>
-<main>
-  <section class="topic-hero"><p>UM ESPAÇO PARA VOCÊ</p><h1>Diário pessoal</h1><p>Escrever pode ajudar a organizar pensamentos e registrar acontecimentos. Faça isso apenas se for seguro para você.</p></section>
-  <section class="topic-section"><h2>Antes de registrar informações</h2><div class="topic-alert"><strong>Privacidade:</strong> este modelo de página não salva automaticamente seus registros nem garante armazenamento seguro. Não escreva informações sensíveis se outras pessoas puderem acessar seu aparelho.</div></section>
-  <section class="topic-section"><h2>Ideias para escrever</h2><ul><li>Como estou me sentindo hoje?</li><li>O que me ajudaria a me sentir mais segura?</li><li>Quem poderia me oferecer apoio respeitoso?</li><li>Quais informações preciso lembrar para conversar com um serviço de atendimento?</li></ul></section>
-  <section class="topic-section"><h2>Outros recursos</h2><div class="topic-nav"><a href="apoio.html">Encontrar apoio</a><a href="pessoas-confiaveis.html">Pessoas de confiança</a><a href="emergencia.html">Orientações de emergência</a><a href="configurações.html">Configurações</a></div></section>
-</main>
-<footer class="topic-footer"><p>LIA — informação, acolhimento e proteção.</p><a href="index.html">Voltar ao início</a></footer>
+
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="apoio.html">Preciso de apoio</a>
+      <a href="pessoas-confiaveis.html">Pessoas de confiança</a>
+      <a href="conta.html">Minha conta</a>
+      <a href="diario.html" class="active" aria-current="page">Diário</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="eyebrow">Seu espaço de acolhimento</div>
+      <h1>Seus sentimentos merecem espaço.</h1>
+      <p>
+        Um cantinho para escrever sobre seu dia, registrar pensamentos
+        e organizar suas ideias. Escreva no seu tempo, do seu jeito.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="notice">
+          <div class="notice-icon" aria-hidden="true">♡</div>
+          <div>
+            <strong>Um cuidado importante com sua privacidade</strong>
+            <p>
+              Este diário é uma demonstração local e não possui senha ou
+              criptografia. Se outra pessoa tiver acesso ao seu dispositivo,
+              poderá encontrar os registros. Use apenas informações fictícias
+              durante os testes.
+            </p>
+          </div>
+        </div>
+
+        <div class="journal-layout">
+
+          <section class="panel" aria-labelledby="editor-title">
+
+            <div class="panel-heading">
+              <div class="panel-icon" aria-hidden="true">✎</div>
+              <h2 id="editor-title">Nova anotação</h2>
+            </div>
+
+            <p class="panel-description">
+              Não precisa encontrar as palavras perfeitas. Apenas escreva
+              aquilo que deseja registrar.
+            </p>
+
+            <form id="journalForm">
+
+              <div class="field">
+                <label for="title">Título da anotação</label>
+                <input
+                  id="title"
+                  maxlength="100"
+                  placeholder="Ex.: Como foi meu dia"
+                  required
+                >
+              </div>
+
+              <div class="field">
+                <label for="category">Escolha uma categoria</label>
+                <select id="category">
+                  <option value="Meu dia">Meu dia</option>
+                  <option value="Meus sentimentos">Meus sentimentos</option>
+                  <option value="Minhas conquistas">Minhas conquistas</option>
+                  <option value="Reflexões">Reflexões</option>
+                  <option value="Outras anotações">Outras anotações</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="content">O que você gostaria de escrever?</label>
+                <textarea
+                  id="content"
+                  maxlength="10000"
+                  placeholder="Escreva aqui, sem pressa..."
+                  required
+                ></textarea>
+              </div>
+
+              <div class="actions">
+                <button class="button" type="submit" id="saveButton">
+                  ♡ Salvar anotação
+                </button>
+
+                <button
+                  class="button secondary"
+                  type="button"
+                  id="cancelEdit"
+                  hidden
+                >
+                  Cancelar edição
+                </button>
+
+                <button class="button secondary" type="reset">
+                  Limpar
+                </button>
+              </div>
+
+            </form>
+          </section>
+
+          <section class="panel" aria-labelledby="entries-title">
+
+            <div class="panel-heading">
+              <div class="panel-icon" aria-hidden="true">♡</div>
+              <h2 id="entries-title">Minhas anotações</h2>
+            </div>
+
+            <p class="panel-description">
+              Aqui ficam os registros que você salvou neste navegador.
+            </p>
+
+            <div class="entry-count" id="entryCount" aria-live="polite">
+              0 anotações
+            </div>
+
+            <div class="filter-row">
+
+              <div class="field">
+                <label for="filterCategory">Filtrar categoria</label>
+                <select id="filterCategory">
+                  <option value="">Todas as categorias</option>
+                  <option>Meu dia</option>
+                  <option>Meus sentimentos</option>
+                  <option>Minhas conquistas</option>
+                  <option>Reflexões</option>
+                  <option>Outras anotações</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="search">Buscar anotação</label>
+                <input
+                  id="search"
+                  type="search"
+                  maxlength="100"
+                  placeholder="Digite um título..."
+                >
+              </div>
+
+            </div>
+
+            <div id="entryList"></div>
+
+            <div id="emptyState" class="empty">
+              <span class="empty-icon" aria-hidden="true">✧</span>
+              <p><strong>Nenhuma anotação por enquanto.</strong></p>
+              <p>Quando você salvar uma anotação, ela aparecerá aqui.</p>
+            </div>
+
+          </section>
+
+        </div>
+
+        <section class="reminder-section">
+          <h2>Um lembrete para você ♡</h2>
+
+          <p>
+            Você pode sentir muitas coisas ao mesmo tempo. Seus sentimentos
+            são importantes e merecem ser acolhidos. Você não precisa
+            enfrentar tudo sozinha.
+          </p>
+
+          <p>
+            Se desejar conversar com alguém, conheça nossa
+            <a href="psicologico.html">página de apoio psicológico</a>
+            ou procure uma pessoa e um serviço de confiança.
+          </p>
+
+          <p class="small-note">
+            Em caso de perigo imediato, ligue 190. Para orientação e denúncias
+            de violência contra mulheres, ligue 180. Considere a segurança
+            do dispositivo antes de acessar ou registrar informações.
+          </p>
+
+          <a class="button secondary" href="apoio.html">
+            Conhecer formas de apoio
+          </a>
+        </section>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><strong>LIA — Informação, acolhimento e proteção.</strong></p>
+    <p>Desenvolvido por Marcely Castro Rodrigues e Mikaela Cardoso Bonfim.</p>
+    <p>Com contribuição da assistente social Hellen Goulart Orlandi.</p>
+    <p><a href="index.html">Página inicial</a></p>
+  </footer>
+
+  <script>
+    /*
+      Protótipo local para demonstração do TCC.
+      Não utilize informações reais ou sensíveis.
+      localStorage não oferece criptografia nem controle de acesso.
+    */
+
+    const STORAGE_KEY = "lia_diario_demo_v1";
+
+    const form = document.getElementById("journalForm");
+    const titleInput = document.getElementById("title");
+    const categoryInput = document.getElementById("category");
+    const contentInput = document.getElementById("content");
+    const saveButton = document.getElementById("saveButton");
+    const cancelEditButton = document.getElementById("cancelEdit");
+    const entryList = document.getElementById("entryList");
+    const emptyState = document.getElementById("emptyState");
+    const entryCount = document.getElementById("entryCount");
+    const filterCategory = document.getElementById("filterCategory");
+    const searchInput = document.getElementById("search");
+
+    let entries = [];
+    let editingId = null;
+
+    function loadEntries() {
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        const parsed = saved ? JSON.parse(saved) : [];
+
+        entries = Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        entries = [];
+        alert("Não foi possível ler as anotações salvas neste navegador.");
+      }
+
+      renderEntries();
+    }
+
+    function saveEntries() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(entries));
+        return true;
+      } catch (error) {
+        alert("Não foi possível salvar as anotações neste navegador.");
+        return false;
+      }
+    }
+
+    function makeText(tag, value, className = "") {
+      const element = document.createElement(tag);
+      element.textContent = value;
+
+      if (className) {
+        element.className = className;
+      }
+
+      return element;
+    }
+
+    function formatDate(value) {
+      const date = new Date(value);
+
+      if (Number.isNaN(date.getTime())) {
+        return "Data indisponível";
+      }
+
+      return date.toLocaleString("pt-BR", {
+        dateStyle: "short",
+        timeStyle: "short"
+      });
+    }
+
+    function resetEditor() {
+      editingId = null;
+      saveButton.textContent = "♡ Salvar anotação";
+      cancelEditButton.hidden = true;
+
+      document.getElementById("editor-title").textContent = "Nova anotação";
+    }
+
+    function renderEntries() {
+      entryList.replaceChildren();
+
+      const category = filterCategory.value;
+      const search = searchInput.value.trim().toLocaleLowerCase("pt-BR");
+
+      const filtered = entries
+        .filter((entry) => !category || entry.category === category)
+        .filter((entry) =>
+          (entry.title || "").toLocaleLowerCase("pt-BR").includes(search)
+        )
+        .sort((a, b) => Number(b.updatedAt) - Number(a.updatedAt));
+
+      entryCount.textContent =
+        entries.length === 1
+          ? "1 anotação salva"
+          : `${entries.length} anotações salvas`;
+
+      emptyState.hidden = filtered.length > 0;
+
+      if (entries.length > 0 && filtered.length === 0) {
+        emptyState.replaceChildren(
+          makeText("span", "⌕", "empty-icon"),
+          makeText("p", "Nenhuma anotação encontrada."),
+          makeText("p", "Tente alterar a busca ou o filtro.")
+        );
+      } else {
+        emptyState.replaceChildren(
+          makeText("span", "✧", "empty-icon"),
+          makeText("p", "Nenhuma anotação por enquanto."),
+          makeText("p", "Quando você salvar uma anotação, ela aparecerá aqui.")
+        );
+      }
+
+      filtered.forEach((entry) => {
+        const card = document.createElement("article");
+        card.className = "entry";
+
+        card.appendChild(makeText("h3", entry.title || "Sem título"));
+
+        card.appendChild(
+          makeText(
+            "p",
+            `${entry.category || "Outras anotações"} · Atualizada em ${formatDate(entry.updatedAt)}`,
+            "entry-meta"
+          )
+        );
+
+        card.appendChild(
+          makeText("p", entry.content || "", "entry-content")
+        );
+
+        const actions = document.createElement("div");
+        actions.className = "actions";
+
+        const editButton = document.createElement("button");
+        editButton.type = "button";
+        editButton.className = "button secondary";
+        editButton.textContent = "Editar";
+        editButton.addEventListener("click", () => editEntry(entry.id));
+
+        const deleteButton = document.createElement("button");
+        deleteButton.type = "button";
+        deleteButton.className = "button danger";
+        deleteButton.textContent = "Excluir";
+        deleteButton.addEventListener("click", () => deleteEntry(entry.id));
+
+        actions.append(editButton, deleteButton);
+        card.appendChild(actions);
+
+        entryList.appendChild(card);
+      });
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const title = titleInput.value.trim();
+      const content = contentInput.value.trim();
+
+      if (!title || !content) {
+        alert("Preencha o título e o conteúdo da anotação.");
+        return;
+      }
+
+      const previousEntries = [...entries];
+      const now = Date.now();
+
+      if (editingId) {
+        entries = entries.map((entry) =>
+          entry.id === editingId
+            ? {
+                ...entry,
+                title,
+                category: categoryInput.value,
+                content,
+                updatedAt: now
+              }
+            : entry
+        );
+      } else {
+        entries.push({
+          id: `${now}-${Math.random().toString(36).slice(2, 8)}`,
+          title,
+          category: categoryInput.value,
+          content,
+          createdAt: now,
+          updatedAt: now
+        });
+      }
+
+      if (!saveEntries()) {
+        entries = previousEntries;
+        return;
+      }
+
+      form.reset();
+      resetEditor();
+      renderEntries();
+    });
+
+    function editEntry(id) {
+      const entry = entries.find((item) => item.id === id);
+
+      if (!entry) return;
+
+      editingId = id;
+
+      titleInput.value = entry.title || "";
+      categoryInput.value = entry.category || "Meu dia";
+      contentInput.value = entry.content || "";
+
+      saveButton.textContent = "Salvar alterações";
+      cancelEditButton.hidden = false;
+
+      document.getElementById("editor-title").textContent = "Editar anotação";
+
+      document.getElementById("editor-title").scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+      titleInput.focus();
+    }
+
+    function deleteEntry(id) {
+      const confirmed = confirm(
+        "Deseja realmente excluir esta anotação deste navegador?"
+      );
+
+      if (!confirmed) return;
+
+      const previousEntries = [...entries];
+
+      entries = entries.filter((entry) => entry.id !== id);
+
+      if (!saveEntries()) {
+        entries = previousEntries;
+        return;
+      }
+
+      if (editingId === id) {
+        form.reset();
+        resetEditor();
+      }
+
+      renderEntries();
+    }
+
+    cancelEditButton.addEventListener("click", () => {
+      form.reset();
+      resetEditor();
+    });
+
+    form.addEventListener("reset", () => {
+      setTimeout(() => {
+        if (editingId) {
+          resetEditor();
+        }
+      }, 0);
+    });
+
+    filterCategory.addEventListener("change", renderEntries);
+    searchInput.addEventListener("input", renderEntries);
+
+    loadEntries();
+  </script>
+
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+
 </body>
 </html>

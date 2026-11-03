@@ -4,47 +4,593 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Violência moral | LIA</title>
+  <meta name="theme-color" content="#f8eff8">
+  <meta name="description" content="LIA: entenda a violência moral contra a mulher, conheça exemplos e encontre fontes oficiais de orientação.">
+  <title>Violência Moral | LIA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --purple: #79558e;
+      --dark: #382b40;
+      --muted: #756a79;
+      --pink: #f3dfe9;
+      --border: #eadce9;
+      --background: #fffafd;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--dark);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,250,253,.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1120px;
+      min-height: 74px;
+      margin: auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--purple); }
+
+    .support-link {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: white !important;
+      background: var(--purple);
+    }
+
+    .hero {
+      padding: 76px 24px;
+      background:
+        radial-gradient(circle at 88% 20%, #ead5eb 0, transparent 29%),
+        linear-gradient(135deg, #f9edf6, #fdf8fc 70%, #f2e7f4);
+    }
+
+    .hero-inner {
+      max-width: 1040px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.18;
+    }
+
+    h1 {
+      max-width: 790px;
+      margin: 14px 0;
+      font-size: clamp(36px, 6vw, 61px);
+    }
+
+    .hero p {
+      max-width: 730px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border: 1px solid var(--purple);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--purple);
+    }
+
+    .button-secondary {
+      color: var(--purple);
+      background: white;
+    }
+
+    .container {
+      width: min(1040px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .section { padding: 60px 0; }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 27px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(29px, 4vw, 40px);
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 21px;
+      background: white;
+      box-shadow: 0 12px 32px rgba(91,56,99,.07);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 13px;
+      border-radius: 14px;
+      background: var(--pink);
+      font-size: 21px;
+    }
+
+    .highlight {
+      padding: 25px;
+      border-left: 4px solid var(--purple);
+      border-radius: 15px;
+      background: #f6edf7;
+    }
+
+    .highlight p { margin: 0; }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding: 19px 20px 19px 62px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: white;
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      top: 19px;
+      left: 18px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    .help-box {
+      padding: 34px;
+      border-radius: 24px;
+      color: white;
+      background: #493653;
+    }
+
+    .help-box h2 {
+      margin-top: 0;
+      font-size: clamp(29px, 4vw, 38px);
+    }
+
+    .help-box p { color: #f0e8f2; }
+
+    .help-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .help-links a {
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 999px;
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .sources li { margin: 12px 0; }
+
+    .sources a {
+      color: var(--purple);
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      margin-top: 35px;
+      padding: 27px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links { justify-content: flex-start; gap: 12px; }
+      .hero { padding: 52px 20px; }
+      .grid { grid-template-columns: 1fr; }
+      .section { padding: 44px 0; }
+      .help-box { padding: 25px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topic-header">
-  <a class="topic-logo" href="index.html">LIA</a>
-  <nav><a href="index.html">Início</a><a href="projeto.html">Projeto</a><a href="violencias.html">Tipos de violência</a><a href="apoio.html">Preciso de apoio</a><a href="conta.html">Conta</a></nav>
-</header>
-<main>
-  <section class="topic-hero"><p>INFORMAÇÃO E RESPEITO</p><h1>Violência moral</h1><p>Humilhar, difamar e espalhar acusações para ferir a reputação de uma mulher não é algo que deva ser normalizado.</p></section>
-  <section class="topic-section">
-    <h2>O que é?</h2>
-    <p>Na violência doméstica e familiar, a violência moral pode envolver condutas que configuram calúnia, difamação ou injúria, atingindo a honra e a reputação da mulher.</p>
-  </section>
-  <section class="topic-section">
-    <h2>Exemplos</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Calúnia</h3><p>Atribuir falsamente a alguém a prática de um crime.</p></article>
-      <article class="topic-card"><h3>Difamação</h3><p>Espalhar fatos ofensivos à reputação de alguém.</p></article>
-      <article class="topic-card"><h3>Injúria</h3><p>Ofender a dignidade ou o decoro de uma pessoa.</p></article>
-      <article class="topic-card"><h3>Exposição pública</h3><p>Usar humilhações, acusações ou boatos para constranger e isolar.</p></article>
-    </div>
-  </section>
-  <section class="topic-section">
-    <h2>Sinais de alerta</h2>
-    <ul><li>A pessoa espalha mentiras ou acusações para prejudicar sua imagem.</li><li>Usa insultos para diminuir você diante de outras pessoas.</li><li>Ameaça divulgar informações pessoais para controlar suas decisões.</li><li>Você sente medo constante de ser humilhada ou exposta.</li></ul>
-    <div class="topic-alert"><strong>Importante:</strong> nem toda discussão ou crítica configura crime. O enquadramento depende do contexto e dos fatos; procure orientação adequada.</div>
-  </section>
-  <section class="topic-section">
-    <h2>Como se proteger?</h2>
-    <p>Se for seguro, preserve mensagens, publicações, datas e outros registros relevantes. Evite confrontar a pessoa se isso puder colocar você em risco. Procure orientação jurídica ou apoio de alguém confiável.</p>
-    <p>A Lei Maria da Penha inclui a violência moral entre as formas de violência doméstica e familiar contra a mulher.</p>
-    <p><a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener">Consultar a Lei Maria da Penha</a></p>
-  </section>
-  <section class="topic-section">
-    <h2>Canais de ajuda</h2>
-    <div class="topic-grid"><article class="topic-card"><h3>180</h3><p>Orientação sobre violência contra mulheres.</p></article><article class="topic-card"><h3>190</h3><p>Em caso de perigo imediato.</p></article><article class="topic-card"><h3>Orientação jurídica</h3><p>Busque orientação sobre seus direitos.</p><a href="advogados.html">Ver apoio jurídico</a></article></div>
-    <a class="topic-button" href="apoio.html">Conhecer opções de apoio</a>
-  </section>
-  <section class="topic-section"><h2>Continue aprendendo</h2><div class="topic-nav"><a href="violencia-patrimonial.html">← Violência patrimonial</a><a href="violencia-digital.html">Próxima: violência digital →</a><a href="violencias.html">Todos os tipos</a></div></section>
-</main>
-<footer class="topic-footer"><p>LIA — informação, acolhimento e proteção.</p><a href="index.html">Voltar ao início</a></footer>
+  <header class="header">
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="historia.html">Nossa história</a>
+        <a href="violencia-fisica.html">Violência física</a>
+        <a href="violencia-psicologica.html">Violência psicológica</a>
+        <a href="violencia-sexual.html">Violência sexual</a>
+        <a href="violencia-patrimonial.html">Violência patrimonial</a>
+        <a class="support-link" href="#apoio">Preciso de apoio</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Respeito também é proteção</span>
+        <h1>Violência moral: quando a dignidade é atacada</h1>
+        <p>
+          Ofensas, acusações falsas e ataques à reputação podem causar
+          sofrimento e prejudicar a vida pessoal, social e profissional
+          de uma mulher. Conhecer seus direitos é um passo para buscar
+          orientação e proteção.
+        </p>
+
+        <div class="actions">
+          <a class="button button-primary" href="#sinais">Conhecer os sinais</a>
+          <a class="button button-secondary" href="#apoio">Buscar orientação</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="entenda">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Entenda</span>
+          <h2>O que é violência moral?</h2>
+          <p>
+            No contexto da Lei Maria da Penha, a violência moral inclui
+            condutas que configuram calúnia, difamação ou injúria.
+            Essas situações podem atingir a honra e a reputação da mulher.
+          </p>
+        </div>
+
+        <div class="highlight">
+          <p>
+            <strong>Importante:</strong> nem todo desentendimento é
+            automaticamente violência moral. A análise depende dos fatos,
+            do contexto e das regras aplicáveis. Se você está passando
+            por uma situação assim, um serviço jurídico pode orientar você.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sinais">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Reconhecer os sinais</span>
+          <h2>Três formas que você precisa conhecer</h2>
+          <p>
+            A legislação brasileira diferencia algumas condutas contra a honra.
+            Entender esses termos ajuda a procurar a orientação adequada.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">⚖️</span>
+            <h3>Calúnia</h3>
+            <p>
+              Atribuir falsamente a alguém um fato definido como crime.
+              A análise jurídica depende do que foi dito e das circunstâncias.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">📢</span>
+            <h3>Difamação</h3>
+            <p>
+              Atribuir a alguém um fato ofensivo à sua reputação,
+              atingindo a forma como outras pessoas a veem.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">💬</span>
+            <h3>Injúria</h3>
+            <p>
+              Ofender a dignidade ou o decoro de alguém, por exemplo,
+              por meio de insultos ou expressões ofensivas.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">📱</span>
+            <h3>Ataques pela internet</h3>
+            <p>
+              Ofensas e acusações podem ocorrer em mensagens, publicações,
+              grupos e redes sociais. O contexto e o conteúdo importam
+              para avaliar quais medidas são cabíveis.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Orientação prática</span>
+          <h2>O que fazer se isso acontecer?</h2>
+          <p>
+            Pense primeiro na sua segurança e evite ações que possam
+            aumentar o risco de ameaças ou agressões.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <strong>Busque orientação jurídica.</strong><br>
+            A Defensoria Pública ou um serviço especializado pode explicar
+            quais caminhos podem ser adequados à sua situação.
+          </li>
+          <li>
+            <strong>Guarde registros se for seguro.</strong><br>
+            Se possível, mantenha mensagens, datas, links ou capturas de tela
+            relevantes. Evite alterar os arquivos e não se coloque em perigo
+            para obter provas.
+          </li>
+          <li>
+            <strong>Cuide da sua segurança digital.</strong><br>
+            Se houver assédio pela internet, revise as configurações de
+            privacidade usando um dispositivo seguro, quando possível.
+            Bloquear ou denunciar uma conta pode ser uma opção, mas avalie
+            se isso pode aumentar o risco.
+          </li>
+          <li>
+            <strong>Procure apoio emocional, se desejar.</strong><br>
+            Conversar com alguém de confiança ou buscar atendimento
+            psicológico pode ajudar durante esse período.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="apoio">
+      <div class="container">
+        <div class="help-box">
+          <span class="eyebrow" style="color:#ead4f1">Você merece respeito</span>
+          <h2>Onde procurar ajuda</h2>
+          <p>
+            Você pode procurar orientação mesmo que ainda tenha dúvidas
+            sobre como a situação é classificada juridicamente.
+          </p>
+
+          <div class="help-links">
+            <a href="tel:180">Ligue 180 — orientação à mulher</a>
+            <a href="tel:190">190 — emergência policial</a>
+          </div>
+
+          <p>
+            O Ligue 180 orienta sobre direitos e serviços de atendimento
+            à mulher. Em situação de perigo imediato, ligue 190.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fontes">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Fontes confiáveis</span>
+          <h2>Consulte informações oficiais</h2>
+          <p>
+            Para entender a legislação e encontrar serviços de orientação,
+            consulte os canais oficiais.
+          </p>
+        </div>
+
+        <ul class="sources">
+          <li>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+               target="_blank" rel="noopener noreferrer">
+              Lei Maria da Penha — Lei nº 11.340/2006
+            </a>
+          </li>
+          <li>
+            <a href="https://www.planalto.gov.br/ccivil_03/decreto-lei/del2848compilado.htm"
+               target="_blank" rel="noopener noreferrer">
+              Código Penal brasileiro
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.br/mulheres/pt-br/ligue180"
+               target="_blank" rel="noopener noreferrer">
+              Ministério das Mulheres — Ligue 180
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.br/defensoria-publica/pt-br"
+               target="_blank" rel="noopener noreferrer">
+              Defensoria Pública — informações institucionais
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Continue se informando</span>
+          <h2>Conheça outros tipos de violência</h2>
+          <p>
+            A informação pode ajudar você a identificar situações,
+            compreender seus direitos e procurar apoio.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Violência física</h3>
+            <p>Conheça os sinais e os caminhos para buscar ajuda.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-fisica.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência psicológica</h3>
+            <p>Entenda o controle, as ameaças e as humilhações.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-psicologica.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência sexual</h3>
+            <p>Conheça informações sobre consentimento e direitos.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-sexual.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência patrimonial</h3>
+            <p>Saiba reconhecer o controle de bens, documentos e dinheiro.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-patrimonial.html">Acessar página</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>LIA</strong> — informação, acolhimento e caminhos de proteção.</p>
+    <p>Conteúdo informativo; não substitui orientação jurídica ou serviços de emergência.</p>
+    <p><a href="index.html">Página inicial</a></p>
+    <p>© <span id="lia-year"></span> LIA</p>
+  </footer>
+
+  <script>
+    document.getElementById("lia-year").textContent = new Date().getFullYear();
+  </script>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
 </body>
 </html>
+

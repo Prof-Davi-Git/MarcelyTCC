@@ -4,123 +4,1196 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Entre na sua conta LIA, Local de Informação e Apoio.">
-  <meta name="theme-color" content="#7653a6">
-  <title>Entrar na conta | LIA</title>
+  <meta name="theme-color" content="#80619f">
+
+  <title>Minha conta | LIA</title>
+  <meta name="description" content="Seu espaço pessoal na plataforma LIA.">
+
   <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --account-purple: #80619f;
+      --account-dark: #60457c;
+      --account-lilac: #eee6f5;
+      --account-pink: #f8e9ef;
+      --account-text: #44394b;
+      --account-muted: #817589;
+      --account-border: #e9dfee;
+      --account-white: #fff;
+      --account-shadow: 0 12px 35px rgba(83, 54, 104, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body.account-page {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 5% 10%, #f3eaf8 0, transparent 27%),
+        radial-gradient(circle at 95% 45%, #fbedf1 0, transparent 25%),
+        #fcf9fd;
+      color: var(--account-text);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    .account-page button,
+    .account-page input,
+    .account-page textarea,
+    .account-page select {
+      font: inherit;
+    }
+
+    .account-page a {
+      color: inherit;
+    }
+
+    /* CABEÇALHO */
+
+    .account-header {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+      padding: 16px max(5%, calc((100% - 1180px) / 2));
+      background: rgba(255, 255, 255, .94);
+      border-bottom: 1px solid var(--account-border);
+      box-shadow: 0 4px 18px rgba(83, 54, 104, .04);
+    }
+
+    .account-logo {
+      font-family: Georgia, serif;
+      font-size: 35px;
+      font-weight: bold;
+      letter-spacing: 4px;
+      text-decoration: none;
+      color: var(--account-dark) !important;
+    }
+
+    .account-nav {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .account-nav a {
+      padding: 9px 14px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--account-dark) !important;
+      transition: .2s ease;
+    }
+
+    .account-nav a:hover {
+      background: #f5eff9;
+      transform: translateY(-1px);
+    }
+
+    .account-nav .account-nav-active {
+      background: var(--account-lilac);
+      color: var(--account-dark) !important;
+    }
+
+    /* CONTEÚDO */
+
+    .account-main {
+      width: min(1000px, 92%);
+      margin: 38px auto 70px;
+    }
+
+    .account-hero {
+      position: relative;
+      overflow: hidden;
+      padding: 48px 25px;
+      margin-bottom: 30px;
+      border: 1px solid #eee3f4;
+      border-radius: 30px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(255,255,255,.85), transparent 28%),
+        radial-gradient(circle at 90% 85%, rgba(255,255,255,.8), transparent 28%),
+        linear-gradient(135deg, #e9def4, #fbedf1);
+      box-shadow: var(--account-shadow);
+    }
+
+    .account-hero::before,
+    .account-hero::after {
+      content: "✦";
+      position: absolute;
+      color: rgba(128, 97, 159, .25);
+      font-size: 38px;
+      pointer-events: none;
+    }
+
+    .account-hero::before {
+      top: 18px;
+      left: 7%;
+    }
+
+    .account-hero::after {
+      right: 8%;
+      bottom: 15px;
+    }
+
+    .account-butterfly {
+      margin-bottom: 7px;
+      font-size: 39px;
+    }
+
+    .account-hero h1 {
+      margin: 0 0 10px;
+      color: var(--account-dark);
+      font-family: Georgia, serif;
+      font-size: clamp(32px, 5vw, 45px);
+      line-height: 1.2;
+    }
+
+    .account-hero p {
+      max-width: 570px;
+      margin: 0 auto;
+      color: #74647d;
+      font-size: 15px;
+    }
+
+    .account-quote {
+      margin-top: 20px;
+      color: var(--account-purple);
+      font-family: Georgia, serif;
+      font-size: 17px;
+      font-style: italic;
+    }
+
+    /* CARTÕES */
+
+    .account-card {
+      margin: 24px 0;
+      padding: 30px;
+      border: 1px solid var(--account-border);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: var(--account-shadow);
+      transition: box-shadow .2s ease;
+    }
+
+    .account-card:hover {
+      box-shadow: 0 15px 38px rgba(83, 54, 104, .11);
+    }
+
+    .account-card-heading {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+
+    .account-heading-icon {
+      display: grid;
+      flex: 0 0 48px;
+      width: 48px;
+      height: 48px;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #f1e8f8, #fbeaf0);
+      font-size: 23px;
+    }
+
+    .account-card-heading h2 {
+      margin: 0;
+      color: var(--account-dark);
+      font-family: Georgia, serif;
+      font-size: 25px;
+      line-height: 1.25;
+    }
+
+    .account-card-heading p {
+      margin: 4px 0 0;
+      color: var(--account-muted);
+      font-size: 13px;
+    }
+
+    /* PERFIL */
+
+    .account-profile {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .account-avatar {
+      display: grid;
+      flex: 0 0 118px;
+      width: 118px;
+      height: 118px;
+      place-items: center;
+      overflow: hidden;
+      border: 4px solid #f2e8f7;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #eee5f7, #f9eaf0);
+      color: var(--account-purple);
+      font-size: 44px;
+    }
+
+    .account-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .account-profile-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .account-profile-info h2 {
+      margin: 0;
+      color: var(--account-dark);
+      font-family: Georgia, serif;
+      font-size: 26px;
+      overflow-wrap: anywhere;
+    }
+
+    .account-profile-info > p {
+      margin: 4px 0 15px;
+      color: var(--account-muted);
+      font-size: 14px;
+      overflow-wrap: anywhere;
+    }
+
+    .account-photo-label {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 11px 19px;
+      border: 1px solid #e5d8ed;
+      border-radius: 30px;
+      background: #f8f2fb;
+      color: var(--account-dark);
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: .2s ease;
+    }
+
+    .account-photo-label:hover {
+      background: #eee4f5;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 13px rgba(83, 54, 104, .10);
+    }
+
+    .account-photo-label:focus-within,
+    .account-photo-label:focus-visible {
+      outline: 3px solid #c7addc;
+      outline-offset: 3px;
+    }
+
+    /* ESCONDE O CAMPO PADRÃO EM INGLÊS */
+
+    .account-photo-input {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      clip-path: inset(50%);
+      border: 0;
+    }
+
+    .account-hint {
+      margin: 8px 0 0;
+      color: var(--account-muted);
+      font-size: 12px;
+    }
+
+    /* CAMPOS */
+
+    .account-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px;
+    }
+
+    .account-field {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .account-field.full {
+      grid-column: 1 / -1;
+    }
+
+    .account-field label {
+      color: #55445f;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .account-field input,
+    .account-field select,
+    .account-field textarea {
+      width: 100%;
+      min-width: 0;
+      padding: 13px 15px;
+      border: 1px solid #e5d9eb;
+      border-radius: 13px;
+      outline: none;
+      background: #fdfbfe;
+      color: var(--account-text);
+      font-size: 14px;
+      transition: border-color .2s ease, box-shadow .2s ease;
+    }
+
+    .account-field input:hover,
+    .account-field select:hover,
+    .account-field textarea:hover {
+      border-color: #cbb8d9;
+    }
+
+    .account-field input:focus,
+    .account-field select:focus,
+    .account-field textarea:focus {
+      border-color: #a98bc4;
+      box-shadow: 0 0 0 4px rgba(128, 97, 159, .11);
+    }
+
+    .account-field textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    /* PRIVACIDADE */
+
+    .account-notice {
+      padding: 19px;
+      border: 1px solid #e9dcef;
+      border-radius: 16px;
+      background: linear-gradient(135deg, #f8f2fb, #fff7f9);
+      color: #65546f;
+      font-size: 13px;
+    }
+
+    .account-notice strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--account-dark);
+      font-size: 14px;
+    }
+
+    .account-consent {
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      margin: 20px 0;
+      color: #716579;
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .account-consent input {
+      flex: 0 0 auto;
+      width: 18px;
+      height: 18px;
+      margin-top: 3px;
+      accent-color: var(--account-purple);
+      cursor: pointer;
+    }
+
+    /* BOTÕES */
+
+    .account-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .account-btn {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 21px;
+      border: 1px solid transparent;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 13px !important;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .account-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(83, 54, 104, .13);
+    }
+
+    .account-btn:active {
+      transform: scale(.98);
+    }
+
+    .account-btn:focus-visible {
+      outline: 3px solid #c7addc;
+      outline-offset: 3px;
+    }
+
+    .account-btn-primary {
+      background: linear-gradient(135deg, #80619f, #60457c);
+      color: #fff !important;
+    }
+
+    .account-btn-primary:hover {
+      background: linear-gradient(135deg, #70518f, #503668);
+    }
+
+    .account-btn-secondary {
+      border-color: #e4d7ec;
+      background: #f5eff9;
+      color: var(--account-dark) !important;
+    }
+
+    .account-btn-secondary:hover {
+      background: #eae0f2;
+    }
+
+    .account-btn-danger {
+      border-color: #f0d9e1;
+      background: #fff4f6;
+      color: #8b405d !important;
+    }
+
+    .account-btn-danger:hover {
+      background: #f8e4eb;
+    }
+
+    /* MENSAGENS */
+
+    .account-message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px 17px;
+      border: 1px solid #cce6d1;
+      border-radius: 14px;
+      background: #eff9f0;
+      color: #285b35;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .account-message.error {
+      border-color: #f0cdd3;
+      background: #fff1f2;
+      color: #8b2635;
+    }
+
+    /* RODAPÉ */
+
+    .account-footer {
+      padding: 32px 18px;
+      border-top: 1px solid var(--account-border);
+      background: linear-gradient(135deg, #f0e7f6, #fbedf1);
+      color: #6b5b75;
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .account-footer p {
+      margin: 6px 0;
+    }
+
+    .account-footer strong {
+      color: var(--account-dark);
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 650px) {
+      .account-header {
+        justify-content: center;
+        padding: 14px 5%;
+      }
+
+      .account-nav {
+        justify-content: center;
+        gap: 5px;
+      }
+
+      .account-nav a {
+        padding: 8px 10px;
+        font-size: 12px;
+      }
+
+      .account-main {
+        width: 92%;
+        margin-top: 23px;
+      }
+
+      .account-hero {
+        padding: 36px 18px;
+        border-radius: 23px;
+      }
+
+      .account-card {
+        padding: 22px 18px;
+        border-radius: 20px;
+      }
+
+      .account-card-heading h2 {
+        font-size: 22px;
+      }
+
+      .account-profile {
+        align-items: flex-start;
+        gap: 15px;
+      }
+
+      .account-avatar {
+        flex-basis: 82px;
+        width: 82px;
+        height: 82px;
+        font-size: 30px;
+      }
+
+      .account-profile-info h2 {
+        font-size: 21px;
+      }
+
+      .account-grid {
+        grid-template-columns: 1fr;
+        gap: 17px;
+      }
+
+      .account-field.full {
+        grid-column: auto;
+      }
+
+      .account-actions {
+        flex-direction: column;
+      }
+
+      .account-btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .account-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .account-profile-info {
+        width: 100%;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .account-page *,
+      .account-page *::before,
+      .account-page *::after {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
+    }
+  </style>
 </head>
-<body>
-  <header class="header">
-    <div class="container nav-container">
-      <a class="logo" href="index.html" aria-label="LIA - página inicial">
-        <span class="logo-icon">L</span>
-        <span class="logo-name">LIA</span>
+
+<body class="account-page">
+
+  <header class="account-header">
+    <a href="index.html" class="account-logo" aria-label="LIA - início">
+      LIA
+    </a>
+
+    <nav class="account-nav" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="projeto.html">O projeto</a>
+      <a href="apoio.html">Preciso de apoio</a>
+      <a href="conta.html" class="account-nav-active" aria-current="page">
+        Minha conta
       </a>
-      <nav class="navigation" id="navigation">
-        <a href="index.html">Início</a>
-        <a href="projeto.html">Conheça o projeto</a>
-        <a href="cadastro.html">Criar conta</a>
-      </nav>
-    </div>
+    </nav>
   </header>
 
-  <main class="page-content">
-    <section class="page-hero">
-      <div class="container">
-        <p class="eyebrow">Bem-vinda ao LIA</p>
-        <h1>Entre na sua conta</h1>
-        <p>Acesse sua conta para continuar.</p>
+  <main class="account-main">
+
+    <section class="account-hero">
+      <div class="account-butterfly" aria-hidden="true">🦋</div>
+      <h1>Seu espaço pessoal</h1>
+      <p>
+        Um cantinho seu para organizar suas informações com tranquilidade.
+        Você merece acolhimento, respeito e segurança.
+      </p>
+      <div class="account-quote" id="accountQuote">
+        “Você também merece cuidar de si.”
       </div>
     </section>
 
-    <section class="container" style="max-width:620px;margin:32px auto;">
-      <div class="content-card">
-        <form id="loginForm">
-          <label for="email">E-mail</label>
-          <input id="email" name="email" type="email"
-            autocomplete="email" required>
+    <form id="accountForm">
 
-          <label for="password">Senha</label>
-          <input id="password" name="password" type="password"
-            autocomplete="current-password" required>
+      <!-- FOTO E PERFIL -->
 
-          <button class="btn btn-main" id="loginButton"
-            type="submit" style="margin-top:20px;width:100%;">
-            Entrar
+      <section class="account-card">
+        <div class="account-profile">
+
+          <div
+            class="account-avatar"
+            id="avatarPreview"
+            role="img"
+            aria-label="Foto de perfil"
+          >
+            <span>🌷</span>
+          </div>
+
+          <div class="account-profile-info">
+            <h2 id="profileName">Sua área pessoal</h2>
+
+            <p id="profileEmail">
+              Personalize sua conta com suas informações.
+            </p>
+
+            <label for="photo" class="account-photo-label">
+              <span aria-hidden="true">📷</span>
+              Escolher foto de perfil
+            </label>
+
+            <input
+              type="file"
+              id="photo"
+              class="account-photo-input"
+              accept="image/jpeg,image/png,image/webp"
+              aria-label="Selecionar foto de perfil"
+              tabindex="-1"
+            >
+
+            <p class="account-hint">
+              JPG, PNG ou WEBP. Tamanho máximo: 2 MB.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- DADOS PESSOAIS -->
+
+      <section class="account-card">
+        <div class="account-card-heading">
+          <div class="account-heading-icon" aria-hidden="true">♡</div>
+          <div>
+            <h2>Dados pessoais</h2>
+            <p>Informações básicas para personalizar sua área.</p>
+          </div>
+        </div>
+
+        <div class="account-grid">
+
+          <div class="account-field">
+            <label for="name">Nome</label>
+            <input
+              id="name"
+              name="name"
+              autocomplete="name"
+              placeholder="Como você gostaria de ser chamada?"
+              required
+            >
+          </div>
+
+          <div class="account-field">
+            <label for="email">E-mail</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              placeholder="seuemail@exemplo.com"
+              required
+            >
+          </div>
+
+          <div class="account-field">
+            <label for="phone">Telefone (opcional)</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              placeholder="(00) 00000-0000"
+            >
+          </div>
+
+          <div class="account-field">
+            <label for="birthDate">Data de nascimento (opcional)</label>
+            <input
+              id="birthDate"
+              name="birthDate"
+              type="date"
+              autocomplete="bday"
+            >
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ENDEREÇO -->
+
+      <section class="account-card">
+        <div class="account-card-heading">
+          <div class="account-heading-icon" aria-hidden="true">⌂</div>
+          <div>
+            <h2>Seu endereço</h2>
+            <p>Preencha somente as informações que desejar.</p>
+          </div>
+        </div>
+
+        <div class="account-grid">
+
+          <div class="account-field">
+            <label for="city">Cidade (opcional)</label>
+            <input
+              id="city"
+              name="city"
+              autocomplete="address-level2"
+              placeholder="Sua cidade"
+            >
+          </div>
+
+          <div class="account-field">
+            <label for="state">Estado (opcional)</label>
+            <input
+              id="state"
+              name="state"
+              autocomplete="address-level1"
+              placeholder="Seu estado"
+            >
+          </div>
+
+          <div class="account-field full">
+            <label for="address">Endereço (opcional)</label>
+            <input
+              id="address"
+              name="address"
+              autocomplete="street-address"
+              placeholder="Rua, número e bairro"
+            >
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ROTINA -->
+
+      <section class="account-card">
+        <div class="account-card-heading">
+          <div class="account-heading-icon" aria-hidden="true">✿</div>
+          <div>
+            <h2>Sobre sua rotina</h2>
+            <p>Esses campos são opcionais. Responda apenas se quiser.</p>
+          </div>
+        </div>
+
+        <div class="account-grid">
+
+          <div class="account-field">
+            <label for="livingWith">Com quem você mora?</label>
+            <select id="livingWith" name="livingWith">
+              <option value="">Prefiro não informar</option>
+              <option value="Sozinha">Sozinha</option>
+              <option value="Familiares">Com familiares</option>
+              <option value="Parceiro ou parceira">Com parceiro ou parceira</option>
+              <option value="Amigos">Com amigos</option>
+              <option value="Outras pessoas">Com outras pessoas</option>
+            </select>
+          </div>
+
+          <div class="account-field">
+            <label for="contactPreference">
+              Forma de contato preferida
+            </label>
+            <select id="contactPreference" name="contactPreference">
+              <option value="">Não informar</option>
+              <option value="E-mail">E-mail</option>
+              <option value="Telefone">Telefone</option>
+              <option value="Nenhuma">Prefiro não receber contato</option>
+            </select>
+          </div>
+
+          <div class="account-field full">
+            <label for="importantInfo">
+              Informações importantes (opcional)
+            </label>
+
+            <textarea
+              id="importantInfo"
+              name="importantInfo"
+              placeholder="Guarde apenas informações que seja seguro manter neste dispositivo."
+            ></textarea>
+
+            <p class="account-hint">
+              Evite registrar senhas, informações bancárias ou detalhes
+              que possam colocar você em risco se alguém acessar seu aparelho.
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PRIVACIDADE E AÇÕES -->
+
+      <section class="account-card">
+        <div class="account-card-heading">
+          <div class="account-heading-icon" aria-hidden="true">♡</div>
+          <div>
+            <h2>Sua privacidade importa</h2>
+            <p>Leia como esta versão funciona antes de salvar.</p>
+          </div>
+        </div>
+
+        <div class="account-notice">
+          <strong>Como seus dados são guardados?</strong>
+          Esta versão de demonstração salva as informações no armazenamento
+          local do navegador. Ela não possui login com senha, não sincroniza
+          dados entre dispositivos e não oferece proteção adequada para
+          informações sensíveis. Outras pessoas com acesso ao dispositivo
+          podem conseguir visualizar esses dados.
+        </div>
+
+        <label class="account-consent" for="privacyConsent">
+          <input type="checkbox" id="privacyConsent" required>
+          <span>
+            Li e entendi como os dados são armazenados e desejo salvá-los
+            neste navegador.
+          </span>
+        </label>
+
+        <div class="account-actions">
+
+          <button class="account-btn account-btn-primary" type="submit">
+            <span aria-hidden="true">♡</span>
+            Salvar minha conta
           </button>
 
-          <p id="loginMessage" role="status"
-            aria-live="polite" style="margin-top:16px;"></p>
-        </form>
+          <button
+            class="account-btn account-btn-secondary"
+            type="button"
+            id="loadButton"
+          >
+            <span aria-hidden="true">↻</span>
+            Carregar dados salvos
+          </button>
 
-        <p style="margin-top:20px;">
-          Ainda não tem conta?
-          <a href="cadastro.html">Criar conta</a>
-        </p>
+          <button
+            class="account-btn account-btn-danger"
+            type="button"
+            id="deleteButton"
+          >
+            <span aria-hidden="true">⌫</span>
+            Apagar meus dados
+          </button>
 
-        <p style="margin-top:12px;">
-          <a href="index.html">Voltar à página inicial</a>
-        </p>
-      </div>
-    </section>
+        </div>
+
+        <div
+          class="account-message"
+          id="statusMessage"
+          role="status"
+          aria-live="polite"
+        ></div>
+      </section>
+
+    </form>
   </main>
 
-  <footer class="footer">
-    <div class="container">
-      <p>LIA — Local de Informação e Apoio</p>
-    </div>
+  <footer class="account-footer">
+    <p><strong>LIA — Informação, acolhimento e apoio.</strong></p>
+    <p>Marcely Castro Rodrigues · Mikaela Cardoso Bonfim</p>
+    <p>Cuide da sua privacidade ao utilizar dispositivos compartilhados.</p>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="lia-supabase.js"></script>
-
   <script>
-    const form = document.getElementById("loginForm");
-    const message = document.getElementById("loginMessage");
-    const button = document.getElementById("loginButton");
+    "use strict";
 
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      message.textContent = "";
+    const STORAGE_KEY = "lia_account_v1";
+    const ACCOUNT_CREATED_KEY = "lia-account-created";
 
-      if (
-        !window.supabase ||
-        !window.LIA_SUPABASE_URL ||
-        !window.LIA_SUPABASE_PUBLISHABLE_KEY ||
-        window.LIA_SUPABASE_PUBLISHABLE_KEY.includes("COLE_AQUI")
-      ) {
-        message.textContent =
-          "A conexão não está configurada. Confira o arquivo lia-supabase.js.";
+    const form = document.getElementById("accountForm");
+    const photoInput = document.getElementById("photo");
+    const avatarPreview = document.getElementById("avatarPreview");
+    const statusMessage = document.getElementById("statusMessage");
+
+    let photoData = "";
+
+    const motivationalQuotes = [
+      "Você também merece cuidar de si.",
+      "Sua história não diminui o seu valor.",
+      "Você merece respeito, acolhimento e tranquilidade.",
+      "Um pequeno passo também é um começo.",
+      "Sua voz importa. Você importa.",
+      "Você merece viver com dignidade e segurança."
+    ];
+
+    document.getElementById("accountQuote").textContent =
+      "“" +
+      motivationalQuotes[
+        Math.floor(Math.random() * motivationalQuotes.length)
+      ] +
+      "”";
+
+    function showMessage(message, isError = false) {
+      statusMessage.textContent = message;
+      statusMessage.style.display = "block";
+      statusMessage.classList.toggle("error", isError);
+    }
+
+    function updateProfilePreview() {
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      document.getElementById("profileName").textContent =
+        name || "Sua área pessoal";
+
+      document.getElementById("profileEmail").textContent =
+        email || "Personalize sua conta com suas informações.";
+    }
+
+    function displayPhoto(data) {
+      avatarPreview.replaceChildren();
+
+      if (data) {
+        const image = document.createElement("img");
+        image.src = data;
+        image.alt = "Foto de perfil";
+        avatarPreview.appendChild(image);
+      } else {
+        const placeholder = document.createElement("span");
+        placeholder.textContent = "🌷";
+        placeholder.setAttribute("aria-hidden", "true");
+        avatarPreview.appendChild(placeholder);
+      }
+    }
+
+    // Seleção e pré-visualização da foto.
+
+    photoInput.addEventListener("change", () => {
+      const file = photoInput.files && photoInput.files[0];
+
+      if (!file) return;
+
+      const allowedTypes = [
+        "image/jpeg",
+        "image/png",
+        "image/webp"
+      ];
+
+      if (!allowedTypes.includes(file.type)) {
+        photoInput.value = "";
+        photoData = "";
+        displayPhoto("");
+        showMessage("Escolha uma imagem JPG, PNG ou WEBP.", true);
         return;
       }
 
-      button.disabled = true;
-      button.textContent = "Entrando...";
+      if (file.size > 2 * 1024 * 1024) {
+        photoInput.value = "";
+        photoData = "";
+        displayPhoto("");
+        showMessage("A imagem deve ter no máximo 2 MB.", true);
+        return;
+      }
+
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        photoData =
+          typeof reader.result === "string" ? reader.result : "";
+
+        displayPhoto(photoData);
+      };
+
+      reader.onerror = () => {
+        photoData = "";
+        displayPhoto("");
+        showMessage("Não foi possível carregar a imagem.", true);
+      };
+
+      reader.readAsDataURL(file);
+    });
+
+    // Atualiza o nome e o e-mail na área do perfil.
+
+    document.getElementById("name").addEventListener(
+      "input",
+      updateProfilePreview
+    );
+
+    document.getElementById("email").addEventListener(
+      "input",
+      updateProfilePreview
+    );
+
+    function getFormData() {
+      return {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        birthDate: document.getElementById("birthDate").value,
+        city: document.getElementById("city").value.trim(),
+        state: document.getElementById("state").value.trim(),
+        address: document.getElementById("address").value.trim(),
+        livingWith: document.getElementById("livingWith").value,
+        contactPreference:
+          document.getElementById("contactPreference").value,
+        importantInfo:
+          document.getElementById("importantInfo").value.trim(),
+        photo: photoData
+      };
+    }
+
+    function fillForm(data) {
+      document.getElementById("name").value = data.name || "";
+      document.getElementById("email").value = data.email || "";
+      document.getElementById("phone").value = data.phone || "";
+      document.getElementById("birthDate").value = data.birthDate || "";
+      document.getElementById("city").value = data.city || "";
+      document.getElementById("state").value = data.state || "";
+      document.getElementById("address").value = data.address || "";
+
+      document.getElementById("livingWith").value =
+        data.livingWith || "";
+
+      document.getElementById("contactPreference").value =
+        data.contactPreference || "";
+
+      document.getElementById("importantInfo").value =
+        data.importantInfo || "";
+
+      photoData = data.photo || "";
+      displayPhoto(photoData);
+      updateProfilePreview();
+    }
+
+    // Salvar conta.
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      if (!form.reportValidity()) return;
+
+      if (!document.getElementById("privacyConsent").checked) {
+        showMessage(
+          "Confirme que entendeu o aviso de privacidade para continuar.",
+          true
+        );
+        return;
+      }
 
       try {
-        const client = window.supabase.createClient(
-          window.LIA_SUPABASE_URL,
-          window.LIA_SUPABASE_PUBLISHABLE_KEY
+        const data = getFormData();
+
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+        localStorage.setItem(ACCOUNT_CREATED_KEY, "true");
+
+        updateProfilePreview();
+
+        showMessage(
+          "Sua conta foi configurada e as informações foram salvas neste navegador."
         );
-
-        const { error } = await client.auth.signInWithPassword({
-          email: document.getElementById("email").value.trim(),
-          password: document.getElementById("password").value
-        });
-
-        if (error) throw error;
-
-        message.textContent = "Login realizado! Abrindo o LIA...";
-        window.location.href = "index.html";
       } catch (error) {
-        console.error("Erro no login:", error);
-        message.textContent =
-          "Não foi possível entrar. Confira o e-mail, a senha e a confirmação do e-mail.";
-      } finally {
-        button.disabled = false;
-        button.textContent = "Entrar";
+        showMessage(
+          "Não foi possível salvar. Tente remover a foto ou liberar espaço no navegador.",
+          true
+        );
       }
     });
+
+    // Carregar dados salvos.
+
+    document.getElementById("loadButton").addEventListener("click", () => {
+      try {
+        const savedData = localStorage.getItem(STORAGE_KEY);
+
+        if (!savedData) {
+          showMessage("Não existem dados salvos neste navegador.", true);
+          return;
+        }
+
+        const data = JSON.parse(savedData);
+
+        if (!data || typeof data !== "object" || Array.isArray(data)) {
+          showMessage("Os dados salvos não são válidos.", true);
+          return;
+        }
+
+        fillForm(data);
+        showMessage("Seus dados foram carregados.");
+      } catch (error) {
+        showMessage("Não foi possível carregar os dados salvos.", true);
+      }
+    });
+
+    // Apagar dados.
+
+    document.getElementById("deleteButton").addEventListener("click", () => {
+      const confirmed = window.confirm(
+        "Deseja apagar as informações da conta salvas neste navegador? Esta ação não pode ser desfeita."
+      );
+
+      if (!confirmed) return;
+
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+        localStorage.removeItem(ACCOUNT_CREATED_KEY);
+
+        form.reset();
+        photoData = "";
+        displayPhoto("");
+        updateProfilePreview();
+
+        showMessage(
+          "Os dados foram apagados. A tela de boas-vindas poderá aparecer novamente."
+        );
+      } catch (error) {
+        showMessage("Não foi possível apagar os dados.", true);
+      }
+    });
+
+    // Recupera dados existentes ao abrir a página.
+
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+
+      if (savedData) {
+        const data = JSON.parse(savedData);
+
+        if (data && typeof data === "object" && !Array.isArray(data)) {
+          fillForm(data);
+        }
+      }
+    } catch (error) {
+      // A página continua utilizável se os dados estiverem inválidos.
+    }
+
+    updateProfilePreview();
   </script>
+
 </body>
 </html>

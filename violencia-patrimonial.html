@@ -4,60 +4,606 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Violência patrimonial | LIA</title>
+  <meta name="theme-color" content="#f8eff8">
+  <meta name="description" content="LIA: entenda a violência patrimonial, reconheça os sinais e conheça caminhos para buscar apoio.">
+  <title>Violência Patrimonial | LIA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --purple: #79558e;
+      --dark: #382b40;
+      --muted: #756a79;
+      --pink: #f3dfe9;
+      --border: #eadce9;
+      --background: #fffafd;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--dark);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,250,253,.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1120px;
+      min-height: 74px;
+      margin: auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--purple); }
+
+    .support-link {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: white !important;
+      background: var(--purple);
+    }
+
+    .hero {
+      padding: 76px 24px;
+      background:
+        radial-gradient(circle at 88% 20%, #ead5eb 0, transparent 29%),
+        linear-gradient(135deg, #f9edf6, #fdf8fc 70%, #f2e7f4);
+    }
+
+    .hero-inner {
+      max-width: 1040px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.18;
+    }
+
+    h1 {
+      max-width: 790px;
+      margin: 14px 0;
+      font-size: clamp(36px, 6vw, 61px);
+    }
+
+    .hero p {
+      max-width: 730px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border: 1px solid var(--purple);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--purple);
+    }
+
+    .button-secondary {
+      color: var(--purple);
+      background: white;
+    }
+
+    .container {
+      width: min(1040px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .section { padding: 60px 0; }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 27px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(29px, 4vw, 40px);
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 21px;
+      background: white;
+      box-shadow: 0 12px 32px rgba(91,56,99,.07);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 13px;
+      border-radius: 14px;
+      background: var(--pink);
+      font-size: 21px;
+    }
+
+    .highlight {
+      padding: 25px;
+      border-left: 4px solid var(--purple);
+      border-radius: 15px;
+      background: #f6edf7;
+    }
+
+    .highlight p { margin: 0; }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding: 19px 20px 19px 62px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: white;
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      top: 19px;
+      left: 18px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    .help-box {
+      padding: 34px;
+      border-radius: 24px;
+      color: white;
+      background: #493653;
+    }
+
+    .help-box h2 {
+      margin-top: 0;
+      font-size: clamp(29px, 4vw, 38px);
+    }
+
+    .help-box p { color: #f0e8f2; }
+
+    .help-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .help-links a {
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 999px;
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .sources li { margin: 12px 0; }
+
+    .sources a {
+      color: var(--purple);
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      margin-top: 35px;
+      padding: 27px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links { justify-content: flex-start; gap: 12px; }
+      .hero { padding: 52px 20px; }
+      .grid { grid-template-columns: 1fr; }
+      .section { padding: 44px 0; }
+      .help-box { padding: 25px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topic-header">
-  <a class="topic-logo" href="index.html">LIA</a>
-  <nav><a href="index.html">Início</a><a href="projeto.html">Projeto</a><a href="violencias.html">Tipos de violência</a><a href="apoio.html">Preciso de apoio</a><a href="conta.html">Conta</a></nav>
-</header>
-<main>
-  <section class="topic-hero">
-    <p>INFORMAÇÃO E AUTONOMIA</p>
-    <h1>Violência patrimonial</h1>
-    <p>Controlar o dinheiro, destruir objetos ou impedir o acesso aos próprios recursos também são formas de violência.</p>
-  </section>
-  <section class="topic-section">
-    <h2>O que é?</h2>
-    <p>É a conduta que envolve retenção, subtração ou destruição de objetos, documentos pessoais, bens, valores, direitos ou recursos econômicos da mulher, inclusive aqueles destinados a satisfazer suas necessidades.</p>
-  </section>
-  <section class="topic-section">
-    <h2>Como pode acontecer?</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Controle financeiro</h3><p>Impedir o acesso ao próprio salário ou exigir controle sobre cada gasto.</p></article>
-      <article class="topic-card"><h3>Destruição de bens</h3><p>Quebrar celular, roupas, objetos pessoais ou itens de trabalho para intimidar.</p></article>
-      <article class="topic-card"><h3>Documentos retidos</h3><p>Esconder ou destruir documentos, cartões e papéis importantes.</p></article>
-      <article class="topic-card"><h3>Dívidas e recursos</h3><p>Usar dinheiro, cartões ou dados financeiros sem autorização ou por coerção.</p></article>
-    </div>
-  </section>
-  <section class="topic-section">
-    <h2>Sinais de alerta</h2>
-    <ul>
-      <li>Você precisa pedir dinheiro para todas as despesas, mesmo quando possui renda própria.</li>
-      <li>Alguém impede você de trabalhar, estudar ou manter uma conta bancária.</li>
-      <li>Seus documentos ou pertences são usados como forma de ameaça.</li>
-      <li>Você tem medo de questionar decisões financeiras da outra pessoa.</li>
-    </ul>
-    <div class="topic-alert"><strong>Atenção:</strong> dificuldades financeiras em um relacionamento não são automaticamente violência. O sinal de alerta é a coerção, o controle abusivo, a retenção ou a destruição intencional.</div>
-  </section>
-  <section class="topic-section">
-    <h2>Como buscar proteção?</h2>
-    <p>Se for seguro, guarde cópias de documentos importantes, registre informações relevantes em um local protegido e procure orientação jurídica ou assistência social. Não faça nada que aumente o risco para você.</p>
-    <p>A Lei Maria da Penha reconhece a violência patrimonial entre as formas de violência doméstica e familiar contra a mulher.</p>
-    <p><a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener">Consultar a Lei Maria da Penha</a></p>
-  </section>
-  <section class="topic-section">
-    <h2>Precisa de ajuda?</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Central 180</h3><p>Orientação sobre violência contra mulheres.</p></article>
-      <article class="topic-card"><h3>190</h3><p>Polícia Militar em perigo imediato.</p></article>
-      <article class="topic-card"><h3>Apoio jurídico</h3><p>Conheça opções de orientação e serviços de apoio.</p><a href="advogados.html">Ver apoio jurídico</a></article>
-    </div>
-    <a class="topic-button" href="apoio.html">Encontrar apoio</a>
-  </section>
-  <section class="topic-section"><h2>Continue aprendendo</h2><div class="topic-nav"><a href="violencia-sexual.html">← Violência sexual</a><a href="violencia-moral.html">Próxima: violência moral →</a><a href="violencias.html">Todos os tipos</a></div></section>
-</main>
-<footer class="topic-footer"><p>LIA — informação, acolhimento e proteção.</p><a href="index.html">Voltar ao início</a></footer>
+  <header class="header">
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="historia.html">Nossa história</a>
+        <a href="violencia-fisica.html">Violência física</a>
+        <a href="violencia-psicologica.html">Violência psicológica</a>
+        <a href="violencia-sexual.html">Violência sexual</a>
+        <a class="support-link" href="#apoio">Preciso de apoio</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Autonomia também é proteção</span>
+        <h1>Violência patrimonial: seus bens, documentos e dinheiro importam</h1>
+        <p>
+          Controlar o dinheiro, esconder documentos ou destruir objetos
+          pode ser uma forma de violência. Conhecer esses comportamentos
+          ajuda a identificar situações que afetam a autonomia e a segurança
+          de uma mulher.
+        </p>
+
+        <div class="actions">
+          <a class="button button-primary" href="#sinais">Reconhecer os sinais</a>
+          <a class="button button-secondary" href="#apoio">Buscar orientação</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="entenda">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Entenda</span>
+          <h2>O que é violência patrimonial?</h2>
+          <p>
+            A Lei Maria da Penha define violência patrimonial como a conduta
+            que envolve retenção, subtração ou destruição parcial ou total
+            de objetos, instrumentos de trabalho, documentos pessoais,
+            bens, valores, direitos ou recursos econômicos da mulher,
+            inclusive os destinados a satisfazer suas necessidades.
+          </p>
+        </div>
+
+        <div class="highlight">
+          <p>
+            <strong>Importante:</strong> a violência patrimonial pode acontecer
+            mesmo quando a mulher tem renda própria. O ponto central é o uso
+            dos bens, do dinheiro ou dos documentos para prejudicar, controlar
+            ou limitar sua autonomia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sinais">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Reconhecer os sinais</span>
+          <h2>Como essa violência pode aparecer?</h2>
+          <p>
+            Alguns comportamentos merecem atenção, principalmente quando
+            são usados para controlar a vida financeira ou impedir decisões
+            independentes.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">💳</span>
+            <h3>Controle do dinheiro</h3>
+            <p>
+              Impedir o acesso ao próprio salário, tomar dinheiro sem
+              autorização ou controlar todos os gastos para limitar
+              a liberdade da mulher.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">📄</span>
+            <h3>Retenção de documentos</h3>
+            <p>
+              Esconder, reter ou destruir documentos pessoais para
+              dificultar o acesso a serviços, trabalho ou direitos.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">💻</span>
+            <h3>Destruição de bens</h3>
+            <p>
+              Quebrar celular, computador, roupas, objetos pessoais
+              ou instrumentos de trabalho como forma de intimidação
+              ou prejuízo.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">🏦</span>
+            <h3>Uso indevido de recursos</h3>
+            <p>
+              Apropriar-se de valores, utilizar recursos sem autorização
+              ou criar dívidas em nome da mulher de forma abusiva.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">💼</span>
+            <h3>Prejuízo ao trabalho</h3>
+            <p>
+              Destruir ferramentas profissionais ou dificultar o acesso
+              a recursos necessários para trabalhar e estudar.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">🔑</span>
+            <h3>Controle de bens e recursos</h3>
+            <p>
+              Esconder chaves ou impedir o acesso a bens e recursos
+              com o objetivo de restringir a autonomia da mulher.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Orientação prática</span>
+          <h2>Como buscar ajuda com mais segurança?</h2>
+          <p>
+            A melhor decisão depende da situação. Evite qualquer medida
+            que possa aumentar o risco de violência.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <strong>Procure orientação especializada.</strong><br>
+            Um serviço de atendimento à mulher ou profissional jurídico
+            pode explicar direitos e alternativas adequadas ao seu caso.
+          </li>
+          <li>
+            <strong>Proteja seus documentos quando for seguro.</strong><br>
+            Se possível e sem se colocar em risco, mantenha acesso a cópias
+            de documentos importantes e informações necessárias.
+          </li>
+          <li>
+            <strong>Busque apoio para questões financeiras.</strong><br>
+            Se houver contas, dívidas ou movimentações suspeitas, procure
+            orientação do banco e de um serviço jurídico usando um canal seguro.
+          </li>
+          <li>
+            <strong>Registre informações apenas se for seguro.</strong><br>
+            Guarde registros relevantes se isso não aumentar o risco.
+            Não confronte a pessoa nem tente recuperar bens colocando-se em perigo.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="apoio">
+      <div class="container">
+        <div class="help-box">
+          <span class="eyebrow" style="color:#ead4f1">Você tem direitos</span>
+          <h2>Onde procurar ajuda</h2>
+          <p>
+            Você pode buscar orientação mesmo que ainda não saiba se a
+            situação se enquadra juridicamente como violência patrimonial.
+          </p>
+
+          <div class="help-links">
+            <a href="tel:180">Ligue 180 — orientação à mulher</a>
+            <a href="tel:190">190 — emergência policial</a>
+          </div>
+
+          <p>
+            O Ligue 180 é gratuito e orienta sobre direitos e serviços
+            de atendimento à mulher. Em situação de perigo imediato,
+            ligue 190.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fontes">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Fontes confiáveis</span>
+          <h2>Conheça a legislação e os serviços oficiais</h2>
+          <p>
+            Consulte fontes públicas para aprofundar seu conhecimento
+            sobre direitos e formas de proteção.
+          </p>
+        </div>
+
+        <ul class="sources">
+          <li>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+               target="_blank" rel="noopener noreferrer">
+              Lei Maria da Penha — Lei nº 11.340/2006
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.br/mulheres/pt-br/ligue180"
+               target="_blank" rel="noopener noreferrer">
+              Ministério das Mulheres — Ligue 180
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.br/defensoria-publica/pt-br"
+               target="_blank" rel="noopener noreferrer">
+              Defensoria Pública — informações institucionais
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Continue se informando</span>
+          <h2>Conheça outros tipos de violência</h2>
+          <p>
+            Identificar as diferentes formas de violência ajuda a procurar
+            informações e serviços mais adequados.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Violência física</h3>
+            <p>Saiba reconhecer agressões e outras formas de violência física.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-fisica.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência psicológica</h3>
+            <p>Entenda o controle, as ameaças e as humilhações.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-psicologica.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência sexual</h3>
+            <p>Conheça informações sobre consentimento, direitos e apoio.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-sexual.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência moral</h3>
+            <p>Entenda situações como calúnia, difamação e injúria.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-moral.html">Acessar página</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>LIA</strong> — informação, acolhimento e caminhos de proteção.</p>
+    <p>Conteúdo informativo; não substitui orientação jurídica ou serviços de emergência.</p>
+    <p><a href="index.html">Página inicial</a></p>
+    <p>© <span id="lia-year"></span> LIA</p>
+  </footer>
+
+  <script>
+    document.getElementById("lia-year").textContent = new Date().getFullYear();
+  </script>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
 </body>
 </html>
+

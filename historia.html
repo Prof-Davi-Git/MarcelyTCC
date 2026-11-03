@@ -1,0 +1,759 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7edf8">
+  <meta name="description" content="Conheça a história, os valores e o propósito do projeto LIA.">
+  <title>História da LIA | Informação, Proteção e Acolhimento</title>
+
+  <link rel="stylesheet" href="lia.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --purple: #89658f;
+      --purple-dark: #654b6b;
+      --pink: #f5eaf4;
+      --background: #fffafd;
+      --border: #eddfed;
+      --text: #625767;
+      --muted: #8b808e;
+      --white: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--background);
+      font-family: "DM Sans", Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    a {
+      color: var(--purple);
+      transition: .25s ease;
+    }
+
+    strong {
+      color: #624c68;
+      font-weight: 500;
+    }
+
+    /* MENU */
+
+    .header {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 13px 6%;
+      background: rgba(255, 255, 255, .96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .logo {
+      color: var(--purple);
+      font-family: "Playfair Display", Georgia, serif;
+      font-size: 2.15rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    nav a {
+      padding: 9px 13px;
+      border-radius: 30px;
+      color: var(--text);
+      font-size: .88rem;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--purple-dark);
+      background: var(--pink);
+      text-decoration: none;
+    }
+
+    /* APRESENTAÇÃO */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 85px 7% 90px;
+      background:
+        radial-gradient(circle at 12% 15%, rgba(255,255,255,.9), transparent 30%),
+        radial-gradient(circle at 90% 80%, rgba(236,211,235,.55), transparent 35%),
+        linear-gradient(125deg, #f5edf7, #fff2f8, #f2e5f3);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(137, 101, 143, .12);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      top: -105px;
+      right: 9%;
+    }
+
+    .hero::after {
+      bottom: -125px;
+      left: 7%;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 950px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--purple);
+      font-size: .75rem;
+      font-weight: 500;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3 {
+      color: #514057;
+      font-family: "Playfair Display", Georgia, serif;
+      font-weight: 400;
+      line-height: 1.35;
+    }
+
+    h1 {
+      max-width: 800px;
+      margin: 18px 0;
+      font-size: clamp(2.3rem, 4.5vw, 3.5rem);
+    }
+
+    .hero p {
+      max-width: 760px;
+      margin: 12px 0;
+      color: #756879;
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    /* CONTEÚDO */
+
+    main {
+      width: min(1120px, 88%);
+      margin: 50px auto 75px;
+    }
+
+    section {
+      margin-bottom: 58px;
+      scroll-margin-top: 25px;
+    }
+
+    h2 {
+      margin: 9px 0 15px;
+      font-size: clamp(1.65rem, 3vw, 2.15rem);
+    }
+
+    h3 {
+      margin: 0 0 12px;
+      font-size: 1.3rem;
+    }
+
+    p {
+      font-weight: 300;
+    }
+
+    .intro {
+      max-width: 850px;
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-bottom: 30px;
+      color: var(--purple);
+      font-size: .9rem;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .back:hover {
+      color: var(--purple-dark);
+      transform: translateX(-3px);
+    }
+
+    /* HISTÓRIA */
+
+    .story-panel {
+      position: relative;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 8px 26px rgba(83, 54, 88, .05);
+    }
+
+    .story-panel p {
+      margin: 0 0 18px;
+      color: #756d79;
+      font-size: .96rem;
+      line-height: 1.95;
+    }
+
+    .story-panel p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* CARTÕES */
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 21px;
+      margin-top: 27px;
+    }
+
+    .card,
+    .credit-card {
+      position: relative;
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: rgba(255,255,255,.92);
+      box-shadow: 0 7px 25px rgba(83, 54, 88, .045);
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover,
+    .credit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(83, 54, 88, .09);
+    }
+
+    .card p,
+    .credit-card p {
+      margin: 0;
+      color: #776d7b;
+      font-size: .94rem;
+      line-height: 1.85;
+    }
+
+    .symbol {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 49px;
+      height: 49px;
+      margin-bottom: 17px;
+      border: 1px solid #eddfed;
+      border-radius: 16px;
+      background: linear-gradient(145deg, #f8edf7, #eee3f3);
+      color: var(--purple);
+      font-size: 1.4rem;
+    }
+
+    /* CAIXAS DE DESTAQUE */
+
+    .soft-box {
+      margin-top: 25px;
+      padding: 24px 26px;
+      border: 1px solid #eadbea;
+      border-radius: 18px;
+      background: linear-gradient(120deg, #f8eef7, #fff7fb);
+      color: #756879;
+      font-size: .94rem;
+      line-height: 1.9;
+    }
+
+    /* VALORES */
+
+    .values-list {
+      margin-top: 22px;
+      padding: 25px 30px 25px 48px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 7px 22px rgba(77, 48, 82, .04);
+      color: #756d79;
+      font-size: .95rem;
+    }
+
+    .values-list li {
+      margin-bottom: 13px;
+      padding-left: 5px;
+    }
+
+    .values-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .values-list li::marker {
+      color: #a27ba8;
+    }
+
+    /* EQUIPE */
+
+    .credit-card h3 {
+      color: var(--purple-dark);
+    }
+
+    .credit-role {
+      margin: 0 0 15px !important;
+      color: #9a849d !important;
+      font-size: .86rem !important;
+    }
+
+    .credit-card {
+      min-height: 245px;
+    }
+
+    /* MENSAGEM FINAL */
+
+    .closing {
+      position: relative;
+      overflow: hidden;
+      padding: 38px;
+      border: 1px solid #e5d4e8;
+      border-radius: 23px;
+      background:
+        radial-gradient(circle at 95% 5%, rgba(255,255,255,.18), transparent 30%),
+        linear-gradient(125deg, #785b81, #8b6b92);
+      color: white;
+      box-shadow: 0 10px 28px rgba(91, 62, 97, .12);
+    }
+
+    .closing .eyebrow {
+      color: #f7eafa;
+    }
+
+    .closing h2 {
+      max-width: 800px;
+      margin-top: 12px;
+      color: white;
+    }
+
+    .closing p {
+      max-width: 850px;
+      color: rgba(255,255,255,.91);
+      font-size: .95rem;
+    }
+
+    .closing strong {
+      color: white;
+      font-weight: 500;
+    }
+
+    /* RODAPÉ */
+
+    footer {
+      padding: 34px 7%;
+      border-top: 1px solid var(--border);
+      background: linear-gradient(120deg, #f3e9f3, #f9eff7);
+      color: #786c7d;
+      text-align: center;
+      font-size: .86rem;
+      font-weight: 300;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    footer strong {
+      color: #654b6b;
+      font-weight: 500;
+    }
+
+    a:focus-visible {
+      outline: 2px solid var(--purple);
+      outline-offset: 4px;
+    }
+
+    /* CELULAR E TABLET */
+
+    @media (max-width: 760px) {
+      .header {
+        justify-content: center;
+        padding: 14px 5%;
+      }
+
+      nav {
+        gap: 4px;
+      }
+
+      nav a {
+        padding: 8px 10px;
+        font-size: .82rem;
+      }
+
+      .hero {
+        padding: 58px 7%;
+      }
+
+      .hero-content {
+        text-align: center;
+      }
+
+      h1 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      main {
+        width: 90%;
+        margin-top: 35px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .story-panel,
+      .card,
+      .credit-card,
+      .soft-box,
+      .closing {
+        padding: 23px;
+      }
+
+      .values-list {
+        padding: 22px 22px 22px 42px;
+      }
+
+      section {
+        margin-bottom: 45px;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .logo {
+        font-size: 1.9rem;
+      }
+
+      .hero {
+        padding: 48px 6%;
+      }
+
+      h1 {
+        font-size: 2.15rem;
+      }
+
+      .eyebrow {
+        font-size: .69rem;
+        letter-spacing: 1.5px;
+      }
+
+      .story-panel,
+      .card,
+      .credit-card,
+      .soft-box,
+      .closing {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="apoio.html">Preciso de apoio</a>
+      <a href="violencia-fisica.html">Violência física</a>
+      <a href="violencia-psicologica.html">Psicológica</a>
+      <a href="violencia-sexual.html">Sexual</a>
+      <a href="violencia-digital.html">Digital</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Nossa história • Nosso propósito</span>
+
+      <h1>Uma ideia que nasceu para acolher, informar e transformar.</h1>
+
+      <p>
+        A LIA é um projeto desenvolvido com o propósito de reunir informação,
+        orientação e caminhos de apoio para mulheres em situação de
+        vulnerabilidade ou que vivenciam diferentes formas de violência.
+      </p>
+
+      <p>
+        Mais do que apresentar informações, a proposta é ajudar cada mulher
+        a reconhecer seus direitos e encontrar caminhos possíveis para buscar
+        proteção, respeitando sua história, suas necessidades e seu tempo.
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <a class="back" href="index.html">← Voltar à página inicial</a>
+
+    <section id="origem">
+      <span class="eyebrow">01 • Como tudo começou</span>
+      <h2>A origem da LIA</h2>
+
+      <div class="story-panel">
+        <p>
+          A LIA surgiu a partir de uma ideia de Hellen Goulart Orlandi,
+          assistente social, que trouxe a proposta de desenvolver uma iniciativa
+          voltada ao acolhimento e à proteção de mulheres em situação de
+          vulnerabilidade.
+        </p>
+
+        <p>
+          A partir dessa ideia, Marcely Castro Rodrigues assumiu o desenvolvimento
+          do projeto no contexto do seu Trabalho de Conclusão de Curso (TCC),
+          transformando a proposta em um site com conteúdos informativos e
+          recursos planejados para facilitar o acesso à orientação e ao apoio.
+        </p>
+
+        <p>
+          Mikaela Cardoso Bonfim também participa do projeto em igualdade de
+          importância com Marcely. A construção da LIA representa um trabalho
+          de colaboração, pesquisa, planejamento e compromisso com uma questão
+          social que merece atenção.
+        </p>
+
+        <p>
+          A proposta é continuar aprimorando a plataforma para que sua
+          apresentação, suas informações e seus recursos sejam claros,
+          responsáveis, acessíveis e úteis para o público a que se destina.
+        </p>
+      </div>
+    </section>
+
+    <section id="significado">
+      <span class="eyebrow">02 • O significado do projeto</span>
+      <h2>Por que a LIA existe?</h2>
+
+      <p class="intro">
+        A LIA foi pensada para aproximar informação e acolhimento.
+        Em situações de violência, muitas mulheres enfrentam dúvidas,
+        medo, isolamento e dificuldade para identificar onde buscar ajuda.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <div class="symbol" aria-hidden="true">♡</div>
+          <h3>Acolher sem julgar</h3>
+          <p>
+            Apresentar informações com respeito, evitando culpabilizar
+            a mulher pela violência que sofreu ou pelas decisões que precisa tomar.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">✧</div>
+          <h3>Informar para fortalecer</h3>
+          <p>
+            Explicar diferentes formas de violência, seus sinais e os direitos
+            que podem ser relevantes em cada situação.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">⌂</div>
+          <h3>Aproximar serviços de apoio</h3>
+          <p>
+            Reunir caminhos para procurar atendimento psicológico, jurídico,
+            social e serviços públicos de proteção.
+          </p>
+        </article>
+
+        <article class="card">
+          <div class="symbol" aria-hidden="true">❀</div>
+          <h3>Valorizar a autonomia</h3>
+          <p>
+            Oferecer informação para que cada mulher possa compreender
+            alternativas e buscar apoio de acordo com sua realidade.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="objetivo">
+      <span class="eyebrow">03 • Nosso objetivo</span>
+      <h2>Informação acessível, apoio e proteção</h2>
+
+      <p>
+        O objetivo da LIA é funcionar como uma plataforma informativa e de
+        orientação, com conteúdos sobre diferentes formas de violência,
+        acesso a recursos de apoio e planejamento de funcionalidades voltadas
+        à privacidade e à segurança.
+      </p>
+
+      <div class="soft-box">
+        <strong>Nosso compromisso:</strong>
+        tratar um assunto delicado com responsabilidade, linguagem acessível
+        e respeito à dignidade de cada mulher. A LIA pretende complementar
+        a rede de apoio existente, não substituir serviços de emergência,
+        profissionais qualificados ou atendimento especializado.
+      </div>
+    </section>
+
+    <section id="valores">
+      <span class="eyebrow">04 • O que nos orienta</span>
+      <h2>Os valores da LIA</h2>
+
+      <ul class="values-list">
+        <li><strong>Respeito:</strong> reconhecer a dignidade e a individualidade de cada mulher.</li>
+        <li><strong>Acolhimento:</strong> oferecer informação sem julgamentos ou culpabilização.</li>
+        <li><strong>Responsabilidade:</strong> priorizar informações cuidadosas e fontes confiáveis.</li>
+        <li><strong>Privacidade:</strong> tratar a segurança dos dados como parte essencial do projeto.</li>
+        <li><strong>Acessibilidade:</strong> buscar uma experiência que possa ser utilizada por pessoas com diferentes necessidades.</li>
+        <li><strong>Autonomia:</strong> apoiar o acesso à informação para que cada mulher possa avaliar suas opções.</li>
+        <li><strong>Colaboração:</strong> valorizar as contribuições de todas as pessoas envolvidas na construção da iniciativa.</li>
+      </ul>
+    </section>
+
+    <section id="equipe">
+      <span class="eyebrow">05 • Quem faz parte</span>
+      <h2>Pessoas por trás da LIA</h2>
+
+      <p class="intro">
+        A construção do projeto reúne desenvolvimento, pesquisa e contribuição
+        social. Cada participação tem sua importância para a proposta da LIA.
+      </p>
+
+      <div class="grid">
+        <article class="credit-card">
+          <div class="symbol" aria-hidden="true">✧</div>
+          <h3>Marcely Castro Rodrigues</h3>
+          <p class="credit-role">Desenvolvimento e construção do projeto</p>
+          <p>
+            Responsável pelo desenvolvimento da plataforma no contexto
+            do Trabalho de Conclusão de Curso, incluindo a organização
+            das páginas e a implementação das funcionalidades planejadas.
+          </p>
+        </article>
+
+        <article class="credit-card">
+          <div class="symbol" aria-hidden="true">✧</div>
+          <h3>Mikaela Cardoso Bonfim</h3>
+          <p class="credit-role">Integrante do projeto</p>
+          <p>
+            Participa do projeto em igualdade de importância com Marcely,
+            contribuindo para a construção da iniciativa e para o objetivo
+            de ampliar o acesso à informação e ao acolhimento.
+          </p>
+        </article>
+
+        <article class="credit-card">
+          <div class="symbol" aria-hidden="true">♡</div>
+          <h3>HELLEN GOULART ORLANDI</h3>
+          <p class="credit-role">Assistente social • Conselho de classe: 58321</p>
+          <p>
+            Idealizadora da proposta que deu origem à LIA e colaboradora
+            no contexto do TCC, contribuindo com sua perspectiva social
+            para a iniciativa de acolhimento e proteção de mulheres.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section id="projeto">
+      <span class="eyebrow">06 • A LIA em desenvolvimento</span>
+      <h2>Um projeto que busca evoluir</h2>
+
+      <p>
+        A LIA está sendo construída para reunir conteúdos educativos,
+        informações sobre a rede de atendimento e recursos que considerem
+        as necessidades de segurança e acessibilidade de suas usuárias.
+      </p>
+
+      <p>
+        Entre as funcionalidades planejadas estão o acesso organizado às
+        informações sobre violência, recursos de acessibilidade, orientação
+        para buscar apoio e ferramentas voltadas à privacidade.
+      </p>
+
+      <div class="soft-box">
+        As funcionalidades devem ser consideradas disponíveis somente depois
+        de implementadas e testadas. O projeto não deve prometer proteção
+        automática, localização de emergência, armazenamento seguro ou
+        identificação biométrica enquanto esses recursos não estiverem
+        efetivamente implementados e validados.
+      </div>
+    </section>
+
+    <section id="mensagem">
+      <div class="closing">
+        <span class="eyebrow">LIA • Informação, proteção e acolhimento</span>
+
+        <h2>Uma mulher merece ser ouvida. Toda mulher merece ter acesso à informação.</h2>
+
+        <p>
+          A LIA nasce com a intenção de contribuir para que nenhuma mulher
+          precise enfrentar suas dúvidas sem informação sobre onde encontrar
+          apoio. Cada etapa do projeto representa uma oportunidade de aprender,
+          aprimorar e construir uma plataforma mais responsável e acolhedora.
+        </p>
+
+        <p>
+          Se você estiver em perigo imediato no Brasil, procure um local seguro
+          e ligue para <strong>190</strong>. Para orientação sobre violência
+          contra a mulher, ligue <strong>180</strong>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>LIA — Informação, proteção e acolhimento.</strong></p>
+    <p>Projeto desenvolvido por Marcely Castro Rodrigues e Mikaela Cardoso Bonfim.</p>
+    <p>Idealização da proposta: Hellen Goulart Orlandi, assistente social.</p>
+    <p>Conteúdo educativo. Em emergência, ligue 190.</p>
+  </footer>
+
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+</body>
+</html>

@@ -1,0 +1,1123 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#b69bc9">
+  <meta name="description" content="Agenda pessoal para organização cotidiana.">
+  <title>Minha agenda</title>
+
+  <style>
+    :root {
+      --purple: #80649b;
+      --purple-dark: #604879;
+      --lilac: #eee5f5;
+      --pink: #f7e8ef;
+      --background: #fbf8fc;
+      --text: #463b4d;
+      --muted: #817587;
+      --border: #e8ddec;
+      --white: #fff;
+      --green: #e7f0e8;
+      --shadow: 0 12px 35px rgba(88, 59, 105, .09);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--text);
+      font-family: "Segoe UI", Arial, sans-serif;
+      line-height: 1.6;
+      background:
+        radial-gradient(circle at 10% 15%, #f4dce9 0, transparent 28%),
+        radial-gradient(circle at 90% 25%, #e5d8f3 0, transparent 30%),
+        radial-gradient(circle at 50% 90%, #f8e8ed 0, transparent 35%),
+        var(--background);
+      background-attachment: fixed;
+      overflow-x: hidden;
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid #b69bc9;
+      outline-offset: 3px;
+    }
+
+    .topbar {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255,255,255,.82);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(232,221,236,.8);
+      padding: 17px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      color: var(--purple-dark);
+      font-size: 28px;
+      letter-spacing: 1px;
+      margin: 0;
+      user-select: none;
+      cursor: default;
+    }
+
+    .top-date {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 30px auto 55px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .welcome {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(125deg, #eee5f5, #f9e9f0, #e9e1f5);
+      background-size: 200% 200%;
+      animation: gradientMove 12s ease infinite;
+      padding: 32px;
+      border: 1px solid rgba(255,255,255,.8);
+      border-radius: 26px;
+      margin-bottom: 25px;
+      box-shadow: var(--shadow);
+    }
+
+    .welcome::after {
+      content: "✿";
+      position: absolute;
+      right: 35px;
+      top: -35px;
+      font-size: 150px;
+      color: rgba(255,255,255,.45);
+      transform: rotate(15deg);
+      pointer-events: none;
+    }
+
+    .welcome h2 {
+      position: relative;
+      z-index: 1;
+      font-family: Georgia, serif;
+      font-size: clamp(27px, 4vw, 36px);
+      color: var(--purple-dark);
+      margin: 0 0 6px;
+    }
+
+    .welcome p {
+      position: relative;
+      z-index: 1;
+      max-width: 600px;
+      margin: 0;
+      color: #6f6078;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.5fr);
+      gap: 22px;
+      align-items: start;
+    }
+
+    .column {
+      min-width: 0;
+    }
+
+    .card {
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(232,221,236,.9);
+      border-radius: 22px;
+      padding: 23px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+      animation: cardAppear .6s ease both;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 38px rgba(88,59,105,.12);
+    }
+
+    .card h2 {
+      color: var(--purple-dark);
+      font-family: Georgia, serif;
+      font-size: 23px;
+      margin: 0 0 15px;
+    }
+
+    .calendar-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    .calendar-head h3 {
+      margin: 0;
+      text-align: center;
+      color: var(--purple-dark);
+      font-size: 17px;
+    }
+
+    .icon-btn {
+      border: 0;
+      background: var(--lilac);
+      color: var(--purple-dark);
+      border-radius: 11px;
+      min-width: 38px;
+      min-height: 38px;
+      font-size: 20px;
+      transition: .2s;
+    }
+
+    .icon-btn:hover {
+      background: #dfd0eb;
+      transform: scale(1.06);
+    }
+
+    .weekdays, .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+      gap: 5px;
+      text-align: center;
+    }
+
+    .weekdays span {
+      font-size: 11px;
+      color: var(--muted);
+      font-weight: bold;
+      padding: 5px 0;
+    }
+
+    .day {
+      position: relative;
+      border: 1px solid transparent;
+      background: rgba(255,255,255,.8);
+      color: var(--text);
+      border-radius: 11px;
+      min-width: 0;
+      min-height: 40px;
+      padding: 7px 0;
+      font-size: 13px;
+      transition: .2s;
+    }
+
+    .day:hover {
+      background: var(--lilac);
+      transform: scale(1.05);
+    }
+
+    .day.selected {
+      background: var(--purple-dark);
+      color: white;
+    }
+
+    .day.today:not(.selected) {
+      border-color: var(--purple);
+      font-weight: bold;
+    }
+
+    .day.has-event::after {
+      content: "";
+      position: absolute;
+      bottom: 3px;
+      left: calc(50% - 3px);
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #c18aa9;
+    }
+
+    .day.selected.has-event::after {
+      background: white;
+    }
+
+    .selected-date {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 17px 0 0;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 14px;
+      min-width: 0;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: var(--text);
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      min-width: 0;
+      border: 1px solid #ded2e5;
+      border-radius: 12px;
+      padding: 12px;
+      background: #fff;
+      color: var(--text);
+      outline: none;
+      transition: border .2s, box-shadow .2s;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--purple);
+      box-shadow: 0 0 0 3px rgba(128,100,155,.12);
+    }
+
+    textarea {
+      min-height: 115px;
+      resize: vertical;
+    }
+
+    .btn {
+      border: 0;
+      border-radius: 24px;
+      padding: 11px 19px;
+      background: var(--purple-dark);
+      color: white;
+      font-size: 13px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      background: #795d91;
+      transform: translateY(-2px);
+    }
+
+    .btn.secondary {
+      background: var(--lilac);
+      color: var(--purple-dark);
+    }
+
+    .btn.secondary:hover {
+      background: #dfd0eb;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+    }
+
+    .reminder-list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .reminder {
+      background: linear-gradient(110deg, #faf6fc, #fff8fa);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      align-items: flex-start;
+      gap: 11px;
+      animation: cardAppear .3s ease both;
+    }
+
+    .reminder input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin-top: 4px;
+      accent-color: var(--purple);
+      flex-shrink: 0;
+    }
+
+    .reminder-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .reminder-title {
+      font-weight: bold;
+      overflow-wrap: anywhere;
+    }
+
+    .reminder-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .reminder.done .reminder-title {
+      text-decoration: line-through;
+      color: var(--muted);
+    }
+
+    .remove-reminder {
+      border: 0;
+      background: transparent;
+      color: #966b82;
+      font-size: 20px;
+      padding: 0 3px;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 22px 12px;
+      color: var(--muted);
+      background: #faf7fc;
+      border-radius: 14px;
+      font-size: 14px;
+    }
+
+    .note-info {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    .status {
+      display: none;
+      background: var(--green);
+      color: #315d3b;
+      padding: 11px 13px;
+      border-radius: 10px;
+      font-size: 13px;
+      margin-top: 13px;
+    }
+
+    .bottom-note {
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+      margin-top: 25px;
+    }
+
+    /* Tela neutra da saída discreta */
+    .exit-screen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: #f7f5f8;
+    }
+
+    .exit-screen.active {
+      display: flex;
+    }
+
+    .exit-card {
+      width: min(360px, 100%);
+      padding: 28px;
+      text-align: center;
+      border-radius: 20px;
+      background: white;
+      box-shadow: 0 10px 35px rgba(0,0,0,.08);
+    }
+
+    .exit-card p {
+      color: #777;
+      font-size: 14px;
+    }
+
+    .hold-button {
+      width: 100%;
+      min-height: 48px;
+      border: 0;
+      border-radius: 12px;
+      background: #e9e6eb;
+      color: #514b55;
+      font-weight: 600;
+      user-select: none;
+      touch-action: none;
+    }
+
+    .hold-button:active {
+      background: #d8cde0;
+    }
+
+    .exit-cancel {
+      margin-top: 12px;
+      border: 0;
+      background: transparent;
+      color: #777;
+      padding: 10px;
+    }
+
+    @keyframes gradientMove {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
+    @keyframes cardAppear {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 760px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .welcome {
+        padding: 25px 21px;
+      }
+
+      .card {
+        padding: 19px;
+      }
+    }
+
+    @media (max-width: 400px) {
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+
+      .day {
+        min-height: 36px;
+        font-size: 12px;
+      }
+
+      .calendar-grid, .weekdays {
+        gap: 2px;
+      }
+
+      .brand {
+        font-size: 25px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <h1 class="brand" id="secretTitle">Minha agenda</h1>
+    <div class="top-date" id="todayLabel"></div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <h2>Um dia de cada vez 🌷</h2>
+      <p>
+        Organize seus compromissos, anote suas tarefas e planeje
+        sua rotina com tranquilidade.
+      </p>
+    </section>
+
+    <div class="layout">
+      <div class="column">
+        <section class="card">
+          <h2>Calendário</h2>
+
+          <div class="calendar-head">
+            <button class="icon-btn" id="prevMonth" type="button"
+              aria-label="Mês anterior">‹</button>
+            <h3 id="monthLabel"></h3>
+            <button class="icon-btn" id="nextMonth" type="button"
+              aria-label="Próximo mês">›</button>
+          </div>
+
+          <div class="weekdays" aria-hidden="true">
+            <span>Dom</span><span>Seg</span><span>Ter</span>
+            <span>Qua</span><span>Qui</span><span>Sex</span><span>Sáb</span>
+          </div>
+
+          <div class="calendar-grid" id="calendarGrid"></div>
+          <p class="selected-date" id="selectedDateLabel"></p>
+        </section>
+
+        <section class="card">
+          <h2>Nova atividade</h2>
+
+          <form id="reminderForm">
+            <div class="field">
+              <label for="reminderTitle">Escreva seu compromisso ou atividade</label>
+              <input
+                id="reminderTitle"
+                type="text"
+                maxlength="100"
+                placeholder="Ex.: consulta, estudar, reunião..."
+                autocomplete="off"
+                required
+              >
+            </div>
+
+            <div class="form-grid">
+              <div class="field">
+                <label for="reminderDate">Data</label>
+                <input id="reminderDate" type="date" required>
+              </div>
+
+              <div class="field">
+                <label for="reminderTime">Horário (opcional)</label>
+                <input id="reminderTime" type="time">
+              </div>
+
+              <div class="field full">
+                <label for="reminderCategory">Categoria</label>
+                <select id="reminderCategory">
+                  <option value="Pessoal">Pessoal</option>
+                  <option value="Estudos">Estudos</option>
+                  <option value="Trabalho">Trabalho</option>
+                  <option value="Casa">Casa</option>
+                  <option value="Saúde">Saúde</option>
+                  <option value="Outros">Outros</option>
+                </select>
+              </div>
+            </div>
+
+            <button class="btn" type="submit">＋ Adicionar compromisso</button>
+          </form>
+
+          <div class="status" id="reminderStatus" role="status"></div>
+        </section>
+      </div>
+
+      <div class="column">
+        <section class="card">
+          <h2>Compromissos do dia</h2>
+          <div class="reminder-list" id="reminderList"></div>
+        </section>
+
+        <section class="card">
+          <h2>Minhas anotações</h2>
+
+          <div class="field">
+            <label for="notesDate">Data da anotação</label>
+            <input id="notesDate" type="date">
+          </div>
+
+          <div class="field">
+            <label for="notesText">Anotação</label>
+            <textarea id="notesText" maxlength="5000"
+              placeholder="Escreva uma lista de tarefas ou uma anotação para sua rotina..."></textarea>
+          </div>
+
+          <div class="btn-row">
+            <button class="btn" type="button" id="saveNotes">Salvar anotação</button>
+            <button class="btn secondary" type="button" id="clearNotes">Limpar texto</button>
+          </div>
+
+          <p class="note-info">
+            As anotações ficam salvas neste navegador. Evite registrar
+            informações íntimas, senhas ou dados que possam colocar você
+            em risco caso outra pessoa acesse o aparelho.
+          </p>
+
+          <div class="status" id="notesStatus" role="status"></div>
+        </section>
+
+        <section class="card">
+          <h2>Pequenos lembretes</h2>
+          <div class="reminder-list">
+            <div class="reminder">
+              <span aria-hidden="true">🌸</span>
+              <div class="reminder-content">
+                <div class="reminder-title">Reserve um momento para você</div>
+                <div class="reminder-meta">Um passo de cada vez.</div>
+              </div>
+            </div>
+
+            <div class="reminder">
+              <span aria-hidden="true">☕</span>
+              <div class="reminder-content">
+                <div class="reminder-title">Faça uma pausa quando puder</div>
+                <div class="reminder-meta">Sua rotina também merece descanso.</div>
+              </div>
+            </div>
+
+            <div class="reminder">
+              <span aria-hidden="true">🌷</span>
+              <div class="reminder-content">
+                <div class="reminder-title">Celebre suas pequenas conquistas</div>
+                <div class="reminder-meta">Cada progresso conta.</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <p class="bottom-note">Agenda pessoal para organização cotidiana.</p>
+  </main>
+
+  <!-- Esta tela só aparece depois do gesto discreto no título. -->
+  <section class="exit-screen" id="exitScreen" aria-hidden="true">
+    <div class="exit-card">
+      <p>Para continuar, mantenha o botão pressionado por alguns segundos.</p>
+      <button class="hold-button" id="holdToExit" type="button">
+        Mantenha pressionado
+      </button>
+      <button class="exit-cancel" id="cancelExit" type="button">
+        Cancelar
+      </button>
+    </div>
+  </section>
+
+  <script>
+    const REMINDERS_KEY = "lia_agenda_reminders_v1";
+    const NOTES_KEY = "lia_agenda_notes_v1";
+
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    let selectedDate = toDateString(today);
+    let visibleMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+    let reminders = loadJSON(REMINDERS_KEY, []);
+    let notes = loadJSON(NOTES_KEY, {});
+
+    const monthLabel = document.getElementById("monthLabel");
+    const calendarGrid = document.getElementById("calendarGrid");
+    const selectedDateLabel = document.getElementById("selectedDateLabel");
+    const reminderList = document.getElementById("reminderList");
+    const reminderForm = document.getElementById("reminderForm");
+
+    function toDateString(date) {
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    }
+
+    function parseLocalDate(value) {
+      const [year, month, day] = value.split("-").map(Number);
+      return new Date(year, month - 1, day);
+    }
+
+    function formatDate(value) {
+      return parseLocalDate(value).toLocaleDateString("pt-BR", {
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+    }
+
+    function loadJSON(key, fallback) {
+      try {
+        const value = localStorage.getItem(key);
+        return value ? JSON.parse(value) : fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function saveJSON(key, value) {
+      try {
+        localStorage.setItem(key, JSON.stringify(value));
+        return true;
+      } catch {
+        return false;
+      }
+    }
+
+    function showStatus(elementId, message) {
+      const element = document.getElementById(elementId);
+      element.textContent = message;
+      element.style.display = "block";
+    }
+
+    function renderCalendar() {
+      calendarGrid.replaceChildren();
+
+      monthLabel.textContent = visibleMonth.toLocaleDateString("pt-BR", {
+        month: "long",
+        year: "numeric"
+      });
+
+      const year = visibleMonth.getFullYear();
+      const month = visibleMonth.getMonth();
+      const firstWeekday = new Date(year, month, 1).getDay();
+      const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+      for (let i = 0; i < firstWeekday; i++) {
+        const blank = document.createElement("span");
+        blank.setAttribute("aria-hidden", "true");
+        calendarGrid.appendChild(blank);
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const date = new Date(year, month, day);
+        const dateString = toDateString(date);
+        const button = document.createElement("button");
+
+        button.type = "button";
+        button.className = "day";
+        button.textContent = day;
+        button.setAttribute("aria-label", formatDate(dateString));
+
+        if (dateString === selectedDate) {
+          button.classList.add("selected");
+          button.setAttribute("aria-pressed", "true");
+        } else {
+          button.setAttribute("aria-pressed", "false");
+        }
+
+        if (dateString === toDateString(today)) {
+          button.classList.add("today");
+        }
+
+        if (reminders.some(item => item.date === dateString)) {
+          button.classList.add("has-event");
+        }
+
+        button.addEventListener("click", () => {
+          selectedDate = dateString;
+          document.getElementById("reminderDate").value = selectedDate;
+          document.getElementById("notesDate").value = selectedDate;
+          loadNotesForDate();
+          renderCalendar();
+          renderReminders();
+        });
+
+        calendarGrid.appendChild(button);
+      }
+
+      selectedDateLabel.textContent =
+        "Data selecionada: " + formatDate(selectedDate);
+    }
+
+    function renderReminders() {
+      reminderList.replaceChildren();
+
+      const dailyReminders = reminders
+        .filter(item => item.date === selectedDate)
+        .sort((a, b) =>
+          (a.time || "99:99").localeCompare(b.time || "99:99")
+        );
+
+      if (dailyReminders.length === 0) {
+        const empty = document.createElement("div");
+        empty.className = "empty";
+        empty.textContent = "Nenhuma atividade cadastrada para este dia.";
+        reminderList.appendChild(empty);
+        return;
+      }
+
+      dailyReminders.forEach(item => {
+        const row = document.createElement("div");
+        row.className = "reminder" + (item.done ? " done" : "");
+
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = Boolean(item.done);
+        checkbox.setAttribute(
+          "aria-label",
+          "Marcar atividade como concluída"
+        );
+
+        checkbox.addEventListener("change", () => {
+          const previous = item.done;
+          item.done = checkbox.checked;
+
+          if (!saveJSON(REMINDERS_KEY, reminders)) {
+            item.done = previous;
+            checkbox.checked = previous;
+            showStatus(
+              "reminderStatus",
+              "Não foi possível salvar a alteração."
+            );
+            return;
+          }
+
+          renderReminders();
+        });
+
+        const content = document.createElement("div");
+        content.className = "reminder-content";
+
+        const title = document.createElement("div");
+        title.className = "reminder-title";
+        title.textContent = item.title;
+
+        const meta = document.createElement("div");
+        meta.className = "reminder-meta";
+        meta.textContent =
+          (item.time ? item.time + " · " : "") + item.category;
+
+        content.append(title, meta);
+
+        const remove = document.createElement("button");
+        remove.type = "button";
+        remove.className = "remove-reminder";
+        remove.textContent = "×";
+        remove.setAttribute("aria-label", "Excluir atividade");
+
+        remove.addEventListener("click", () => {
+          if (!window.confirm("Deseja excluir esta atividade?")) return;
+
+          const oldReminders = reminders;
+          reminders = reminders.filter(entry => entry.id !== item.id);
+
+          if (!saveJSON(REMINDERS_KEY, reminders)) {
+            reminders = oldReminders;
+            showStatus(
+              "reminderStatus",
+              "Não foi possível excluir a atividade."
+            );
+            return;
+          }
+
+          renderCalendar();
+          renderReminders();
+        });
+
+        row.append(checkbox, content, remove);
+        reminderList.appendChild(row);
+      });
+    }
+
+    reminderForm.addEventListener("submit", event => {
+      event.preventDefault();
+
+      const title = document.getElementById("reminderTitle").value.trim();
+      const date = document.getElementById("reminderDate").value;
+      const time = document.getElementById("reminderTime").value;
+      const category = document.getElementById("reminderCategory").value;
+
+      if (!title || !date) {
+        showStatus("reminderStatus", "Preencha o título e a data.");
+        return;
+      }
+
+      const item = {
+        id: Date.now().toString() +
+          Math.random().toString(16).slice(2),
+        title,
+        date,
+        time,
+        category,
+        done: false
+      };
+
+      reminders.push(item);
+
+      if (!saveJSON(REMINDERS_KEY, reminders)) {
+        reminders.pop();
+        showStatus(
+          "reminderStatus",
+          "Não foi possível salvar. O armazenamento pode estar cheio."
+        );
+        return;
+      }
+
+      selectedDate = date;
+      const selected = parseLocalDate(date);
+      visibleMonth = new Date(
+        selected.getFullYear(),
+        selected.getMonth(),
+        1
+      );
+
+      reminderForm.reset();
+      document.getElementById("reminderDate").value = selectedDate;
+      document.getElementById("notesDate").value = selectedDate;
+
+      renderCalendar();
+      renderReminders();
+      showStatus("reminderStatus", "Atividade adicionada à agenda.");
+    });
+
+    function loadNotesForDate() {
+      const date =
+        document.getElementById("notesDate").value || selectedDate;
+      document.getElementById("notesText").value = notes[date] || "";
+    }
+
+    document.getElementById("saveNotes").addEventListener("click", () => {
+      const date = document.getElementById("notesDate").value;
+
+      if (!date) {
+        showStatus("notesStatus", "Selecione uma data para a anotação.");
+        return;
+      }
+
+      const previousValue = notes[date];
+      const text = document.getElementById("notesText").value;
+
+      if (text.trim()) {
+        notes[date] = text;
+      } else {
+        delete notes[date];
+      }
+
+      if (!saveJSON(NOTES_KEY, notes)) {
+        if (previousValue === undefined) {
+          delete notes[date];
+        } else {
+          notes[date] = previousValue;
+        }
+
+        showStatus("notesStatus", "Não foi possível salvar a anotação.");
+        return;
+      }
+
+      showStatus("notesStatus", "Anotação salva neste navegador.");
+    });
+
+    document.getElementById("clearNotes").addEventListener("click", () => {
+      document.getElementById("notesText").value = "";
+      showStatus(
+        "notesStatus",
+        "Texto limpo do campo. Salve a anotação para atualizar o conteúdo."
+      );
+    });
+
+    document.getElementById("notesDate").addEventListener("change", () => {
+      loadNotesForDate();
+    });
+
+    document.getElementById("prevMonth").addEventListener("click", () => {
+      visibleMonth = new Date(
+        visibleMonth.getFullYear(),
+        visibleMonth.getMonth() - 1,
+        1
+      );
+      renderCalendar();
+    });
+
+    document.getElementById("nextMonth").addEventListener("click", () => {
+      visibleMonth = new Date(
+        visibleMonth.getFullYear(),
+        visibleMonth.getMonth() + 1,
+        1
+      );
+      renderCalendar();
+    });
+
+    document.getElementById("todayLabel").textContent =
+      today.toLocaleDateString("pt-BR", {
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric"
+      });
+
+    document.getElementById("reminderDate").value = selectedDate;
+    document.getElementById("notesDate").value = selectedDate;
+
+    renderCalendar();
+    renderReminders();
+    loadNotesForDate();
+
+    // Saída discreta: cinco toques/cliques no título.
+    const secretTitle = document.getElementById("secretTitle");
+    const exitScreen = document.getElementById("exitScreen");
+    const holdButton = document.getElementById("holdToExit");
+    const cancelExit = document.getElementById("cancelExit");
+
+    let titleTaps = 0;
+    let tapTimer = null;
+    let holdTimer = null;
+    let holding = false;
+
+    secretTitle.addEventListener("click", () => {
+      titleTaps++;
+
+      clearTimeout(tapTimer);
+      tapTimer = setTimeout(() => {
+        titleTaps = 0;
+      }, 1800);
+
+      if (titleTaps >= 5) {
+        titleTaps = 0;
+        openExitScreen();
+      }
+    });
+
+    function openExitScreen() {
+      exitScreen.classList.add("active");
+      exitScreen.setAttribute("aria-hidden", "false");
+    }
+
+    function closeExitScreen() {
+      exitScreen.classList.remove("active");
+      exitScreen.setAttribute("aria-hidden", "true");
+      stopHolding();
+    }
+
+    function startHolding(event) {
+      event.preventDefault();
+      if (holding) return;
+
+      holding = true;
+      holdButton.textContent = "Continue pressionando...";
+      holdTimer = setTimeout(() => {
+        window.location.replace("index.html");
+      }, 2000);
+    }
+
+    function stopHolding() {
+      holding = false;
+      clearTimeout(holdTimer);
+      holdButton.textContent = "Mantenha pressionado";
+    }
+
+    holdButton.addEventListener("pointerdown", startHolding);
+    holdButton.addEventListener("pointerup", stopHolding);
+    holdButton.addEventListener("pointerleave", stopHolding);
+    holdButton.addEventListener("pointercancel", stopHolding);
+
+    cancelExit.addEventListener("click", closeExitScreen);
+
+    // Escape fecha apenas a tela neutra, não altera a agenda.
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && exitScreen.classList.contains("active")) {
+        closeExitScreen();
+      }
+    });
+  </script>
+</body>
+</html>

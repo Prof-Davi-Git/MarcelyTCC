@@ -4,357 +4,464 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#795b91">
-  <meta name="description" content="Entenda o que é violência física contra a mulher, conheça sinais de alerta e saiba onde buscar ajuda.">
+  <meta name="theme-color" content="#78518c">
+  <meta name="description" content="Entenda o que é violência física, reconheça sinais de alerta e conheça caminhos para buscar ajuda com segurança.">
   <title>Violência Física | LIA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="lia.css">
 
   <style>
-    .topic-hero {
-      padding: 60px 0;
-      background: linear-gradient(135deg, #eee5f5, #faf6fc 70%, #f3e3ef);
+    .violence-page {
+      min-height: 100vh;
+      background: var(--bg);
     }
 
-    .topic-hero .container {
-      max-width: 900px;
+    .page-hero {
+      padding: 72px 0 65px;
+      background: linear-gradient(135deg, #f7effa, #fff1f6);
     }
 
-    .topic-hero h1 {
-      margin: 12px 0 18px;
+    body[data-theme="dark"] .page-hero {
+      background: linear-gradient(135deg, #382b41, #392532);
     }
 
-    .topic-hero p {
-      max-width: 750px;
-      font-size: 1.05rem;
+    .breadcrumb {
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: 13px;
     }
 
-    .topic-section {
-      padding: 45px 0;
+    .breadcrumb a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 4px;
     }
 
-    .topic-section.alt {
-      background: #f0e9f5;
+    .hero-layout {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      align-items: center;
+      gap: 50px;
     }
 
-    .topic-copy {
-      max-width: 850px;
+    .hero-layout h1 {
+      margin: 14px 0 22px;
+      max-width: 720px;
     }
 
-    .topic-grid {
+    .hero-layout p {
+      max-width: 650px;
+      font-size: 17px;
+    }
+
+    .hero-symbol {
+      width: min(100%, 290px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      justify-self: center;
+      border-radius: 50%;
+      color: #78518c;
+      background: rgba(255,255,255,.75);
+      border: 1px solid #eadfeb;
+      box-shadow: 0 20px 55px rgba(76,43,82,.09);
+      font-size: 100px;
+    }
+
+    .page-content {
+      padding-top: 65px;
+      padding-bottom: 75px;
+    }
+
+    .content-section {
+      margin-bottom: 54px;
+    }
+
+    .content-section > h2 {
+      margin-bottom: 15px;
+    }
+
+    .content-intro {
+      max-width: 800px;
+      margin-bottom: 28px;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .info-card {
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .info-card .card-icon {
+      width: 47px;
+      height: 47px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 17px;
+      background: var(--surface-soft);
+      border-radius: 14px;
+      font-size: 23px;
+    }
+
+    .info-card h3 {
+      margin-bottom: 10px;
+    }
+
+    .info-card p {
+      margin-bottom: 0;
+      font-size: 14px;
+    }
+
+    .sign-list {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      margin-top: 25px;
+      gap: 13px;
+      padding: 0;
+      list-style: none;
     }
 
-    .topic-card {
-      padding: 24px;
-      border: 1px solid #e7ddec;
-      border-radius: 17px;
-      background: #fff;
-      box-shadow: 0 10px 28px rgba(72, 48, 82, .06);
+    .sign-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 17px;
+      color: var(--text);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
     }
 
-    .topic-card h3 {
-      margin-bottom: 12px;
+    .sign-list li span {
+      color: var(--pink-dark);
+      font-weight: 700;
     }
 
-    .topic-card ul {
+    .notice {
+      padding: 25px 28px;
+      background: var(--surface-pink);
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--pink-dark);
+      border-radius: 15px;
+    }
+
+    .notice h3 {
+      margin-bottom: 9px;
+    }
+
+    .notice p {
       margin-bottom: 0;
     }
 
-    .topic-alert {
-      margin: 25px 0;
-      padding: 22px;
-      border-left: 4px solid #795b91;
-      border-radius: 0 14px 14px 0;
-      background: #eee5f5;
+    .help-panel {
+      padding: clamp(26px, 5vw, 48px);
+      color: white;
+      background: linear-gradient(135deg, #78518c, #493052);
+      border-radius: 25px;
+      box-shadow: var(--shadow);
     }
 
-    .topic-alert.danger {
-      border-left-color: #a63848;
-      background: #fff0f1;
+    .help-panel h2,
+    .help-panel p {
+      color: white;
     }
 
-    .topic-nav {
+    .help-panel p {
+      max-width: 760px;
+      opacity: .92;
+    }
+
+    .help-actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 25px;
+      gap: 12px;
+      margin-top: 24px;
     }
 
-    .topic-nav a {
-      padding: 9px 14px;
-      border: 1px solid #e7ddec;
-      border-radius: 10px;
-      background: #fff;
+    .help-actions .button-secondary {
+      color: #493052;
     }
 
-    .topic-nav a[aria-current="page"] {
-      background: #795b91;
-      color: #fff;
-      border-color: #795b91;
+    .source-list {
+      padding-left: 20px;
+      color: var(--muted);
     }
 
-    @media (max-width: 650px) {
-      .topic-grid {
+    .source-list li {
+      margin: 10px 0;
+    }
+
+    .source-list a {
+      color: var(--primary);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+
+    .page-footer {
+      padding: 28px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    .page-footer p {
+      margin: 0;
+      font-size: 13px;
+    }
+
+    @media (max-width: 800px) {
+      .hero-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .hero-symbol {
+        width: 160px;
+        font-size: 65px;
+      }
+
+      .info-grid {
         grid-template-columns: 1fr;
       }
 
-      .topic-hero {
-        padding: 42px 0;
+      .sign-list {
+        grid-template-columns: 1fr;
+      }
+
+      .page-hero {
+        padding-top: 42px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .section-wrap {
+        width: calc(100% - 32px);
+      }
+
+      .hero-layout h1 {
+        font-size: 39px;
+      }
+
+      .help-actions {
+        flex-direction: column;
+      }
+
+      .help-actions .button {
+        width: 100%;
       }
     }
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="topbar">
-      <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+  <div class="violence-page">
 
-      <nav aria-label="Menu principal">
-        <a href="index.html">Início</a>
-        <a href="projeto.html">O projeto</a>
-        <a href="violencias.html" aria-current="page">Tipos de violência</a>
-        <a href="apoio.html">Preciso de apoio</a>
-        <a href="conta.html">Conta</a>
-      </nav>
-    </div>
-  </header>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="LIA - página inicial">
+          <span class="brand-symbol" aria-hidden="true">❧</span>
+          <span class="brand-name">L<span>I</span>A</span>
+        </a>
 
-  <main>
-    <section class="topic-hero">
-      <div class="container">
-        <span class="eyebrow">Tipos de violência</span>
-        <h1>Violência física</h1>
+        <nav class="main-nav" aria-label="Navegação principal">
+          <a href="index.html">Início</a>
+          <a href="index.html#sobre">Sobre a LIA</a>
+          <a href="index.html#violencias" aria-current="page">Violências</a>
+          <a href="apoio.html">Recursos e apoio</a>
+          <a href="historia.html">Nossa história</a>
+          <a class="nav-account" href="conta.html">Conta</a>
+        </nav>
 
-        <p>
-          A violência física acontece quando uma pessoa pratica uma ação
-          que prejudica a integridade ou a saúde corporal de uma mulher.
-          Ela pode ocorrer em relacionamentos, no ambiente familiar ou
-          em outros contextos.
-        </p>
-
-        <div class="topic-nav" aria-label="Navegação entre categorias">
-          <a href="violencias.html">Todas as categorias</a>
-          <a href="violencia-fisica.html" aria-current="page">Física</a>
-          <a href="violencia-psicologica.html">Psicológica</a>
-          <a href="violencia-sexual.html">Sexual</a>
-          <a href="violencia-patrimonial.html">Patrimonial</a>
-          <a href="violencia-moral.html">Moral</a>
-          <a href="violencia-digital.html">Digital</a>
-          <a href="violencia-vicaria.html">Vicária</a>
+        <div class="header-actions">
+          <a class="button button-secondary" href="index.html#acessibilidade">Acessibilidade</a>
         </div>
       </div>
-    </section>
+    </header>
 
-    <section class="topic-section">
-      <div class="container topic-copy">
-        <span class="eyebrow">Entenda o conceito</span>
-        <h2>O que caracteriza a violência física?</h2>
+    <main id="conteudo">
+      <section class="page-hero">
+        <div class="section-wrap">
+          <div class="breadcrumb">
+            <a href="index.html">Início</a> /
+            <a href="index.html#violencias">Violências</a> /
+            Física
+          </div>
 
-        <p>
-          É qualquer conduta que ofenda a integridade ou a saúde corporal
-          da mulher. Não é necessário que a agressão deixe marcas visíveis
-          para que seja importante procurar orientação e proteção.
-        </p>
+          <div class="hero-layout">
+            <div>
+              <span class="eyebrow">INFORMAÇÃO • PROTEÇÃO • ACOLHIMENTO</span>
+              <h1>Violência física: você merece viver sem medo.</h1>
+              <p>
+                Conhecer os sinais de violência pode ajudar a compreender
+                uma situação, acolher alguém e encontrar caminhos para buscar
+                proteção. A responsabilidade pela violência é de quem a pratica.
+              </p>
 
-        <p>
-          A violência física pode acontecer uma única vez ou se repetir.
-          Em alguns casos, aparece junto com ameaças, humilhações,
-          perseguição, controle financeiro e outras formas de violência.
-        </p>
+              <a class="button button-primary" href="#buscar-ajuda">
+                Conheça os caminhos de ajuda <span aria-hidden="true">→</span>
+              </a>
+            </div>
 
-        <div class="topic-alert">
-          <strong>Você não precisa esperar a situação piorar.</strong>
-          Se uma atitude provoca medo ou coloca sua segurança em risco,
-          procure apoio quando for seguro fazê-lo.
+            <div class="hero-symbol" aria-hidden="true">♡</div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="topic-section alt">
-      <div class="container">
-        <span class="eyebrow">Reconheça os sinais</span>
-        <h2>Exemplos de violência física</h2>
+      <div class="section-wrap page-content">
 
-        <div class="topic-grid">
-          <article class="topic-card">
-            <h3>Contato físico agressivo</h3>
-            <ul>
-              <li>Empurrar, dar tapas, socos ou chutes.</li>
-              <li>Puxar os cabelos ou torcer os braços.</li>
-              <li>Morder, queimar ou provocar ferimentos.</li>
-            </ul>
-          </article>
+        <section class="content-section">
+          <span class="eyebrow">ENTENDA</span>
+          <h2>O que é violência física?</h2>
+          <p class="content-intro">
+            É qualquer conduta que ofenda a integridade ou a saúde corporal
+            de uma pessoa. Pode acontecer dentro de um relacionamento, na
+            família ou em outros contextos. Não é necessário haver marcas
+            visíveis para que uma agressão seja levada a sério.
+          </p>
 
-          <article class="topic-card">
-            <h3>Restrições e agressões</h3>
-            <ul>
-              <li>Segurar ou imobilizar alguém à força.</li>
-              <li>Estrangular ou tentar sufocar.</li>
-              <li>Usar objetos ou armas para ferir ou ameaçar fisicamente.</li>
-            </ul>
-          </article>
-        </div>
+          <div class="info-grid">
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true">✋</div>
+              <h3>Agressões corporais</h3>
+              <p>Empurrões, tapas, socos, chutes, puxões de cabelo ou outras ações que machuquem o corpo.</p>
+            </article>
 
-        <div class="topic-alert danger">
-          <strong>Atenção:</strong> estrangulamento, sufocamento, dificuldade
-          para respirar, ferimentos graves ou ameaças com armas podem indicar
-          perigo imediato. Busque atendimento de emergência assim que for possível
-          e seguro.
-        </div>
-      </div>
-    </section>
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true">⛔</div>
+              <h3>Restrição e força</h3>
+              <p>Imobilizar, segurar à força, impedir a saída ou usar força física para controlar alguém.</p>
+            </article>
 
-    <section class="topic-section">
-      <div class="container">
-        <span class="eyebrow">Possíveis consequências</span>
-        <h2>Os impactos podem ir além das marcas</h2>
+            <article class="info-card">
+              <div class="card-icon" aria-hidden="true">⚠️</div>
+              <h3>Risco à integridade</h3>
+              <p>Queimar, sufocar, ferir com objetos ou utilizar armas para agredir ou intimidar.</p>
+            </article>
+          </div>
+        </section>
 
-        <div class="topic-grid">
-          <article class="topic-card">
-            <h3>Consequências físicas</h3>
+        <section class="content-section">
+          <span class="eyebrow">SINAIS DE ALERTA</span>
+          <h2>Algumas situações que merecem atenção</h2>
+          <p class="content-intro">
+            A violência pode se repetir ou se intensificar. Nenhuma pessoa
+            merece ser agredida, independentemente da situação ou do motivo
+            alegado por quem agride.
+          </p>
+
+          <ul class="sign-list">
+            <li><span>✓</span> A pessoa empurra, bate ou machuca durante discussões.</li>
+            <li><span>✓</span> Ameaça ferir você, pessoas próximas ou animais.</li>
+            <li><span>✓</span> Destrói objetos para intimidar ou provocar medo.</li>
+            <li><span>✓</span> Usa força física para impedir que você saia de um lugar.</li>
+            <li><span>✓</span> Tenta justificar as agressões culpando a vítima.</li>
+            <li><span>✓</span> Promete mudar, mas as agressões voltam a acontecer.</li>
+          </ul>
+        </section>
+
+        <section class="content-section">
+          <div class="notice">
+            <h3>Você não tem culpa pela violência que sofreu.</h3>
             <p>
-              Lesões, dores, fraturas, ferimentos internos e outras
-              complicações. Algumas lesões podem não ser imediatamente visíveis.
+              Pedir ajuda pode ser difícil, e cada pessoa tem seu próprio
+              tempo. Não é necessário enfrentar essa situação sozinha.
+              Se buscar ajuda puder aumentar o risco, tente utilizar um
+              dispositivo seguro e conversar com alguém de confiança.
             </p>
-          </article>
+          </div>
+        </section>
 
-          <article class="topic-card">
-            <h3>Consequências emocionais</h3>
+        <section class="content-section" id="buscar-ajuda">
+          <div class="help-panel">
+            <span class="eyebrow" style="color:#f8d8eb">VOCÊ NÃO ESTÁ SOZINHA</span>
+            <h2>Onde buscar ajuda?</h2>
             <p>
-              Medo, ansiedade, insegurança, dificuldade para dormir e
-              sofrimento emocional. Cada pessoa pode reagir de maneira diferente.
+              Se houver perigo imediato, procure um local seguro e acione
+              os serviços de emergência quando puder fazer isso com segurança.
+              No Brasil, o Ligue 180 oferece orientação e encaminhamento
+              para a rede de atendimento à mulher.
             </p>
-          </article>
-        </div>
 
-        <p style="margin-top:24px">
-          Procurar atendimento de saúde pode ser importante mesmo quando
-          não há ferimentos aparentes. Se houver perigo imediato, priorize
-          chegar a um local seguro quando isso for possível.
-        </p>
+            <div class="help-actions">
+              <a class="button button-light" href="tel:190">
+                Emergência: 190
+              </a>
+              <a class="button button-light" href="tel:180">
+                Ligue 180
+              </a>
+              <a class="button button-secondary"
+                 href="https://www.gov.br/mulheres/pt-br/ligue180"
+                 target="_blank" rel="noopener noreferrer">
+                Site oficial do Ligue 180 ↗
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="content-section">
+          <span class="eyebrow">INFORMAÇÃO CONFIÁVEL</span>
+          <h2>Fontes para saber mais</h2>
+          <p>
+            Consulte os canais oficiais para conhecer os direitos, os serviços
+            disponíveis e as formas de atendimento.
+          </p>
+
+          <ul class="source-list">
+            <li>
+              <a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+                 target="_blank" rel="noopener noreferrer">
+                Lei Maria da Penha — Lei nº 11.340/2006
+              </a>
+              <p>Legislação brasileira sobre a violência doméstica e familiar contra a mulher.</p>
+            </li>
+            <li>
+              <a href="https://www.gov.br/mulheres/pt-br/ligue180"
+                 target="_blank" rel="noopener noreferrer">
+                Ministério das Mulheres — Ligue 180
+              </a>
+              <p>Informações oficiais sobre orientação, denúncia e atendimento.</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="content-section">
+          <div class="notice">
+            <h3>Continue conhecendo seus direitos</h3>
+            <p>Veja também outras formas de violência e conheça as diferenças entre elas.</p>
+            <p>
+              <a class="text-link" href="violencia-psicologica.html">Violência psicológica →</a>
+              &nbsp; · &nbsp;
+              <a class="text-link" href="violencia-sexual.html">Violência sexual →</a>
+              &nbsp; · &nbsp;
+              <a class="text-link" href="index.html#violencias">Todas as violências →</a>
+            </p>
+          </div>
+        </section>
+
       </div>
-    </section>
+    </main>
 
-    <section class="topic-section alt">
-      <div class="container topic-copy">
-        <span class="eyebrow">Seus direitos</span>
-        <h2>O que diz a Lei Maria da Penha?</h2>
+    <footer class="page-footer">
+      <p>© <span id="currentYear"></span> LIA — Informação, acolhimento e proteção às mulheres.</p>
+      <p>Se estiver em perigo imediato, priorize sua segurança e procure ajuda emergencial.</p>
+    </footer>
 
-        <p>
-          A Lei nº 11.340/2006, conhecida como Lei Maria da Penha, estabelece
-          mecanismos para prevenir e enfrentar a violência doméstica e familiar
-          contra a mulher. Ela reconhece diferentes formas de violência,
-          incluindo a física, psicológica, sexual, patrimonial e moral.
-        </p>
+  </div>
 
-        <p>
-          Dependendo da situação, podem ser solicitadas medidas protetivas
-          de urgência e outras providências previstas na legislação.
-          A análise do caso cabe às autoridades competentes.
-        </p>
-
-        <p>
-          Para consultar o texto oficial, acesse:
-          <a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
-             target="_blank" rel="noopener noreferrer">
-            Lei Maria da Penha — Lei nº 11.340/2006
-          </a>.
-        </p>
-      </div>
-    </section>
-
-    <section class="topic-section">
-      <div class="container">
-        <span class="eyebrow">Caminhos para buscar ajuda</span>
-        <h2>O que fazer diante de uma situação de violência?</h2>
-
-        <div class="topic-grid">
-          <article class="topic-card">
-            <h3>1. Priorize sua segurança</h3>
-            <p>
-              Se houver risco imediato, tente ir para um local seguro
-              quando isso puder ser feito sem aumentar o perigo.
-            </p>
-          </article>
-
-          <article class="topic-card">
-            <h3>2. Procure atendimento</h3>
-            <p>
-              Se houver ferimentos ou necessidade médica, procure um serviço
-              de saúde. Em emergências, ligue para o SAMU (192).
-            </p>
-          </article>
-
-          <article class="topic-card">
-            <h3>3. Converse com alguém confiável</h3>
-            <p>
-              Se for seguro, compartilhe o que está acontecendo com uma pessoa
-              de confiança ou com um serviço especializado.
-            </p>
-          </article>
-
-          <article class="topic-card">
-            <h3>4. Conheça os canais de orientação</h3>
-            <p>
-              No Brasil, o Ligue 180 oferece orientação e recebe denúncias
-              de violência contra a mulher. Em emergência policial, ligue 190.
-            </p>
-          </article>
-        </div>
-
-        <div class="topic-alert">
-          <strong>Cuide da sua privacidade:</strong> se alguém monitora seu
-          celular ou computador, buscar informações em outro dispositivo
-          seguro pode ser uma alternativa. Não faça mudanças digitais que
-          possam aumentar o risco sem considerar sua segurança.
-        </div>
-
-        <a class="btn" href="apoio.html">Ver opções de apoio na LIA</a>
-      </div>
-    </section>
-
-    <section class="topic-section alt">
-      <div class="container topic-copy">
-        <span class="eyebrow">Informação importante</span>
-        <h2>Você não é culpada pela violência que sofreu</h2>
-
-        <p>
-          A responsabilidade pela agressão é de quem a pratica. Sentir medo,
-          ter dúvidas ou precisar de tempo para buscar ajuda não torna a
-          violência menos importante.
-        </p>
-
-        <p>
-          A LIA oferece conteúdo informativo e não substitui atendimento
-          médico, serviços de emergência ou orientação profissional
-          individualizada.
-        </p>
-
-        <div class="topic-nav">
-          <a href="violencias.html">← Voltar a todas as categorias</a>
-          <a href="violencia-psicologica.html">Próxima: violência psicológica →</a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <a class="logo" href="index.html">LIA</a>
-    <p>Local de Informação e Apoio</p>
-
-    <div class="footer-links">
-      <a href="index.html">Início</a>
-      <a href="projeto.html">O projeto</a>
-      <a href="violencias.html">Tipos de violência</a>
-      <a href="apoio.html">Preciso de apoio</a>
-    </div>
-
-    <p>Projeto acadêmico dedicado à informação, ao acolhimento e à orientação de mulheres.</p>
-    <p>© 2026 LIA — Todos os direitos reservados.</p>
-  </footer>
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
 </body>
 </html>

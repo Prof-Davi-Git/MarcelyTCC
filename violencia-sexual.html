@@ -4,70 +4,606 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Violência sexual | LIA</title>
+  <meta name="theme-color" content="#f8eff8">
+  <meta name="description" content="LIA: informações sobre violência sexual, consentimento, direitos e formas seguras de buscar apoio.">
+  <title>Violência Sexual | LIA</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --purple: #79558e;
+      --dark: #382b40;
+      --muted: #756a79;
+      --pink: #f3dfe9;
+      --border: #eadce9;
+      --background: #fffafd;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--background);
+      color: var(--dark);
+      font-family: "DM Sans", sans-serif;
+      line-height: 1.7;
+    }
+
+    a { color: inherit; }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,250,253,.96);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      max-width: 1120px;
+      min-height: 74px;
+      margin: auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-family: "Playfair Display", serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover { color: var(--purple); }
+
+    .support-link {
+      padding: 10px 16px;
+      border-radius: 999px;
+      color: white !important;
+      background: var(--purple);
+    }
+
+    .hero {
+      padding: 76px 24px;
+      background:
+        radial-gradient(circle at 88% 20%, #ead5eb 0, transparent 29%),
+        linear-gradient(135deg, #f9edf6, #fdf8fc 70%, #f2e7f4);
+    }
+
+    .hero-inner {
+      max-width: 1040px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1, h2 {
+      font-family: "Playfair Display", serif;
+      line-height: 1.18;
+    }
+
+    h1 {
+      max-width: 790px;
+      margin: 14px 0;
+      font-size: clamp(36px, 6vw, 61px);
+    }
+
+    .hero p {
+      max-width: 730px;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 12px 19px;
+      border: 1px solid var(--purple);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .button-primary {
+      color: white;
+      background: var(--purple);
+    }
+
+    .button-secondary {
+      color: var(--purple);
+      background: white;
+    }
+
+    .container {
+      width: min(1040px, calc(100% - 40px));
+      margin: auto;
+    }
+
+    .section { padding: 60px 0; }
+
+    .section-heading {
+      max-width: 760px;
+      margin-bottom: 27px;
+    }
+
+    .section-heading h2 {
+      margin: 8px 0 12px;
+      font-size: clamp(29px, 4vw, 40px);
+    }
+
+    .section-heading p { color: var(--muted); }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-radius: 21px;
+      background: white;
+      box-shadow: 0 12px 32px rgba(91,56,99,.07);
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      margin-bottom: 13px;
+      border-radius: 14px;
+      background: var(--pink);
+      font-size: 21px;
+    }
+
+    .highlight {
+      padding: 25px;
+      border-left: 4px solid var(--purple);
+      border-radius: 15px;
+      background: #f6edf7;
+    }
+
+    .highlight p { margin: 0; }
+
+    .steps {
+      display: grid;
+      gap: 14px;
+      padding: 0;
+      list-style: none;
+      counter-reset: step;
+    }
+
+    .steps li {
+      position: relative;
+      padding: 19px 20px 19px 62px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: white;
+      counter-increment: step;
+    }
+
+    .steps li::before {
+      content: counter(step);
+      position: absolute;
+      top: 19px;
+      left: 18px;
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--pink);
+      color: var(--purple);
+      font-weight: 700;
+    }
+
+    .help-box {
+      padding: 34px;
+      border-radius: 24px;
+      color: white;
+      background: #493653;
+    }
+
+    .help-box h2 {
+      margin-top: 0;
+      font-size: clamp(29px, 4vw, 38px);
+    }
+
+    .help-box p { color: #f0e8f2; }
+
+    .help-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .help-links a {
+      padding: 11px 16px;
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 999px;
+      color: white;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .sources li { margin: 12px 0; }
+
+    .sources a {
+      color: var(--purple);
+      overflow-wrap: anywhere;
+    }
+
+    .footer {
+      margin-top: 35px;
+      padding: 27px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    .footer a {
+      color: var(--purple);
+      text-decoration: none;
+    }
+
+    @media (max-width: 700px) {
+      .nav {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .nav-links { justify-content: flex-start; gap: 12px; }
+      .hero { padding: 52px 20px; }
+      .grid { grid-template-columns: 1fr; }
+      .section { padding: 44px 0; }
+      .help-box { padding: 25px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
 </head>
+
 <body>
-<header class="topic-header">
-  <a class="topic-logo" href="index.html">LIA</a>
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="projeto.html">Projeto</a>
-    <a href="violencias.html">Tipos de violência</a>
-    <a href="apoio.html">Preciso de apoio</a>
-    <a href="conta.html">Conta</a>
-  </nav>
-</header>
-<main>
-  <section class="topic-hero">
-    <p>INFORMAÇÃO E PROTEÇÃO</p>
-    <h1>Violência sexual</h1>
-    <p>Ninguém tem o direito de ultrapassar seus limites. Consentimento precisa ser livre, consciente e pode ser retirado a qualquer momento.</p>
-  </section>
-  <section class="topic-section">
-    <h2>O que é?</h2>
-    <p>É qualquer conduta que constranja alguém a presenciar, manter ou participar de relação sexual não desejada, por intimidação, ameaça, coerção ou uso da força. Pode ocorrer dentro ou fora de um relacionamento.</p>
-    <div class="topic-alert"><strong>Importante:</strong> estar em um relacionamento, ter consentido anteriormente ou ficar em silêncio não significa consentimento. A culpa nunca é da vítima.</div>
-  </section>
-  <section class="topic-section">
-    <h2>Exemplos de violência sexual</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Contato sem consentimento</h3><p>Toques, beijos ou atos sexuais impostos ou indesejados.</p></article>
-      <article class="topic-card"><h3>Coerção e ameaças</h3><p>Pressionar, intimidar ou ameaçar alguém para obter um ato sexual.</p></article>
-      <article class="topic-card"><h3>Controle reprodutivo</h3><p>Impedir ou impor decisões sobre contracepção e reprodução.</p></article>
-      <article class="topic-card"><h3>Exposição íntima</h3><p>Compartilhar imagens íntimas sem autorização também pode configurar violência e abuso.</p></article>
-    </div>
-  </section>
-  <section class="topic-section">
-    <h2>O que fazer se isso aconteceu?</h2>
-    <ul>
-      <li>Procure um serviço de saúde o quanto antes, mesmo que ainda não tenha decidido denunciar.</li>
-      <li>O atendimento pode orientar sobre prevenção de infecções sexualmente transmissíveis, gravidez e cuidados físicos e emocionais.</li>
-      <li>Se for seguro, procure alguém de confiança para acompanhar você.</li>
-      <li>Você não precisa contar detalhes para pessoas que não se sente confortável em procurar.</li>
-      <li>Não apague possíveis provas se isso puder ser feito com segurança, mas priorize sua proteção.</li>
-    </ul>
-  </section>
-  <section class="topic-section">
-    <h2>Onde buscar ajuda?</h2>
-    <div class="topic-grid">
-      <article class="topic-card"><h3>Central 180</h3><p>Orientação e encaminhamento sobre violência contra mulheres.</p></article>
-      <article class="topic-card"><h3>Polícia — 190</h3><p>Em situação de perigo imediato.</p></article>
-      <article class="topic-card"><h3>SAMU — 192</h3><p>Em emergência médica.</p></article>
-    </div>
-    <p>Você merece acolhimento, respeito e atendimento sem julgamentos.</p>
-    <a class="topic-button" href="apoio.html">Conhecer opções de apoio</a>
-  </section>
-  <section class="topic-section">
-    <h2>Continue aprendendo</h2>
-    <div class="topic-nav">
-      <a href="violencia-fisica.html">Violência física</a>
-      <a href="violencia-psicologica.html">Violência psicológica</a>
-      <a href="violencia-patrimonial.html">Próxima: violência patrimonial →</a>
-      <a href="violencias.html">Ver todos os tipos</a>
-    </div>
-  </section>
-</main>
-<footer class="topic-footer"><p>LIA — informação, acolhimento e proteção.</p><a href="index.html">Voltar ao início</a></footer>
+  <header class="header">
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+      <div class="nav-links">
+        <a href="index.html">Início</a>
+        <a href="historia.html">Nossa história</a>
+        <a href="violencia-fisica.html">Violência física</a>
+        <a href="violencia-psicologica.html">Violência psicológica</a>
+        <a class="support-link" href="#apoio">Preciso de apoio</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Informação, respeito e proteção</span>
+        <h1>Violência sexual: seu consentimento importa</h1>
+        <p>
+          Toda mulher tem direito de decidir sobre o próprio corpo.
+          A violência sexual pode acontecer em diferentes contextos,
+          inclusive em relacionamentos e dentro do casamento. Nenhuma
+          relação dá a alguém o direito de ignorar a vontade da outra pessoa.
+        </p>
+
+        <div class="actions">
+          <a class="button button-primary" href="#entenda">Entender meus direitos</a>
+          <a class="button button-secondary" href="#apoio">Buscar orientação</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="entenda">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Entenda</span>
+          <h2>O que é violência sexual?</h2>
+          <p>
+            É qualquer conduta sexual praticada sem consentimento livre,
+            ou por meio de força, ameaça, intimidação, exploração ou outras
+            situações em que a pessoa não pode consentir livremente.
+            A definição jurídica depende das circunstâncias de cada caso.
+          </p>
+        </div>
+
+        <div class="highlight">
+          <p>
+            <strong>Consentimento precisa ser livre.</strong> Ficar em silêncio,
+            sentir medo, estar sob pressão ou já ter consentido em outro momento
+            não significa consentir agora. É possível mudar de ideia.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="sinais">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Reconhecer situações</span>
+          <h2>Como a violência sexual pode acontecer?</h2>
+          <p>
+            Estas situações podem indicar violação de limites e direitos.
+            A responsabilidade pela violência nunca é da vítima.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">✋</span>
+            <h3>Contato sem consentimento</h3>
+            <p>
+              Tocar, beijar ou praticar atos de natureza sexual sem
+              consentimento livre da outra pessoa.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">⚠️</span>
+            <h3>Pressão, ameaça ou força</h3>
+            <p>
+              Usar intimidação, chantagem, força ou medo para obter
+              atos sexuais contra a vontade de alguém.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">🔐</span>
+            <h3>Abuso em relacionamentos</h3>
+            <p>
+              Namorar, estar casada ou já ter tido relações com alguém
+              não elimina o direito de dizer não.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">📷</span>
+            <h3>Violência sexual digital</h3>
+            <p>
+              Compartilhar imagens íntimas sem autorização, ameaçar
+              divulgá-las ou usar esse material para coagir alguém.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">🧒</span>
+            <h3>Exploração e abuso de vulnerabilidade</h3>
+            <p>
+              Explorar uma pessoa ou se aproveitar de situações em que
+              ela não pode oferecer consentimento válido. Crianças e
+              adolescentes têm proteções legais específicas.
+            </p>
+          </article>
+
+          <article class="card">
+            <span class="card-icon" aria-hidden="true">💬</span>
+            <h3>Imposição de práticas sexuais</h3>
+            <p>
+              Obrigar alguém a realizar práticas sexuais que não deseja,
+              ignorando seus limites ou sua recusa.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Acolhimento sem julgamento</span>
+          <h2>Se isso aconteceu com você</h2>
+          <p>
+            Você merece ser ouvida e receber atendimento respeitoso.
+            Não é necessário enfrentar tudo sozinha.
+          </p>
+        </div>
+
+        <ol class="steps">
+          <li>
+            <strong>Priorize sua segurança.</strong><br>
+            Se estiver em perigo, procure um local seguro e acione os
+            serviços de emergência quando puder fazer isso com segurança.
+          </li>
+          <li>
+            <strong>Procure atendimento de saúde.</strong><br>
+            Um serviço de saúde pode avaliar lesões, orientar sobre prevenção
+            de infecções sexualmente transmissíveis, contracepção de emergência
+            e outros cuidados indicados. Alguns cuidados são sensíveis ao tempo;
+            procure atendimento o quanto antes, se possível.
+          </li>
+          <li>
+            <strong>Você pode pedir acolhimento.</strong><br>
+            Se desejar, procure uma pessoa de confiança ou um serviço
+            especializado que respeite suas escolhas e sua privacidade.
+          </li>
+          <li>
+            <strong>Não se culpe nem se pressione.</strong><br>
+            A forma como você reagiu não torna a violência sua responsabilidade.
+            Você pode pedir ajuda mesmo que ainda não saiba o que fazer.
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section" id="apoio">
+      <div class="container">
+        <div class="help-box">
+          <span class="eyebrow" style="color:#ead4f1">Você tem direito a cuidado</span>
+          <h2>Onde encontrar ajuda</h2>
+          <p>
+            No Brasil, você pode procurar uma unidade de saúde, hospital,
+            serviço especializado de atendimento à mulher ou orientação
+            pelos canais oficiais.
+          </p>
+
+          <div class="help-links">
+            <a href="tel:180">Ligue 180 — orientação à mulher</a>
+            <a href="tel:190">190 — emergência policial</a>
+            <a href="tel:192">192 — SAMU</a>
+          </div>
+
+          <p>
+            Em caso de risco imediato, ligue 190. Para urgência médica,
+            ligue 192 ou procure um serviço de saúde. O Ligue 180 oferece
+            orientação sobre direitos e serviços de atendimento à mulher.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="fontes">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Fontes confiáveis</span>
+          <h2>Saiba mais sobre seus direitos</h2>
+          <p>
+            A LIA prioriza informações de órgãos públicos e legislação oficial.
+          </p>
+        </div>
+
+        <ul class="sources">
+          <li>
+            <a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm"
+               target="_blank" rel="noopener noreferrer">
+              Lei Maria da Penha — Lei nº 11.340/2006
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.br/mulheres/pt-br/ligue180"
+               target="_blank" rel="noopener noreferrer">
+              Ministério das Mulheres — Ligue 180
+            </a>
+          </li>
+          <li>
+            <a href="https://www.gov.br/saude/pt-br"
+               target="_blank" rel="noopener noreferrer">
+              Ministério da Saúde — informações sobre saúde e atendimento
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow">Continue se informando</span>
+          <h2>Conheça outras formas de violência</h2>
+          <p>
+            Cada tipo de violência tem características próprias.
+            Conhecer essas diferenças pode ajudar a identificar situações
+            e encontrar orientações adequadas.
+          </p>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <h3>Violência física</h3>
+            <p>Entenda os sinais e conheça caminhos para procurar ajuda.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-fisica.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência psicológica</h3>
+            <p>Saiba reconhecer controle, ameaças, humilhações e manipulação.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-psicologica.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência patrimonial</h3>
+            <p>Conheça situações de controle ou retenção de bens e recursos.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-patrimonial.html">Acessar página</a>
+            </p>
+          </article>
+
+          <article class="card">
+            <h3>Violência moral</h3>
+            <p>Entenda situações como calúnia, difamação e injúria.</p>
+            <p style="margin-top:15px">
+              <a class="button button-secondary" href="violencia-moral.html">Acessar página</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>LIA</strong> — informação, acolhimento e caminhos de proteção.</p>
+    <p>Conteúdo informativo; não substitui atendimento profissional ou serviços de emergência.</p>
+    <p><a href="index.html">Página inicial</a></p>
+    <p>© <span id="lia-year"></span> LIA</p>
+  </footer>
+
+  <script>
+    document.getElementById("lia-year").textContent = new Date().getFullYear();
+  </script>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
 </body>
 </html>
+

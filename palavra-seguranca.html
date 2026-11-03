@@ -1,0 +1,450 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#79618f">
+  <title>Palavra de Segurança | LIA</title>
+  <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --roxo: #79618f;
+      --roxo-escuro: #59446e;
+      --lilas: #eee7f4;
+      --rosa: #f7e9ef;
+      --fundo: #fbf8fc;
+      --texto: #39313f;
+      --muted: #746b79;
+      --borda: #e7ddea;
+      --branco: #fff;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--fundo);
+      color: var(--texto);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topo {
+      background: rgba(255, 255, 255, 0.96);
+      border-bottom: 1px solid var(--borda);
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .marca {
+      text-decoration: none;
+      color: var(--roxo-escuro);
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .marca span {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+    }
+
+    .navegacao {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .navegacao a {
+      text-decoration: none;
+      padding: 8px 13px;
+      border-radius: 20px;
+      font-size: 0.92rem;
+    }
+
+    .navegacao a:hover {
+      background: var(--lilas);
+    }
+
+    main {
+      width: min(920px, 92%);
+      margin: 38px auto 60px;
+    }
+
+    .apresentacao {
+      padding: 34px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, #eee7f4, #f9edf2);
+      margin-bottom: 24px;
+    }
+
+    .etiqueta {
+      color: var(--roxo-escuro);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      font-weight: bold;
+    }
+
+    h1, h2 {
+      color: var(--roxo-escuro);
+      line-height: 1.25;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.8rem);
+      margin: 10px 0;
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin-top: 0;
+    }
+
+    .apresentacao p {
+      max-width: 680px;
+      margin-bottom: 0;
+    }
+
+    .cartao {
+      background: var(--branco);
+      border: 1px solid var(--borda);
+      border-radius: 20px;
+      padding: 26px;
+      margin-bottom: 20px;
+      box-shadow: 0 6px 22px rgba(70, 45, 80, 0.04);
+    }
+
+    .passos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .passo {
+      background: #fcf9fd;
+      border: 1px solid var(--borda);
+      padding: 19px;
+      border-radius: 16px;
+    }
+
+    .numero {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      background: var(--lilas);
+      color: var(--roxo-escuro);
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .passo h3 {
+      font-size: 1.02rem;
+      margin: 0 0 8px;
+      color: var(--roxo-escuro);
+    }
+
+    .aviso {
+      padding: 17px 19px;
+      border-left: 4px solid var(--roxo);
+      border-radius: 10px;
+      background: #f4eff8;
+      margin-top: 18px;
+    }
+
+    .aviso strong {
+      color: var(--roxo-escuro);
+    }
+
+    .aviso-rosa {
+      background: #fff3f6;
+      border-left-color: #bc6b89;
+    }
+
+    .lista {
+      padding-left: 22px;
+    }
+
+    .lista li {
+      margin-bottom: 9px;
+    }
+
+    .modelo {
+      background: #faf7fc;
+      border: 1px dashed #c8b7d5;
+      border-radius: 14px;
+      padding: 18px;
+      margin-top: 14px;
+    }
+
+    .modelo p {
+      margin: 0 0 10px;
+    }
+
+    .botao {
+      display: inline-block;
+      border: none;
+      background: var(--roxo);
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      padding: 12px 19px;
+      font-size: 0.95rem;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+
+    .botao:hover {
+      background: var(--roxo-escuro);
+    }
+
+    .botao-secundario {
+      background: #eee7f4;
+      color: var(--roxo-escuro);
+    }
+
+    .botao-secundario:hover {
+      background: #e2d5ed;
+    }
+
+    .pergunta {
+      border-top: 1px solid var(--borda);
+      padding: 16px 0;
+    }
+
+    .pergunta:first-of-type {
+      border-top: none;
+    }
+
+    .pergunta h3 {
+      font-size: 1rem;
+      margin: 0 0 6px;
+      color: var(--roxo-escuro);
+    }
+
+    .pergunta p {
+      margin: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 16px;
+      color: var(--muted);
+      border-top: 1px solid var(--borda);
+      background: white;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 620px) {
+      .topo {
+        padding: 14px 5%;
+      }
+
+      .passos {
+        grid-template-columns: 1fr;
+      }
+
+      .apresentacao, .cartao {
+        padding: 22px;
+      }
+
+      .navegacao {
+        gap: 4px;
+      }
+
+      .navegacao a {
+        padding: 7px 9px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topo">
+    <a class="marca" href="index.html">
+      LIA
+      <span>Informação, acolhimento e proteção</span>
+    </a>
+
+    <nav class="navegacao" aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="apoio.html">Preciso de apoio</a>
+      <a href="pessoas-confiaveis.html">Pessoas confiáveis</a>
+      <a href="diario.html">Meu diário</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="apresentacao">
+      <span class="etiqueta">Segurança e acolhimento</span>
+      <h1>Palavra de segurança</h1>
+      <p>
+        Uma palavra ou frase combinada previamente pode ajudar você a pedir
+        apoio de maneira discreta a alguém de confiança, quando explicar
+        diretamente o que está acontecendo não for seguro ou possível.
+      </p>
+    </section>
+
+    <section class="cartao">
+      <h2>Como funciona?</h2>
+
+      <div class="passos">
+        <article class="passo">
+          <span class="numero">1</span>
+          <h3>Escolha alguém confiável</h3>
+          <p>
+            Converse com uma pessoa que respeite suas decisões e que possa
+            ajudar sem aumentar o risco para você.
+          </p>
+        </article>
+
+        <article class="passo">
+          <span class="numero">2</span>
+          <h3>Combine uma frase</h3>
+          <p>
+            Escolham uma frase que pareça natural em uma conversa, mas que
+            tenha um significado específico para vocês.
+          </p>
+        </article>
+
+        <article class="passo">
+          <span class="numero">3</span>
+          <h3>Definam o que fazer</h3>
+          <p>
+            Combinem se a frase significa telefonar, enviar uma mensagem,
+            buscar você ou procurar ajuda de emergência.
+          </p>
+        </article>
+
+        <article class="passo">
+          <span class="numero">4</span>
+          <h3>Planejem com cuidado</h3>
+          <p>
+            Decidam como agir sem confrontar a pessoa que representa risco
+            e sem expor informações que possam colocar você em perigo.
+          </p>
+        </article>
+      </div>
+
+      <div class="aviso">
+        <strong>Importante:</strong> só combine esse recurso se isso for
+        seguro para você. Não é necessário criar uma palavra de segurança
+        nem contar a alguém se isso puder aumentar o risco.
+      </div>
+    </section>
+
+    <section class="cartao">
+      <h2>Exemplo de combinação</h2>
+      <p>
+        Use o exemplo apenas como inspiração. Escolha algo que faça sentido
+        para a sua realidade e combine o significado em particular.
+      </p>
+
+      <div class="modelo">
+        <p><strong>Frase combinada:</strong> “Você pode me mandar aquela receita?”</p>
+        <p><strong>Significado:</strong> “Preciso que você entre em contato comigo de forma discreta.”</p>
+        <p><strong>Próximo passo:</strong> a pessoa confiável responde conforme o plano que vocês combinaram.</p>
+      </div>
+
+      <div class="aviso aviso-rosa">
+        Não use esse exemplo automaticamente. Uma frase que parece inofensiva
+        para uma pessoa pode despertar suspeitas em outra situação.
+      </div>
+    </section>
+
+    <section class="cartao">
+      <h2>Cuidados com sua segurança</h2>
+      <ul class="lista">
+        <li>Evite guardar a palavra em um aparelho que outra pessoa possa acessar.</li>
+        <li>Considere se notificações, histórico de mensagens ou contas compartilhadas podem expor o combinado.</li>
+        <li>Combine previamente o que a pessoa deve fazer e o que não deve fazer.</li>
+        <li>Se for seguro, tenha mais de uma maneira de pedir ajuda.</li>
+        <li>Revise o plano quando suas circunstâncias ou seus contatos mudarem.</li>
+      </ul>
+
+      <div class="aviso aviso-rosa">
+        <strong>Limitação desta página:</strong> esta versão é informativa.
+        Ela não fica ouvindo o ambiente, não reconhece automaticamente uma
+        palavra falada, não envia alertas e não chama contatos em segundo
+        plano. Não dependa desta página como um sistema de emergência.
+      </div>
+    </section>
+
+    <section class="cartao">
+      <h2>Precisa de ajuda agora?</h2>
+      <p>
+        Se estiver em perigo imediato no Brasil, procure um lugar seguro
+        se puder e ligue para o <strong>190</strong>. Para orientação e
+        informações sobre violência contra a mulher, ligue para o
+        <strong>180</strong>.
+      </p>
+      <p>
+        Se não for seguro fazer uma ligação, considere a alternativa mais
+        segura disponível na sua situação, como pedir ajuda a alguém
+        confiável ou procurar um serviço presencial.
+      </p>
+
+      <a class="botao" href="apoio.html">Ver opções de apoio</a>
+      <a class="botao botao-secundario" href="pessoas-confiaveis.html">
+        Pessoas confiáveis
+      </a>
+    </section>
+
+    <section class="cartao">
+      <h2>Dúvidas frequentes</h2>
+
+      <div class="pergunta">
+        <h3>A LIA vai avisar alguém automaticamente?</h3>
+        <p>
+          Não nesta versão. A página não envia mensagens nem compartilha
+          sua localização.
+        </p>
+      </div>
+
+      <div class="pergunta">
+        <h3>Posso ativar a palavra por voz com a tela bloqueada?</h3>
+        <p>
+          Não apenas com este arquivo HTML. Isso exige recursos específicos
+          da plataforma, permissões e testes de segurança.
+        </p>
+      </div>
+
+      <div class="pergunta">
+        <h3>Preciso registrar minha palavra nesta página?</h3>
+        <p>
+          Não. Por segurança, esta versão não solicita nem armazena uma
+          palavra secreta. Você pode combinar o recurso diretamente com
+          uma pessoa confiável, se isso for seguro.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>LIA</strong> — Informação, acolhimento e proteção.<br>
+    Um projeto de conscientização e apoio a mulheres.
+  </footer>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+</body>
+</html>
+

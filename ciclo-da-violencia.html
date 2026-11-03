@@ -1,0 +1,575 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7edf8">
+  <meta name="description" content="Entenda o ciclo da violência, reconheça padrões abusivos e conheça caminhos para buscar apoio.">
+  <title>Ciclo da Violência | LIA</title>
+
+  <link rel="stylesheet" href="lia.css">
+
+  <style>
+    :root {
+      --purple: #78518b;
+      --dark: #392c40;
+      --pink: #f4e5f0;
+      --background: #fffafd;
+      --border: #eadce9;
+      --muted: #716875;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--dark);
+      background: var(--background);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.7;
+    }
+
+    a {
+      color: var(--purple);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 18px;
+      padding: 18px 7%;
+      border-bottom: 1px solid var(--border);
+      background: #fffafd;
+    }
+
+    .logo {
+      color: var(--purple);
+      font-family: Georgia, serif;
+      font-size: 2rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    nav a {
+      color: var(--dark);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: var(--purple);
+      text-decoration: underline;
+    }
+
+    .hero {
+      padding: 72px 7%;
+      background: linear-gradient(135deg, #f8edf7, #eee4f5);
+    }
+
+    .hero-content {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: var(--purple);
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.3;
+    }
+
+    h1 {
+      max-width: 850px;
+      margin: 15px 0 20px;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      font-weight: normal;
+    }
+
+    .hero p {
+      max-width: 780px;
+      font-size: 1.1rem;
+    }
+
+    main {
+      width: min(1100px, 86%);
+      margin: 45px auto 70px;
+    }
+
+    section {
+      margin-bottom: 52px;
+      scroll-margin-top: 24px;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(1.7rem, 3vw, 2.4rem);
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .intro {
+      max-width: 850px;
+      color: var(--muted);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 20px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 25px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: white;
+      box-shadow: 0 7px 22px rgba(77, 48, 82, 0.05);
+    }
+
+    .card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .phase-number {
+      display: inline-flex;
+      width: 38px;
+      height: 38px;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 12px;
+      border-radius: 50%;
+      color: white;
+      background: var(--purple);
+      font-weight: bold;
+    }
+
+    .soft-box {
+      margin-top: 24px;
+      padding: 25px;
+      border-radius: 16px;
+      background: var(--pink);
+    }
+
+    .alert-box {
+      margin-top: 24px;
+      padding: 24px;
+      border: 1px solid var(--border);
+      border-left: 5px solid var(--purple);
+      border-radius: 12px;
+      background: white;
+    }
+
+    .resource-list {
+      padding-left: 22px;
+    }
+
+    .resource-list li {
+      margin-bottom: 13px;
+    }
+
+    .source-link {
+      display: inline-block;
+      margin-top: 8px;
+      font-weight: bold;
+    }
+
+    .support {
+      padding: 34px;
+      border-radius: 22px;
+      color: white;
+      background: #654574;
+    }
+
+    .support h2 {
+      margin-top: 0;
+    }
+
+    .support a {
+      color: white;
+    }
+
+    .back {
+      display: inline-block;
+      margin-bottom: 25px;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    footer {
+      padding: 30px 7%;
+      background: #f2e7f1;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    footer p {
+      margin: 5px 0;
+    }
+
+    @media (max-width: 700px) {
+      .header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding: 48px 7%;
+      }
+
+      main {
+        width: 88%;
+        margin-top: 35px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .card,
+      .soft-box,
+      .alert-box,
+      .support {
+        padding: 21px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <a class="logo" href="index.html" aria-label="LIA - página inicial">LIA</a>
+
+    <nav aria-label="Navegação principal">
+      <a href="index.html">Início</a>
+      <a href="historia.html">História da LIA</a>
+      <a href="violencia-fisica.html">Física</a>
+      <a href="violencia-psicologica.html">Psicológica</a>
+      <a href="violencia-sexual.html">Sexual</a>
+      <a href="violencia-patrimonial.html">Patrimonial</a>
+      <a href="violencia-moral.html">Moral</a>
+      <a href="violencia-digital.html">Digital</a>
+      <a href="violencia-vicaria.html">Vicária</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <div class="hero-content">
+      <span class="eyebrow">Informação • Reconhecimento • Acolhimento</span>
+
+      <h1>O ciclo da violência: quando o abuso parece terminar, mas volta a acontecer.</h1>
+
+      <p>
+        Em algumas relações abusivas, os episódios de violência seguem um
+        padrão que pode se repetir ao longo do tempo. Depois de uma agressão,
+        podem surgir pedidos de desculpas, promessas de mudança e períodos
+        de aparente tranquilidade.
+      </p>
+
+      <p>
+        Entender esse padrão pode ajudar a reconhecer sinais de alerta.
+        Cada história é diferente, e nem todas as relações seguem as mesmas fases.
+      </p>
+    </div>
+  </div>
+
+  <main>
+    <a class="back" href="index.html">← Voltar à página inicial</a>
+
+    <section id="entenda">
+      <span class="eyebrow">01 • Compreender</span>
+      <h2>Como funciona o ciclo da violência?</h2>
+
+      <p class="intro">
+        O modelo conhecido como ciclo da violência é frequentemente descrito
+        por três fases: aumento da tensão, episódio de violência e reconciliação
+        ou chamada “lua de mel”. Essas fases são uma forma de compreender
+        alguns padrões, não uma regra que se aplica a todas as situações.
+      </p>
+
+      <div class="grid">
+        <article class="card">
+          <span class="phase-number">1</span>
+          <h3>Aumento da tensão</h3>
+          <p>
+            Podem surgir irritação, ciúme excessivo, acusações, humilhações,
+            cobranças e tentativas de controlar a rotina. A mulher pode
+            começar a modificar seu comportamento para tentar evitar conflitos.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="phase-number">2</span>
+          <h3>Episódio de violência</h3>
+          <p>
+            A tensão pode resultar em agressões físicas, psicológicas, sexuais,
+            morais, patrimoniais ou outras atitudes abusivas. A gravidade
+            varia, e a violência pode acontecer sem agressão física.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="phase-number">3</span>
+          <h3>Reconciliação ou “lua de mel”</h3>
+          <p>
+            A pessoa pode pedir desculpas, demonstrar carinho, fazer promessas
+            ou minimizar o que aconteceu. Em algumas relações, esse período
+            traz esperança de que tudo será diferente.
+          </p>
+        </article>
+
+        <article class="card">
+          <span class="phase-number">↻</span>
+          <h3>Repetição do padrão</h3>
+          <p>
+            Se o comportamento abusivo não muda, a tensão pode voltar e novos
+            episódios podem acontecer. Com o tempo, o padrão pode se modificar,
+            encurtar ou deixar de apresentar fases claramente identificáveis.
+          </p>
+        </article>
+      </div>
+
+      <div class="soft-box">
+        <strong>Um ponto importante:</strong>
+        períodos tranquilos ou pedidos de desculpas não garantem que a violência
+        acabou. Mudanças consistentes exigem responsabilidade pelas atitudes
+        e interrupção do comportamento abusivo.
+      </div>
+    </section>
+
+    <section id="sinais">
+      <span class="eyebrow">02 • Reconhecer</span>
+      <h2>Sinais de que uma relação pode estar se tornando abusiva</h2>
+
+      <ul class="resource-list">
+        <li>Você sente que precisa medir cada palavra para evitar a reação da outra pessoa.</li>
+        <li>Há ciúme excessivo, vigilância, cobranças ou controle sobre suas amizades e roupas.</li>
+        <li>A pessoa tenta afastar você da família ou de pessoas que poderiam oferecer apoio.</li>
+        <li>Você é humilhada, ameaçada, intimidada ou responsabilizada pelas agressões que sofre.</li>
+        <li>Depois de episódios violentos, surgem desculpas, promessas e pressão para esquecer o ocorrido.</li>
+        <li>Você sente medo de terminar a relação ou de procurar ajuda por causa de possíveis retaliações.</li>
+      </ul>
+
+      <div class="alert-box">
+        <strong>A violência não precisa se repetir para ser levada a sério.</strong>
+        Um único episódio grave já merece atenção e apoio. Você não precisa
+        esperar que exista um ciclo completo para procurar ajuda.
+      </div>
+    </section>
+
+    <section id="por-que">
+      <span class="eyebrow">03 • Romper o silêncio</span>
+      <h2>Por que pode ser difícil sair de uma relação abusiva?</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Esperança de mudança</h3>
+          <p>
+            Pedidos de desculpas e momentos de carinho podem alimentar a
+            esperança de que a relação volte a ser como era no início.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Medo de novas agressões</h3>
+          <p>
+            A mulher pode temer a reação da pessoa agressora, especialmente
+            quando existem ameaças contra ela, seus filhos ou familiares.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Dependência financeira ou emocional</h3>
+          <p>
+            Falta de renda, moradia, apoio ou acesso a serviços pode dificultar
+            a busca por alternativas seguras.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Culpa, vergonha e isolamento</h3>
+          <p>
+            A manipulação e o julgamento de outras pessoas podem fazer com que
+            a mulher tenha dificuldade para contar o que está vivendo.
+          </p>
+        </article>
+      </div>
+
+      <p>
+        Essas dificuldades não significam consentimento nem fraqueza.
+        A responsabilidade pela violência é de quem a pratica. Cada pessoa
+        precisa de apoio adequado à sua realidade e ao seu nível de risco.
+      </p>
+    </section>
+
+    <section id="protecao">
+      <span class="eyebrow">04 • Segurança</span>
+      <h2>Como buscar ajuda com segurança?</h2>
+
+      <ul class="resource-list">
+        <li>
+          <strong>Converse com alguém de confiança:</strong>
+          se for seguro, compartilhe o que está acontecendo com uma pessoa
+          que respeite suas decisões e possa ajudar.
+        </li>
+        <li>
+          <strong>Procure atendimento especializado:</strong>
+          serviços de atendimento à mulher podem orientar sobre direitos,
+          acolhimento e medidas de proteção.
+        </li>
+        <li>
+          <strong>Planeje antes de agir:</strong>
+          se teme uma reação violenta, procure ajuda para organizar um plano
+          de segurança. Não é necessário anunciar que pretende sair da relação.
+        </li>
+        <li>
+          <strong>Preserve informações importantes:</strong>
+          quando for seguro, guarde mensagens, registros de ameaças e outros
+          documentos relevantes. Não se arrisque para obter provas.
+        </li>
+        <li>
+          <strong>Considere suas necessidades práticas:</strong>
+          documentos, medicamentos, transporte, dinheiro e um local seguro
+          podem fazer parte de um plano individualizado, quando aplicável.
+        </li>
+      </ul>
+
+      <div class="soft-box">
+        Não existe uma única decisão certa para todas as situações.
+        O mais importante é priorizar sua segurança, respeitar seu tempo
+        e procurar apoio sem se culpar pelo que aconteceu.
+      </div>
+    </section>
+
+    <section id="ajuda">
+      <span class="eyebrow">05 • Rede de apoio</span>
+      <h2>Onde buscar ajuda no Brasil?</h2>
+
+      <div class="grid">
+        <article class="card">
+          <h3>Central 180</h3>
+          <p>
+            Atendimento e orientação sobre violência contra a mulher,
+            com encaminhamento para serviços da rede de atendimento.
+          </p>
+          <a class="source-link" href="https://www.gov.br/mulheres/pt-br/ligue180" target="_blank" rel="noopener noreferrer">
+            Consultar o canal oficial
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Emergência — 190</h3>
+          <p>
+            Ligue para a Polícia Militar em caso de perigo imediato.
+            Se possível, vá para um local seguro.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Defensoria Pública</h3>
+          <p>
+            Pode oferecer orientação jurídica e informações sobre direitos
+            e medidas de proteção, conforme os critérios de atendimento.
+          </p>
+          <a class="source-link" href="https://www.cnj.jus.br/" target="_blank" rel="noopener noreferrer">
+            Consultar informações institucionais
+          </a>
+        </article>
+
+        <article class="card">
+          <h3>Serviços de assistência social</h3>
+          <p>
+            CRAS, CREAS e outros serviços locais podem orientar sobre
+            atendimento social e recursos disponíveis no município.
+          </p>
+          <a class="source-link" href="https://www.gov.br/mds/pt-br" target="_blank" rel="noopener noreferrer">
+            Consultar informações oficiais
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="mensagem">
+      <div class="support">
+        <span class="eyebrow">LIA • Informação e acolhimento</span>
+        <h2>Você merece viver sem medo.</h2>
+
+        <p>
+          Você não precisa provar sua força suportando a violência.
+          Merece ser ouvida, respeitada e apoiada para construir um caminho
+          seguro, de acordo com suas necessidades.
+        </p>
+
+        <p>
+          Para orientação sobre violência contra a mulher, ligue
+          <strong>180</strong>. Em caso de perigo imediato, ligue
+          <strong>190</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section id="fontes">
+      <h2>Fontes para consulta</h2>
+
+      <p>
+        Esta página tem finalidade educativa e não substitui atendimento
+        psicológico, jurídico ou especializado.
+      </p>
+
+      <ul class="resource-list">
+        <li>
+          <a href="https://www.gov.br/mulheres/pt-br" target="_blank" rel="noopener noreferrer">
+            Ministério das Mulheres
+          </a>
+        </li>
+        <li>
+          <a href="https://www.planalto.gov.br/ccivil_03/_ato2004-2006/2006/lei/l11340.htm" target="_blank" rel="noopener noreferrer">
+            Lei Maria da Penha — texto oficial
+          </a>
+        </li>
+        <li>
+          <a href="https://www.gov.br/mds/pt-br" target="_blank" rel="noopener noreferrer">
+            Ministério do Desenvolvimento e Assistência Social
+          </a>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p><strong>LIA — Informação, proteção e acolhimento.</strong></p>
+    <p>Projeto desenvolvido por Marcely Castro Rodrigues e Mikaela Cardoso Bonfim.</p>
+    <p>Reconhecimento a Hellen Goulart Orlandi, assistente social.</p>
+    <p>Conteúdo educativo. Em emergência, ligue 190.</p>
+  </footer>
+  <script src="navegacao.js"></script>
+  <script src="acessibilidade.js"></script>
+</body>
+</html>

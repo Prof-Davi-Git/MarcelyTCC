@@ -10,7 +10,8 @@ function sessao(u){const x={nome:u.nome,email:String(u.email).trim().toLowerCase
 function registrar(nome,email,senha){
  nome=String(nome||"").trim();email=String(email||"").trim().toLowerCase();
  if(!nome||!email)throw Error("Preencha nome e e-mail.");
- if(!senha&&!localStorage.getItem(P))throw Error("Crie uma senha fictícia com pelo menos seis caracteres.");
+ const anterior=json(localStorage.getItem(D));
+ if(!senha&&(!localStorage.getItem(P)||!anterior||String(anterior.email||"").trim().toLowerCase()!==email))throw Error("Crie uma senha fictícia com pelo menos seis caracteres.");
  if(senha&&senha.length<6)throw Error("A senha precisa ter ao menos seis caracteres.");
  if(senha)localStorage.setItem(P,resumo(senha));
  return sessao({nome,email});

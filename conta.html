@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="lia.css">
   <!-- ATUALIZAÇÃO 16/11 - conexão didática -->
   <script src="dados/usuarios-exemplo.js" defer></script>
-  <script src="auth-demo.js" defer></script>
+  <script src="auth-demo.js"></script>
 
   <style>
     :root {
@@ -1016,6 +1016,10 @@
 
         const data = JSON.parse(savedData);
 
+        if (data && String(data.email||"").toLowerCase() !== sessaoAtual.email) {
+          showMessage("Este perfil não pertence à conta demonstrativa conectada.", true);
+          return;
+        }
         if (!data || typeof data !== "object" || Array.isArray(data)) {
           showMessage("Os dados salvos não são válidos.", true);
           return;
@@ -1067,7 +1071,7 @@
       if (savedData) {
         const data = JSON.parse(savedData);
 
-        if (data && typeof data === "object" && !Array.isArray(data)) {
+        if (data && typeof data === "object" && !Array.isArray(data) && String(data.email||"").toLowerCase()===sessaoAtual.email) {
           fillForm(data);
         }
       }
@@ -1076,6 +1080,14 @@
     }
 
     updateProfilePreview();
+    // ATUALIZAÇÃO 16/11 — mostrar nome e e-mail do usuário de teste.
+    const usuarioConectado = window.LIAAuthDemo && window.LIAAuthDemo.atual();
+    if (usuarioConectado) {
+      document.getElementById("profileName").textContent = usuarioConectado.nome;
+      document.getElementById("profileEmail").textContent = usuarioConectado.email;
+      const titulo = document.querySelector(".account-hero h1");
+      if (titulo) titulo.textContent = "Meu perfil";
+    }
   </script>
 
 </body>
